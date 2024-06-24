@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dashboard admin</title>
+
+    <%- include('../partials/head.ejs') %>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css"
+    />
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"
+    ></script>
+  </head>
+  <style></style>
+  <body>
+    <span id="new_param_id"> <%=id%> </span>
+    <div class="wrapper dashboard pb-5">
+      <div id="overlay" class="d-none">
+        <div class="overlay__inner">
+          <div class="overlay__content"><span class="spinner"></span></div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <%- include('../partials/sidebar.ejs') %>
+        <div class="right-content" style="flex: 1">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button
+                class="nav-link active"
+                id="nav-addNews-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-addNews"
+                type="button"
+                role="tab"
+                aria-controls="nav-addNews"
+                aria-selected="true"
+              >
+                Thêm tin tức
+              </button>
+              <button
+                class="nav-link"
+                id="nav-editNews-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-profile"
+                type="button"
+                role="tab"
+                aria-controls="nav-profile"
+                aria-selected="false"
+              >
+                Sửa tin tức
+              </button>
+            </div>
+          </nav>
+          <div class="content">
+            <div class="content_product mt-4 tab-content" id="nav-tabContent">
+              <div class="row">
+                <div
+                  class="tab-pane fade show active"
+                  id="nav-addNews"
+                  role="tabpanel"
+                  aria-labelledby="nav-addNews-tab"
+                >
+                  <div class="col-lg-12">
+                    <form
+                      id="markdownFormNews"
+                      action=""
+                      class="position-relative"
+                    >
+                      <div
+                        onclick="handleCancelEdit()"
+                        div
+                        class="btn-close position-absolute d-none"
+                      ></div>
+                      <div class="form-group row">
+                        <div class="col-lg-6">
+                          <label class="form-label" for=""
+                            >Tiêu đề tiếng việt</label
+                          >
+                          <input
+                            class="form-control mb-3"
+                            type="text"
+                            name="title"
+                            id="title_news_vi"
+                            placeholder="title"
+                          />
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="form-label" for=""
+                            >Tiêu đề tiếng anh</label
+                          >
+                          <input
+                            class="form-control mb-3"
+                            type="text"
+                            name="title"
+                            id="title_news_en"
+                            placeholder="title"
+                          />
+                        </div>
+                      </div>
+                      <!-- upload image -->
+                      <div class="form-group">
+                        <div class="container">
+                          <label for="" class="mb-1">Ảnh sản phẩm</label>
+                          <div class="header position-relative">
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                              <g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></g>
+                              <g id="SVGRepo_iconCarrier">
+                                <path
+                                  d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                                  stroke="#000000"
+                                  stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                ></path>
+                              </g>
+                            </svg>
+                            <p>Browse File to upload!</p>
+                            <div
+                              class="wp_preview_img_news border d-inline-block position-absolute w-100 h-100"
+                            >
+                              <a
+                                class="d-block w-100 h-100"
+                                href="https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg"
+                                data-fancybox="gallery"
+                              >
+                                <img
+                                  data-lightbox="image-1"
+                                  data-title="My caption"
+                                  alt="default preview image product"
+                                  style="
+                                    width: 100% !important;
+                                    height: 100% !important;
+                                  "
+                                  id="preview_news"
+                                  src="https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg"
+                                />
+                              </a>
+                            </div>
+                          </div>
+                          <label for="image_news" class="footer">
+                            <svg
+                              fill="#000000"
+                              viewBox="0 0 32 32"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                              <g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></g>
+                              <g id="SVGRepo_iconCarrier">
+                                <path
+                                  d="M15.331 6H8.5v20h15V14.154h-8.169z"
+                                ></path>
+                                <path
+                                  d="M18.153 6h-.009v5.342H23.5v-.002z"
+                                ></path>
+                              </g>
+                            </svg>
+                            <p>Chọn ảnh</p>
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                              <g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></g>
+                              <g id="SVGRepo_iconCarrier">
+                                <path
+                                  d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z"
+                                  stroke="#000000"
+                                  stroke-width="2"
+                                ></path>
+                                <path
+                                  d="M19.5 5H4.5"
+                                  stroke="#000000"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                ></path>
+                                <path
+                                  d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z"
+                                  stroke="#000000"
+                                  stroke-width="2"
+                                ></path>
+                              </g>
+                            </svg>
+                          </label>
+                          <input
+                            id="image_news"
+                            name="image"
+                            type="file"
+                            class="d-none"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group d-flex row">
+                        <div class="col-lg-6">
+                          <label for="">Nội dung tiếng việt</label>
+                          <Textarea id="markdown_news_vi"></Textarea>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <label for="">Nội dung tiếng anh</label>
+                          <Textarea id="markdown_news_en"></Textarea>
+                        </div>
+                      </div>
+                      <button class="addNews btn btn-primary">add news</button>
+                      <div class="form-group">
+                        <div
+                          onclick="handleEditNews()"
+                          class="editNews btn btn-warning d-none"
+                        >
+                          edit news
+                        </div>
+                        <div
+                          onclick="handleCancelEdit()"
+                          class="cancelNews btn btn-danger d-none"
+                        >
+                          cancel
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="nav-profile"
+                  role="tabpanel"
+                  aria-labelledby="nav-editNews-tab"
+                >
+                  <div class="col-lg-12">
+                    <div class="list-news">
+                      <table class="display" id="product_news">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="text-center">STT</th>
+                
+                            <th scope="col" class="text-center">title_vi</th>
+                            <th scope="col" class="text-center">title_en</th>
+                            <th scope="col" class="text-center">img</th>
+                            <th scope="col" class="text-center">actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% news.forEach((item, index) => { %>
+
+                          <p id="imgNews<%=item.id%>" class="d-none">
+                            <%= item.img %>
+                          </p>
+                          <p id="contentNews<%=item.id%>_vi" class="d-none">
+                            <%= item.content_vi %>
+                          </p>
+                          <p id="contentNews<%=item.id%>_en" class="d-none">
+                            <%= item.content_en %>
+                          </p>
+                          <tr>
+                            <th scope="row"><%= index + 1 %></th>
+                            <td class="text-center" id="titleNews<%=item.id%>_vi">
+                              <%= item.title_vi %>
+                            </td>
+                            <td class="text-center" id="titleNews<%=item.id%>_en">
+                              <%= item.title_en %>
+                            </td>
+                            <td class="text-center">
+                              <img
+                                src="<%= item.img %>"
+                                alt="thumb_news"
+                                width="50px"
+                                height="50px"
+                              />
+                            </td>
+                            <td class="text-center">
+                              <a
+                                onclick="handleDelete('/admin/delete-new?id=<%= item.id %>','tin tức')"
+                                class="btn btn-sm btn-danger"
+                                >remove</a
+                              >
+                              <div
+                                id="btn_edit_news_<%= item.id %>"
+                                onclick="handleClickEditNew('<%= item.id %>')"
+                                class="btn btn-warning btn-sm"
+                              >
+                                edit
+                              </div>
+                              <span id="id_edit_news" class="d-none"></span>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include('../partials/scriptDashboard.ejs') %>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/sidebar.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#product_news").DataTable();
+    });
+  </script>
+</html>
