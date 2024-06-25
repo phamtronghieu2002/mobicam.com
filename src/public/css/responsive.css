@@ -1,0 +1,192 @@
+/* mobile */
+@media (max-width: 767px) {
+   section.the-best-feture-section
+  {
+    padding-bottom:550px;
+  }
+  .policy_content-img {
+    width: 350px !important;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+  .show-on-mobile {
+    display: block !important;
+  }
+
+   header .header-bottom {
+    background-color: var(--primary-color) !important;
+  }
+   header .header-bottom .action i {
+    color: white !important;
+  }
+   section.hero-section {
+    margin-top: 70px;
+  }
+   section.hero-section .hero-video {
+    height: 40vh;
+  }
+
+   section.hero-section .hero-content h1 {
+    font-size: 1.3rem;
+  }
+   section.hero-section .hero-content h4 {
+    font-size: 1.1rem;
+    word-spacing: 1.5;
+  }
+
+   section.method_section .information h4 {
+    text-align: center;
+  }
+   section.method_section .information h3 {
+    text-align: center;
+  }
+   section.method_section .information .dot_method {
+    display: block !important;
+  }
+   section.method_section .method_image {
+    width: 100%;
+  }
+   section.method_section .information {
+    margin-top: 20px;
+  }
+
+   section.the-best-feture-section .item {
+    display: flex;
+    gap: 15px;
+  }
+   section.the-best-feture-section .item_title {
+    text-align: left;
+  }
+   section.the-best-feture-section .item_desc {
+    font-size: 0.9rem;
+    padding-bottom: 5px;
+  }
+   section.aboutus .container article p {
+    font-size: 0.8rem;
+  }
+
+ 
+  .experience_group{
+    padding-left: 10px;
+  }
+
+
+  section.benifit-section .right-content .benifit-icon{
+    width: 64px;
+    height: 64px;
+  }
+
+  section.benifit-section .right-content .benifit-item{
+    flex-direction: column;
+    align-items: center;
+  }
+   
+  footer{
+    font-size: 0.8rem;
+  }
+  footer .footer_follow-wrapper{
+    position: absolute;
+    bottom: 5px;
+    right: 53px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  section.aboutus .inner {
+    padding-right:  20px !important;
+    padding-left: 20px !important;
+  }
+  section.method_section .list_introduce  .item{
+    margin-bottom: 5px;
+  }
+
+  .wrapper .detail-new {
+    margin-top: 90px;
+  }
+}
+/* tab let and mobile */
+@media (max-width: 1024px) {
+  .hide-on-tablet-mobile {
+    display: none !important;
+  }
+
+  section.category .tab_btns_horizal .nav-item:hover::before {
+    transform: scale(0,0);
+  }
+   section.category .nav-item.active::before {
+    transform: scale(0,0);
+  }
+   section.category .tab_btns_horizal .nav-item{
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+
+  section.benifit-section .right-content {
+    padding-left: 12px !important;
+  }
+   section.benifit-section .left-content {
+    align-items: center;
+  }
+  section.benifit-section .right-content .information {
+    width: 100%;
+  }
+
+ 
+ 
+  section.benifit-section .right-content .information h6
+  {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  section.category .tab_btns_horizal {
+    box-shadow: none;
+  }
+}
+/* tablet */
+@media (min-width: 739px) and (max-width: 1023px) {
+  
+ 
+  section.hero-section{
+    height: 700px;
+  }
+
+  section.hero-section .overlay{
+    bottom: -8px;
+  }
+  header .header-top span{
+    font-size: 0.8rem;
+  }
+
+  header .header_navigation a {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  section.benifit-section .right-content .benifit-icon{
+    width: 80px;
+    height: 80px;
+  }
+  section.benifit-section .right-content .benifit-item{
+    align-items: center;
+  }
+
+  section.method_section .information p{
+   
+    font-size: 0.75rem;
+  }
+  section.method_section .information h4{
+    font-size: 1.3rem;
+
+  }
+  section.method_section .information h3{
+    font-size: 1.3rem;
+  }
+  
+  
+}
