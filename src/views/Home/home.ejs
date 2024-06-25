@@ -32,9 +32,9 @@
   </head>
 
   <body>
+    <style></style>
     <div class="wrapper position-relative">
       <%- include('../partials/header.ejs') ,{headerSection} %>
-
 
       <!-- modal product  -->
       <div
@@ -751,11 +751,11 @@
         style="background: #e8e9eb"
       >
         <div class="container overflow-hiden">
-          <% if (typeof certificertHeading !== 'undefined' && certificertHeading) { %> <%-
-            certificertHeading %> <% } else { %>
-            <h2 class="text-primary text-center fw-bold mb-2">Giấy chứng nhận</h2>
-  
-            <% } %>
+          <% if (typeof certificertHeading !== 'undefined' &&
+          certificertHeading) { %> <%- certificertHeading %> <% } else { %>
+          <h2 class="text-primary text-center fw-bold mb-2">Giấy chứng nhận</h2>
+
+          <% } %>
           <div class="wrapper_dot">
             <div class="dot"></div>
           </div>
@@ -853,24 +853,22 @@
                           <%=products[j].productdesc %>
                         </article>
                         <div class="thumb_product">
-                          <div class="tilt-image" data-tilt>
-                            <a
-                              class="d-block w-100 h-100"
-                              href="<%= products[j].productimg %>"
-                              data-fancybox="galleryProduct"
-                              data-caption="<%= products[j].productname %>"
-                            >
-                              <img
-                                style="
-                                  width: 320px;
-                                  height: 300px;
-                                  max-width: unset;
-                                "
-                                src="<%= products[j].productimg %>"
-                                alt="mobicam_product"
-                              />
-                            </a>
-                          </div>
+                          <% for(let k = 0; k < products[j].images.length; k++)
+                          { %>
+
+                          <img
+                            style="
+                              width: 320px;
+                              height: 300px;
+                              max-width: unset;
+                            "
+                            data-index = "<%= k %>"
+                            class="<%= k === 0 ? 'active' : '' %>"
+                            src="<%= products[j].images[k] %>"
+                            alt="mobicam_product"
+                          />
+
+                          <% } %>
                         </div>
                       </div>
                       <% } %>
@@ -927,9 +925,11 @@
                 </a>
               </div>
               <% } %>
-
               <div class="viewmore text-center">
-                <a href="/news/all/<%=lang %>" class="fs-5"> view more </a>
+                <a href="/news/all/<%=lang %>" class="fs-5">
+                  <% if (lang == 'vi') { %> Xem thêm <% } else { %> View more <%
+                  } %>
+                </a>
               </div>
             </div>
           </div>
@@ -938,5 +938,43 @@
       <%- include('../partials/footer.ejs'),{footerSection:""} %>
     </div>
     <script src="/js/main.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const thumbProduct = document.querySelector(".thumb_product");
+        const images = thumbProduct.querySelectorAll("img");
+        const totalImages = images.length;
+        let currentIndex = 0;
+        let isDragging = false;
+        let startX = 0;
+      
+        function showImage(index) {
+          for (let i = 0; i < images.length; i++) {
+            images[i].classList.remove("active");
+          }
+          images[index].classList.add("active");
+        }
+      
+   
+        thumbProduct.addEventListener("mousemove", function(e) {
+
+          const currentX = e.clientX;
+          const diffX = currentX - startX;
+      
+          if (Math.abs(diffX) > 20) { // Độ nhạy kéo (số pixel để thay đổi ảnh)
+            if (diffX > 0) {
+              currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Kéo sang phải, giảm chỉ số ảnh
+            } else {
+              currentIndex = (currentIndex + 1) % totalImages; // Kéo sang trái, tăng chỉ số ảnh
+            }
+            showImage(currentIndex);
+            startX = currentX; // Đặt lại startX để tính toán lần kéo tiếp theo
+          }
+        });
+      
+        // Hiển thị ảnh đầu tiên khi trang được tải
+        showImage(currentIndex);
+      });
+    </script>
   </body>
 </html>

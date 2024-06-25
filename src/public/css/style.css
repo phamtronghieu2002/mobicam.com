@@ -8,6 +8,7 @@
 @import url("sidebar.css");
 @import url("dashboard.css");
 @import url("editHome.css");
+@import url("customizes/customizeFancibox.css");
 @import url("responsive.css");
 :root {
   --primary-color: #0c5adb;

@@ -297,9 +297,7 @@
           </div>
 
           <div class="list-best-feture mt-5">
-            <div class="row list" id="sortableList">
-           
-            </div>
+            <div class="row list" id="sortableList"></div>
           </div>
         </div>
 
@@ -597,11 +595,11 @@
         style="background: #e8e9eb"
       >
         <div class="container overflow-hidden">
-          <% if (typeof certificertHeading !== 'undefined' && certificertHeading) { %> <%-
-            certificertHeading %> <% } else { %>
-            <h2 class="text-primary text-center fw-bold mb-2">Giấy chứng nhận</h2>
-  
-            <% } %>
+          <% if (typeof certificertHeading !== 'undefined' &&
+          certificertHeading) { %> <%- certificertHeading %> <% } else { %>
+          <h2 class="text-primary text-center fw-bold mb-2">Giấy chứng nhận</h2>
+
+          <% } %>
           <div class="wrapper_dot">
             <div class="dot"></div>
           </div>
@@ -615,8 +613,8 @@
 
       <section id="category" class="category pt-5">
         <div class="container">
-          <% if (typeof categoriesSection !== 'undefined' && categoriesSection) {
-          %> <%- categoriesSection %> <% } else { %>
+          <% if (typeof categoriesSection !== 'undefined' && categoriesSection)
+          { %> <%- categoriesSection %> <% } else { %>
           <h2 class="text-primary text-center fw-bold mb-2">
             Danh mục sản phẩm
           </h2>
@@ -706,23 +704,23 @@
                           <%=products[j].productdesc %>
                         </article>
                         <div class="thumb_product">
-                          <div class="tilt-image" data-tilt>
-                            <a
-                              class="d-block w-100 h-100"
-                              href="<%= products[j].productimg %>"
-                              data-fancybox="galleryProduct"
-                              data-caption="<%= products[j].productname %>"
-                            >
-                              <img
-                                style="
-                                  width: 320px;
-                                  height: 300px;
-                                  max-width: unset;
-                                "
-                                src="<%= products[j].productimg %>"
-                                alt="mobicam_product"
-                              />
-                            </a>
+                          <div class="wp_thumb_product_<%=products[j].id %>">
+                            <% for(let k = 0; k < products[j].images.length;
+                            k++) { %>
+
+                            <img
+                              style="
+                                width: 320px;
+                                height: 300px;
+                                max-width: unset;
+                              "
+                              data-index="<%= k %>"
+                              class="<%= k === 0 ? 'active' : '' %>"
+                              src="<%= products[j].images[k] %>"
+                              alt="mobicam_product"
+                            />
+
+                            <% } %>
                           </div>
                         </div>
                       </div>
@@ -740,10 +738,10 @@
       <section id="news" class="news pt-5 pb-5">
         <div class="container">
           <% if (typeof newsSection !== 'undefined' && newsSection) { %> <%-
-            newsSection %> <% } else { %>
-            <h2 class="text-primary text-center fw-bold mb-2">Tin tức</h2>
-  
-            <% } %>
+          newsSection %> <% } else { %>
+          <h2 class="text-primary text-center fw-bold mb-2">Tin tức</h2>
+
+          <% } %>
           <div class="wrapper_dot">
             <div class="dot"></div>
           </div>
@@ -822,6 +820,57 @@
         instance[0].show(); // Show the tooltip immediately
       });
     </script>
+
     <%- include('../partials/scriptDashboard.ejs') %>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const thumbProducts = document.querySelectorAll(".thumb_product");
+
+        thumbProducts.forEach((thumbProduct) => {
+          const images = thumbProduct.querySelectorAll("img");
+          const totalImages = images.length;
+          let currentIndex = 0;
+          let startX = 0;
+          let isHovered = false; // Biến để kiểm tra hover vào vùng chứa ảnh
+
+          function showImage(index) {
+            for (let i = 0; i < images.length; i++) {
+              images[i].classList.remove("active");
+            }
+            images[index].classList.add("active");
+          }
+
+          thumbProduct.addEventListener("mouseenter", function () {
+            isHovered = true;
+          });
+
+          thumbProduct.addEventListener("mouseleave", function () {
+            isHovered = false;
+          });
+
+          thumbProduct.addEventListener("mousemove", function (e) {
+            if (!isHovered) return; // Chỉ xử lý khi đang hover vào vùng chứa ảnh
+
+            const currentX = e.clientX;
+            const diffX = currentX - startX;
+
+            if (Math.abs(diffX) > 20) {
+              // Độ nhạy kéo (số pixel để thay đổi ảnh)
+              if (diffX > 0) {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Kéo sang phải, giảm chỉ số ảnh
+              } else {
+                currentIndex = (currentIndex + 1) % totalImages; // Kéo sang trái, tăng chỉ số ảnh
+              }
+              showImage(currentIndex);
+              startX = currentX; // Đặt lại startX để tính toán lần kéo tiếp theo
+            }
+          });
+
+          // Hiển thị ảnh đầu tiên khi trang được tải
+          showImage(currentIndex);
+        });
+      });
+    </script>
   </body>
 </html>

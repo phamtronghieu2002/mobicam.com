@@ -7,14 +7,16 @@ const convertStringToHTML = (str) => {
   const $ = cheerio.load(str);
   return $.html();
 };
-
+ 
 module.exports = {
   handleRenderHomePage: async (req, res,type="home") => {
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
     console.log("lang renderhomepage>>>", lang);
+    console.log("lang params>>>", req.params);
     try {
       const news = await newService.getNewsLimit(3,lang);
       const categories = await categoryService.getAllCategoryAndProduct(lang);
+      console.log("categories>>>", categories);
       const headerSection = await editLandingService.getHeaderSection(lang);
       const heroSection = await editLandingService.getHeroSection(lang);
       const methodSection = await editLandingService.getMethodSection(lang);

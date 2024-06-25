@@ -64,11 +64,11 @@ module.exports = {
   },
 
   handleAddProduct: async (req, res) => {
-    const { name_vi, img, desc_vi, catid, name_en, desc_en } = req.body;
+    const { name_vi, imgs, desc_vi, catid, name_en, desc_en } = req.body;
     try {
       const result = await productService.addProduct(
         name_vi,
-        img,
+        imgs,
         desc_vi,
         catid,
         name_en,
@@ -96,13 +96,13 @@ module.exports = {
   },
 
   handleUpdateProductById: async (req, res) => {
-    const { name_vi, img, desc_vi, catid, name_en, desc_en } = req.body;
+    const { name_vi, imgs, desc_vi, catid, name_en, desc_en } = req.body;
 
     const { id } = req.params;
     try {
       const result = await productService.updateProduct(
         name_vi,
-        img,
+        imgs,
         desc_vi,
         catid,
         name_en,
@@ -121,6 +121,7 @@ module.exports = {
     let roles = req?.roles;
     let news = await newService.getAllnews();
     let products = await productService.getAllProduct();
+    cons
     let cats = await categoryService.getAllCategory();
     return res.render("./Admin/dashboard.ejs", { roles, news, cats, products });
   },

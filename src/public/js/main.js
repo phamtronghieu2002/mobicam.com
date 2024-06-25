@@ -184,6 +184,9 @@ function hanndleOpenTabProduct(evt, productid, catid) {
 
   contentActive.style.display = "block";
   evt.currentTarget.className += " active";
+
+
+  
 }
 
 function hanndleOpenTabCat(evt, catid, lang) {
