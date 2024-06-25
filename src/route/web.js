@@ -147,6 +147,18 @@ const InitApiRoute = (app) => {
       return res.status(500).json({ message: "Internal Server Error" });
     }
   );
+  router.post("/admin/uploadFile",uploadFile.array("files", 10), (req, res) => {
+    
+    console.log("req.file", req.files);
+    const files = req.files;
+
+    const filePaths = files.map(file => `/files/${file.filename}`);
+    if (filePaths) {
+      return res.status(200).json({ filePaths});
+    }
+
+    return res.status(500).json({ message: "Internal Server Error" });
+  });
 
   router.post("/api/landingPage/lang/:lang", async (req, res) => {
     try {

@@ -7,14 +7,9 @@ let btn_close = document.querySelector(".btn-close");
 const validateSizeImage = (size, height, type = "") => {
   if (type === "news") {
     if (size > 500) {
-      toastr.error(
-        "Dung lượng ảnh không được vượt quá 500KB",
-        "Lỗi"
-      );
+      toastr.error("Dung lượng ảnh không được vượt quá 500KB", "Lỗi");
       return false;
-
     }
-
   } else {
     if (size > 500 || height > 1000) {
       toastr.error(
@@ -25,31 +20,21 @@ const validateSizeImage = (size, height, type = "") => {
     }
   }
   return true;
-
 };
 const validateSizeImageProduct = (height, width) => {
   console.log("height", height);
   console.log("width", width);
-  if (width >= 800 && height >= 700) {
+  if (width >= 600 && height >= 600) {
     return true;
-
   }
-  toastr.error(
-    "ảnh sản phẩm hải có kích thước tối thiểu 800x700",
-    "Lỗi"
-  );
+  toastr.error("ảnh sản phẩm hải có kích thước tối thiểu 600x600", "Lỗi");
   return false;
 };
 const validateSizeImageNews = (height, width) => {
-
   if (width >= 800 && height >= 700) {
     return true;
-
   }
-  toastr.error(
-    "ảnh bài viết phải có kích thước tối thiểu 800x700",
-    "Lỗi"
-  );
+  toastr.error("ảnh bài viết phải có kích thước tối thiểu 800x700", "Lỗi");
   return false;
 };
 btn_close?.classList.add("d-none");
@@ -63,22 +48,41 @@ let easyMDE_news_en = new EasyMDE({
 //khởi tạo markdown editor cho product vi
 let easyMDE_product_vi = new EasyMDE({
   element: document.getElementById("markdown_product_vi"),
+  previewRender: function (plainText) {
+    return easyMDE_product_en.markdown(plainText); // Use EasyMDE's default markdown rendering
+  },
+  renderingConfig: {
+    singleLineBreaks: false,
+    codeSyntaxHighlighting: true,
+  },
+  autoDownloadFontAwesome: false, // If you have FontAwesome loaded separately
 });
 //khởi tạo markdown editor cho product en
 let easyMDE_product_en = new EasyMDE({
   element: document.getElementById("markdown_product_en"),
 });
 
+// //thêm sự kiện để  đếm số từ của markdown
+// easyMDE_product_vi.codemirror?.on("change", function () {
+//   updateWordCount();
+// });
+
+// // Hàm cập nhật số lượng từ
+// function updateWordCount() {
+//   const text = easyMDE_product_vi.value(); // Lấy nội dung markdown
+//   const words = text.trim().split(/\s+/).length; // Tách các từ và tính số lượng
+
+//   console.log(words);
+// }
+
 const reLoadPage = (path = "") => {
   setTimeout(function () {
     if (path) {
       window.location.href = path;
-
     } else {
       window.location.reload();
     }
-
-  }, 500);
+  });
 };
 
 //==============================================news==============
@@ -98,33 +102,28 @@ let id_edit_news = document.getElementById("id_edit_news");
 
 const handleAddNew = async () => {
   try {
-
     let markdownContent_vi = easyMDE_news_vi.value();
     let markdownContent_en = easyMDE_news_en.value();
-
-
-
     let content_vi = converter.makeHtml(markdownContent_vi);
     let content_en = converter.makeHtml(markdownContent_en);
-
-
     let titleTxt_vi = title_news_vi.value;
     let titleTxt_en = title_news_en.value;
-
-
     let formData = new FormData();
-
     if (fileInputNews.files && fileInputNews.files[0]) {
       formData.append("image", fileInputNews.files[0]);
     }
-
-    if (!titleTxt_vi || !titleTxt_en || !content_vi || !content_en || !fileInputNews.files[0] || !markdownContent_en || !markdownContent_vi) {
-
-
+    if (
+      !titleTxt_vi ||
+      !titleTxt_en ||
+      !content_vi ||
+      !content_en ||
+      !fileInputNews.files[0] ||
+      !markdownContent_en ||
+      !markdownContent_vi
+    ) {
       toastr.error("Vui lòng điền đầy đủ thông tin", "Thông báo");
       return;
     }
-
     overlay.classList.remove("d-none");
     const res = await axios.post("/admin/uploadimage", formData);
     const imageUrl = res.data.path;
@@ -135,7 +134,6 @@ const handleAddNew = async () => {
       content_en,
       imageUrl,
     });
-
     if (result.data) {
       overlay.classList.add("d-none");
       toastr.success("Thêm tin tức thành công", "Thông báo");
@@ -204,8 +202,6 @@ const handleEditNews = async () => {
     var formData = new FormData();
     let imageUrl = "";
 
-
-
     if (fileInputNews.files && fileInputNews.files[0]) {
       formData.append("image", fileInputNews.files[0]);
       const res = await axios.post("/admin/uploadimage", formData);
@@ -245,7 +241,6 @@ const handleCancelEdit = () => {
   parentContentNews.appendChild(markdownFormNews);
   markdownFormNews.classList.remove("d-block");
   markdownFormNews.classList.add("d-none");
-
 };
 
 //==================================================product
@@ -269,14 +264,14 @@ const parentContentProduct = document.getElementById("nav-addProduct");
 let categories = document.getElementById("category_product");
 
 const handleDelete = async (path, title) => {
-  const isConfirmed = await poupConfirm(`bạn chắc chắc muốn xóa ${title}?","Dữ liệu của bạn sẽ được cập nhật!`);
+  const isConfirmed = await poupConfirm(
+    `bạn chắc chắc muốn xóa ${title}?","Dữ liệu của bạn sẽ được cập nhật!`
+  );
 
   if (isConfirmed) {
     window.location.href = path;
   }
 };
-
-
 
 const handleCancelEditProduct = () => {
   overlay.classList.remove("d-block");
@@ -289,14 +284,34 @@ const handleCancelEditProduct = () => {
   easyMDE_product_vi.value("");
   nameProduct_en.value = "";
   easyMDE_product_en.value("");
-  blah_product.src =
-    "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
+  pond.removeFiles();
   parentContentProduct.appendChild(markdownFormProduct);
   markdownFormProduct.classList.remove("d-block");
   markdownFormProduct.classList.add("d-none");
   markdownFormProduct.classList.add("modal_absolute_content");
 };
 
+// Các URL ảnh bạn muốn hiển thị
+// const imageUrls = [
+//     '/files/baiviet_valid.jpg',
+
+// ];
+
+// // Hàm để tạo tệp từ URL
+// const createFileFromUrl = async (url) => {
+//   const response = await fetch(url);
+//   const blob = await response.blob();
+//   const fileName = url.split('/').pop();
+//   return new File([blob], fileName, { type: blob.type });
+// };
+
+// // Thêm ảnh từ URL vào FilePond
+// (async () => {
+//   for (const url of imageUrls) {
+//       const file = await createFileFromUrl(url);
+//       pond.addFile(file);
+//   }
+// })();
 const handleAddProduct = async () => {
   try {
     let markdownContent_vi = easyMDE_product_vi.value();
@@ -309,18 +324,28 @@ const handleAddProduct = async () => {
     let nameTxt_vi = nameProduct_vi.value;
     let nameTxt_en = nameProduct_en.value;
 
-    let formData = new FormData();
+    const pond = FilePond.find(document.querySelector(".filepond"));
+    const files = pond.getFiles();
+    console.log("files", files);
+    const formData = new FormData();
 
-    if (fileInputProduct.files && fileInputProduct.files[0]) {
-      formData.append("image", fileInputProduct.files[0]);
-    }
+    files.forEach((fileItem) => {
+      const file = fileItem.file;
+      const fileSizeInBytes = file.size;
+      const fileSizeInKB = fileSizeInBytes / 1024;
+
+      if (!validateSizeImage(fileSizeInKB, 1000)) return;
+
+      // Thêm file vào formData
+      formData.append("files", file);
+    });
     if (
       !nameTxt_vi ||
       !nameTxt_en ||
       !content_vi ||
       !content_en ||
       !cat_id ||
-      !fileInputProduct.files[0] ||
+      files?.length == 0 ||
       !markdownContent_en ||
       !markdownContent_vi
     ) {
@@ -328,16 +353,21 @@ const handleAddProduct = async () => {
 
       return;
     }
+    // Gửi formData qua Axios
     overlay.classList.toggle("d-none");
-    const res = await axios.post("/admin/uploadimage", formData);
-    const imageUrl = res.data.path;
+    const response = await axios.post("/admin/uploadFile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    const imgs = response?.data?.filePaths;
 
     const result = await axios.post("/admin/add-product", {
       name_vi: nameTxt_vi,
       desc_vi: content_vi,
       name_en: nameTxt_en,
       desc_en: content_en,
-      img: imageUrl,
+      imgs,
       catid: cat_id,
     });
 
@@ -366,8 +396,6 @@ const handleClickEditProduct = (id) => {
     `contentProduct${id}_en`
   ).innerText;
 
-  const imgEdit = document.getElementById(`imgProduct${id}`).innerText;
-
   const turndownService = new TurndownService();
   const markdown_vi = turndownService.turndown(contentEdit_vi);
   const markdown_en = turndownService.turndown(contentEdit_en);
@@ -379,8 +407,28 @@ const handleClickEditProduct = (id) => {
   easyMDE_product_en.value(markdown_en);
 
   categories.value = document.getElementById(`catProduct${id}`).innerText;
-  blah_product.src = imgEdit;
-  blah_product.parentElement.setAttribute("href", imgEdit);
+
+  // Các URL ảnh bạn muốn hiển thị
+  const imageUrls = Array.from(
+    document.querySelectorAll(`.sub_thumb_product_${id}`)
+  ).map((img) => img.src);
+
+  // Hàm để tạo tệp từ URL
+  const createFileFromUrl = async (url) => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const fileName = url.split("/").pop();
+    return new File([blob], fileName, { type: blob.type });
+  };
+
+  // Thêm ảnh từ URL vào FilePond
+  (async () => {
+    for (const url of imageUrls) {
+      const file = await createFileFromUrl(url);
+      pond.addFile(file);
+    }
+  })();
+
   btn_close.classList.remove("d-none");
   btn_close.classList.add("d-block");
   overlay.classList.remove("d-none");
@@ -407,23 +455,54 @@ const handleEditProduct = async () => {
     let nameTxt_en = nameProduct_en.value;
     let catid = categories.value;
 
-    var formData = new FormData();
-    let imageUrl = "";
-    if (fileInputProduct.files && fileInputProduct.files[0]) {
-      formData.append("image", fileInputProduct.files[0]);
-      const res = await axios.post("/admin/uploadimage", formData);
-      imageUrl = res.data.path;
+    const pond = FilePond.find(document.querySelector(".filepond"));
+    const files = pond.getFiles();
+    console.log("files", files);
+    const formData = new FormData();
+
+    files.forEach((fileItem) => {
+      const file = fileItem.file;
+      const fileSizeInBytes = file.size;
+      const fileSizeInKB = fileSizeInBytes / 1024;
+
+      if (!validateSizeImage(fileSizeInKB, 1000)) return;
+
+      // Thêm file vào formData
+      formData.append("files", file);
+    });
+    if (
+      !nameTxt_vi ||
+      !nameTxt_en ||
+      !content_vi ||
+      !content_en ||
+      !catid ||
+      files?.length == 0 ||
+      !markdownContent_en ||
+      !markdownContent_vi
+    ) {
+      toastr.error("Vui lòng điền đầy đủ thông tin", "Thông báo");
+
+      return;
     }
-    const res = await axios.put(`/admin/update-product/${id}`, {
+    // Gửi formData qua Axios
+
+    const response = await axios.post("/admin/uploadFile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    const imgs = response?.data?.filePaths;
+
+    const result = await axios.put(`/admin/update-product/${id}`, {
       name_vi: nameTxt_vi,
       desc_vi: content_vi,
       name_en: nameTxt_en,
       desc_en: content_en,
-      img: imageUrl,
+      imgs,
       catid,
     });
-    if (res.data) {
-      overlay.classList.add("d-none");
+
+    if (result.data) {
       toastr.success("Cập nhật sản phẩm thành công", "Thông báo");
       reLoadPage(`/admin/dashboard/page/product?id=${id}`);
     }
@@ -444,7 +523,6 @@ const hanldeChangeImage = () => {
       img.onload = async function () {
         if (!validateSizeImage(fileSizeKB, 1000, "news")) return;
         if (!validateSizeImageNews(img.height, img.width)) return;
-
 
         if (file) {
           const img_url = URL.createObjectURL(file);
@@ -552,9 +630,7 @@ if (btn_edit_news_id) {
   }, 400);
 }
 
-//khởi tạo trình soạn thảo   
 CKEDITOR.replace('policy-content-vi');
 CKEDITOR.replace('policy-content-en');
 CKEDITOR.replace('qa-content-vi');
 CKEDITOR.replace('qa-content-en');
-
