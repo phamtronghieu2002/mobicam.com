@@ -634,3 +634,5 @@ CKEDITOR.replace('policy-content-vi');
 CKEDITOR.replace('policy-content-en');
 CKEDITOR.replace('qa-content-vi');
 CKEDITOR.replace('qa-content-en');
+CKEDITOR.replace('coop-content-vi');
+CKEDITOR.replace('coop-content-en');

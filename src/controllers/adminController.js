@@ -1,7 +1,7 @@
 const newService = require("../services/newService.js");
 const productService = require("../services/productService.js");
 const categoryService = require("../services/categoriesService.js");
-const {getPolicyDetails,getPolicyList,getQADetails,getQAList} = require("../services/footerService.js")
+const {getPolicyDetails,getPolicyList,getQADetails,getQAList,updatePolicy, getCoopList,getCoopDetails,updateCoop,getCoopDetailsAdmin} = require("../services/footerService.js")
 const con = require("..//db/db.js");
 
 
@@ -154,12 +154,38 @@ module.exports = {
   },
   handleRenderDashboardQA: async(req,res) => {
     const results = await getQAList()
-    console.log(results)
     return res.render('./Admin/dashboardQ&A.ejs', { listQA: results })
   },
   GetQADetails: async(req,res)=>{
     const id = req.params.id
     const results = await getQADetails(id)
     return res.json(results)
-  }
+  },
+  UpdatePolicy: async (req,res) =>{
+    const {name_en,name_vi,content_vi,content_en} = req.body
+    const {id} = req.params
+    const results = await updatePolicy(name_vi, name_en, content_vi, content_en, id);
+    return res.json(results)
+  },
+  handleRenderDashboardCoop: async(req,res) => {
+    const results = await getCoopList()
+    return res.render('./Admin/dashboardCooperate.ejs', { listCoop: results })
+  },
+  GetCoopDetails: async(req,res)=>{
+    const id = req.params.id
+    const results = await getCoopDetails(id)
+    return res.json(results)
+  },
+  GetCoopDetailsAdmin: async(req,res)=>{
+    const id = req.params.id
+    console.log("id is",id);
+    const results = await getCoopDetailsAdmin(id)
+    return res.json(results)
+  },
+  UpdateCoop: async (req,res) =>{
+    const {name_en,name_vi,content_vi,content_en} = req.body
+    const {id} = req.params
+    const results = await updateCoop(name_vi, name_en, content_vi, content_en, id);
+    return res.json(results)
+  },
 };

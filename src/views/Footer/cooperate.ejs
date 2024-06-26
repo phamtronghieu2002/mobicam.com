@@ -1,15 +1,70 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Camera giám sát hành trình MobiCAM</title>
     <%- include('../partials/head.ejs') %>
+        <style>
+            body {
+                font-family: Roboto, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #eff2f7;
+            }
+
+            .root {
+                margin-top: 120px;
+                min-height: 100vh;
+                padding-top: 50px;
+            }
+
+            section {
+                position: relative;
+                max-width: 960px;
+                margin: 0 auto;
+            }
+
+            .policy-head h3 {
+                color: #ff5e5e;
+                font-size: 30px;
+                margin-bottom: 50px;
+                font-weight: 700;
+            }
+
+            .policy-body {
+                display: flex;
+                width: 100%;
+                background-color: white;
+                margin-bottom: 50px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            }
+
+        </style>
 </head>
+
 <body>
-    <%- include('../partials/header.ejs') ,{headerSection} %>
+    <div class="app">
+        <%- include('../partials/header.ejs') ,{headerSection} %>
+            <div class="root container">
+                <section class="row">
+                    <div class="policy-head">
+                        <h3>Chính sách đại lý</h3>
+                    </div>
+                    <div class="policy-body">
+                     <%- content %> 
 
-    <%- include('../partials/footer.ejs'),{footerSection:""} %>
 
-    <script src="/js/main.js"></script>
+
+                    </div>
+                </section>
+            </div>
+            <%- include('../partials/footer.ejs'),{footerSection:""} %>
+    </div>
+
+    <script src="/js/ejsPolicy.js"></script>
+
 </body>
+
 </html>

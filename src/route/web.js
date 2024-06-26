@@ -82,18 +82,24 @@ const InitApiRoute = (app) => {
 
   router.get('/admin/dashboard/page/policy',veryfyUser,adminController.handleRenderDashboardPolicy)
   router.get('/api/policy/:id',adminController.GetPolicyDetails)
+  router.put('/api/update/:id',adminController.UpdatePolicy)
 
 
   router.get('/admin/dashboard/page/q&a',veryfyUser,adminController.handleRenderDashboardQA)
   router.get('/api/q&a/:id',adminController.GetQADetails)
 
-  router.get('/admin/dashboard/page/cooperate',veryfyUser,(req,res)=>{
-    res.render('./Admin/dashboardCooperate.ejs')
-  })
+  router.get('/admin/dashboard/page/cooperate',veryfyUser,adminController.handleRenderDashboardCoop)
+  router.get('/api/coop/:id',adminController.GetCoopDetailsAdmin)
+  router.put('/api/updateCoop/:id',adminController.UpdateCoop)
+  router.get('/api/cooperation/:id',adminController.GetCoopDetails)
+
+
 
   //footer
   router.get('/policy/:id/:lang',homeController.handleRenderPolicy)
   router.get('/q&a/:id/:lang',homeController.handleRenderQA)
+  router.get('/cooperate/:id/:lang',homeController.handleRenderCooperate)
+
 
 
 

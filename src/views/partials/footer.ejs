@@ -109,19 +109,13 @@
         <div class="footer_item">
           <h5 class="footer-title text-light mb-2">Hợp tác</h5>
           <ul class="footer-list">
-            <li class="footer-item">
-              <a href="/agency" class="footer-link"> Chính sách đại lý </a>
-            </li>
+            <% listCoop.forEach(function(coop){ %>  
 
             <li class="footer-item">
-              <a href="/registration?id=1" class="footer-link">
-                Đăng ký đại lý
-              </a>
+              <a href="/cooperate/<%= coop.id %>/<%=lang%>" class="footer-link"> <%= coop.name_vi %> </a>
             </li>
 
-            <li class="footer-item">
-              <a href="/support" class="footer-link"> Hỗ trợ đại lý </a>
-            </li>
+            <% }) %>
           </ul>
         </div>
       </div>

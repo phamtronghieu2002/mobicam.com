@@ -1,7 +1,7 @@
 const newService = require("../services/newService.js");
 const categoryService = require("../services/categoriesService.js");
 const editLandingService = require("../services/editLandingService.js");
-const {getPolicyDetails,getPolicyList,getQADetails,getQAList} = require("../services/footerService.js")
+const {getPolicyDetails,getPolicyList,getQADetails,getQAList,getCoopList,getCoopDetails} = require("../services/footerService.js")
 
 const cheerio = require("cheerio");
 const adminController = require("./adminController.js");
@@ -17,7 +17,8 @@ module.exports = {
 
     try {
       const listQA = await getQAList();  
-      const listPolicy = await getPolicyList();  
+      const listPolicy = await getPolicyList();
+      const listCoop = await getCoopList();  
       const news = await newService.getNewsLimit(3,lang);
       const categories = await categoryService.getAllCategoryAndProduct(lang);
       const headerSection = await editLandingService.getHeaderSection(lang);
@@ -33,8 +34,14 @@ module.exports = {
       const newsSection = await editLandingService.getNewsSection(lang);
       const certificertHeading = await editLandingService.getCertificertHeadingSection(lang);
       const data= {
+        roles,
         listPolicy: listPolicy,
         listQA : listQA,
+        listCoop: listCoop,
+        lang:lang? lang : "vi",  
+        news,
+        categories,
+        headerSection: convertStringToHTML(headerSection),
         lang:lang ? lang : "vi",  
         news,
         categories,
@@ -119,7 +126,9 @@ module.exports = {
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
       const listPolicy = await getPolicyList(); 
-      const listQA = await getQAList();  
+      const listQA = await getQAList();
+      const listCoop = await getCoopList();  
+  
  
       const data= {
         id,
@@ -127,7 +136,8 @@ module.exports = {
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
         listPolicy: listPolicy,
-        listQA : listQA
+        listQA : listQA,
+        listCoop: listCoop,
       } 
       return res.render('./Footer/policy.ejs',data)
     } catch (error) {
@@ -145,6 +155,7 @@ module.exports = {
       const listQA = await getQAList();  
       const listPolicy = await getPolicyList();
       const listQADetails = await getQADetails(); 
+      const listCoop = await getCoopList();
 
       const data= {
         id,
@@ -153,9 +164,38 @@ module.exports = {
         footerSection: convertStringToHTML(footerSection),
         listQA: listQA,
         listPolicy : listPolicy,
-        listQADetails : listQADetails
+        listQADetails : listQADetails,
+        listCoop : listCoop
       } 
       return res.render('./Footer/q&a.ejs',data)
+    } catch (error) {
+      console.log("error >>>", error);  
+      return res.render("ErrorPage.ejs");
+    }
+  },
+  handleRenderCooperate: async (req, res)=>{
+    const {id} = req.params
+    const { lang } = req.params?.lang ? req.params : {lang:"vi"};
+    const {name,content}= await getCoopDetails(id,lang);
+    try {
+      const headerSection = await editLandingService.getHeaderSection(lang);
+      const footerSection = await editLandingService.getFooterSection(lang);
+      const listPolicy = await getPolicyList();
+      const listQA = await getQAList();  
+      const listCoop = await getCoopList();
+
+      const data= {
+        name,
+        content: convertStringToHTML(content),
+        listPolicy : listPolicy,
+        listQA: listQA,
+        listCoop : listCoop,
+        id,
+        lang:lang ? lang : "vi",
+        headerSection: convertStringToHTML(headerSection),
+        footerSection: convertStringToHTML(footerSection),
+      } 
+      return res.render('./Footer/cooperate.ejs',data)
     } catch (error) {
       console.log("error >>>", error);  
       return res.render("ErrorPage.ejs");

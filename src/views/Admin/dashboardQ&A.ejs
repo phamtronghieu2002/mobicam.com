@@ -108,16 +108,13 @@ body{
 
 }
 .abc {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
     margin-bottom: 5px;
 }
 .abc input,.abc textarea{
     padding: 5px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    width: 90%;
     box-sizing: border-box;
 }
 
@@ -186,13 +183,13 @@ body{
                           </nav>
                           <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <div class="abc">
+                                <div class="abc mb-3 mt-3">
                                     <label for="qa-name-vi"> Tên: </label>
-                                    <input type="text" name="qa-name-vi" id="qa-name-vi">
+                                    <input type="text" name="qa-name-vi" id="qa-name-vi" class="form-control">
                                 </div>
-                                <div class="abc">
+                                <div class="abc mb-3 ">
                                     <label for="qa-name-vi"> Câu hỏi: </label>
-                                    <input type="text" name="qa-name-vi" id="qa-name-vi">
+                                    <input type="text" name="qa-name-vi" id="qa-name-vi" class="form-control">
                                 </div>
                                 <div class="abc">
                                     <label for="qa-content-vi"> Nội dung:  </label>
@@ -200,13 +197,13 @@ body{
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <div class="abc">
+                                <div class="abc mb-3 mt-3">
                                     <label for="qa-name-en"> Tên: </label>
-                                    <input type="text" name="qa-name-en" id="qa-name-en">
+                                    <input type="text" name="qa-name-en" id="qa-name-en" class="form-control">
                                 </div>
-                                <div class="abc">
+                                <div class="abc mb-3">
                                     <label for="qa-question-en"> Câu hỏi: </label>
-                                    <input type="text" name="qa-question-en" id="qa-question-en">
+                                    <input type="text" name="qa-question-en" id="qa-question-en" class="form-control">
                                 </div>
                                 <div class="abc">
                                     <label for="qa-content-en"> Nội dung:  </label>
