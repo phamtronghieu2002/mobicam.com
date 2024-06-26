@@ -121,7 +121,7 @@ module.exports = {
     let roles = req?.roles;
     let news = await newService.getAllnews();
     let products = await productService.getAllProduct();
-    cons
+    
     let cats = await categoryService.getAllCategory();
     return res.render("./Admin/dashboard.ejs", { roles, news, cats, products });
   },

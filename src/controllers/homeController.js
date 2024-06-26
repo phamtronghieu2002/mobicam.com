@@ -9,7 +9,7 @@ const convertStringToHTML = (str) => {
 };
  
 module.exports = {
-  handleRenderHomePage: async (req, res,type="home") => {
+  handleRenderHomePage: async (req, res,type="home",roles) => {
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
     console.log("lang renderhomepage>>>", lang);
     console.log("lang params>>>", req.params);
@@ -30,6 +30,7 @@ module.exports = {
       const newsSection = await editLandingService.getNewsSection(lang);
       const certificertHeading = await editLandingService.getCertificertHeadingSection(lang);
       const data= {
+        roles,
         lang:lang ? lang : "vi",
         news,
         categories,

@@ -110,7 +110,8 @@ const InitApiRoute = (app) => {
   });
 
   router.get("/admin/editLandingPage/:lang", veryfyUser, (req, res) => {
-    homeController.handleRenderHomePage(req, res, "editLandingPage");
+    const roles = req?.roles;
+    homeController.handleRenderHomePage(req, res, "editLandingPage",roles);
   });
 
   router.post(
