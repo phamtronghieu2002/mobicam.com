@@ -56,6 +56,10 @@ const InitApiRoute = (app) => {
     "/admin/update-product/:id",
     adminController.handleUpdateProductById
   );
+
+  
+  
+
   //access dashboard
 
   router.get(
@@ -75,6 +79,24 @@ const InitApiRoute = (app) => {
     veryfyUser,
     adminController.handleRenderDashboardNews
   );
+
+  router.get('/admin/dashboard/page/policy',veryfyUser,adminController.handleRenderDashboardPolicy)
+  router.get('/api/policy/:id',adminController.GetPolicyDetails)
+
+
+  router.get('/admin/dashboard/page/q&a',veryfyUser,adminController.handleRenderDashboardQA)
+  router.get('/api/q&a/:id',adminController.GetQADetails)
+
+  router.get('/admin/dashboard/page/cooperate',veryfyUser,(req,res)=>{
+    res.render('./Admin/dashboardCooperate.ejs')
+  })
+
+  //footer
+  router.get('/policy/:id/:lang',homeController.handleRenderPolicy)
+  router.get('/q&a/:id/:lang',homeController.handleRenderQA)
+
+
+
   //check login
 
   router.post("/admin/checklogin", async (req, res) => {

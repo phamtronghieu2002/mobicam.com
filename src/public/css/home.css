@@ -1,7 +1,18 @@
 /*  */
 
 
+.nested-carousel {
+  max-width: 200px; /* Set a maximum width for the nested carousel */
+  margin: 0 auto;  /* Center the carousel */
+  height: 200px;
+}
 
+.nested-carousel .owl-carousel-img img {
+  width: 200px !important; /* Ensure images inside the nested carousel are smaller */
+  height: 250px;
+
+
+}
 .wrapper .change_image_area{
   display: none;
 }

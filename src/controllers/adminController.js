@@ -1,6 +1,9 @@
 const newService = require("../services/newService.js");
 const productService = require("../services/productService.js");
 const categoryService = require("../services/categoriesService.js");
+const {getPolicyDetails,getPolicyList,getQADetails,getQAList} = require("../services/footerService.js")
+const con = require("..//db/db.js");
+
 
 module.exports = {
   handleRenderAdminLoginPage: (req, res) => {
@@ -121,7 +124,6 @@ module.exports = {
     let roles = req?.roles;
     let news = await newService.getAllnews();
     let products = await productService.getAllProduct();
-    
     let cats = await categoryService.getAllCategory();
     return res.render("./Admin/dashboard.ejs", { roles, news, cats, products });
   },
@@ -140,4 +142,24 @@ module.exports = {
     let news = await newService.getAllnews();
     return res.render("./Admin/dashboardNews.ejs", { cats, news, id });
   },
+  handleRenderDashboardPolicy: async(req,res) => {
+    const results = await getPolicyList()
+    console.log(results)
+    return res.render('./Admin/dashboardPolicy.ejs', { listPolicy: results })
+  },
+  GetPolicyDetails: async(req,res)=>{
+    const id = req.params.id
+    const results = await getPolicyDetails(id)
+    return res.json(results)
+  },
+  handleRenderDashboardQA: async(req,res) => {
+    const results = await getQAList()
+    console.log(results)
+    return res.render('./Admin/dashboardQ&A.ejs', { listQA: results })
+  },
+  GetQADetails: async(req,res)=>{
+    const id = req.params.id
+    const results = await getQADetails(id)
+    return res.json(results)
+  }
 };
