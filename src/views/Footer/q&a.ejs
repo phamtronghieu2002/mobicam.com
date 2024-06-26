@@ -1,15 +1,159 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <%- include('../partials/head.ejs') %>
+        <style>
+            body {
+                font-family: Roboto, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #eff2f7;
+            }
+
+            .root {
+                margin-top: 120px;
+                min-height: 100vh;
+                padding-top: 50px;
+            }
+
+            section {
+                position: relative;
+                max-width: 960px;
+                margin: 0 auto;
+            }
+
+            .qa-head h3 {
+                color: #ff5e5e;
+                font-size: 30px;
+                margin-bottom: 50px;
+                font-weight: 700;
+            }
+
+            .qa-body {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .list-qa {
+                width: 250px;
+                padding: 0 20px 20px 0;
+            }
+
+            .qa-item {
+                margin-bottom: 10px;
+                cursor: pointer;
+                padding: 8px 10px;
+                border-radius: 4px;
+                min-width: 260px;
+                color: #333;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+                /* Độ trễ và hiệu ứng màu nền */
+
+            }
+
+            .qa-name {
+                align-items: center;
+                color: #333;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .qa-item.selected {
+                background-color: #d3d3d3;
+                /* Màu nền khi được chọn */
+            }
+
+            .qa-item:hover,
+            .qa-item:active {
+                background-color: #d3d3d3;
+            }
+            .content-qa{    
+                    width: 65%;
+
+            }
+            .content-qa-section{
+                margin: 20px 30px 20px 20px;
+                border-bottom: 2px solid white;
+                padding-left: 12px;
+                max-width: 480px;
+
+            }
+            .content-qa-name-container{
+                display: flex;
+                justify-content: space-between;
+                font-size: 18px;
+                margin-bottom: 15px;
+                color: #333;
+                font-weight: 600;
+                align-items: center;
+            }
+
+            .content-qa-desc {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                overflow: auto;
+                background-color: #ffffff;
+                border-radius: 8px;
+                margin: 0 30px;
+                height: 100%;
+            }
+            .content-qa-name{
+                line-height: 10px;
+            }
+
+        </style>
 </head>
+
 <body>
-    <%- include('../partials/header.ejs') ,{headerSection} %>
+    <div class="app">
+        <span id="qa-id" class="d-none">
+            <%=id%>
+        </span>
+        <%- include('../partials/header.ejs') ,{headerSection} %>
+            <div class="root container">
+                <section class="row">
+                    <div class="qa-head">
+                        <h3>Các câu hỏi thường gặp</h3>
+                    </div>
+                    <div class="qa-body">
+                        <div class="list-qa">
+                            <% listQA.forEach(function(qaItem){ %>
+                                <div class="qa-item" id="<%= qaItem.id %>"
+                                    onclick="SelectQA('<%= qaItem.id %>')">
+                                    <div class="qa-name">
+                                        <%= qaItem.name_vi %>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <div class="content-qa">
+                            <% listQADetails.forEach(function(qaDetailsItem){ %>
+                            <div class="content-qa-section" id=" <%= qaItem.id %>.cateId %>">
+                                <div class="content-qa-name-container" >
+                                    <span class="content-qa-name">
+                                        <%= qaDetailsItem.name_vi %>
+                                    
+                                    </span>
+                                    <i class="fas content_title-icon fa-xmark"></i>
+                                </div>
+                            </div>
+                            <% }) %>
+                            <div class="content-qa-desc">
 
-    <%- include('../partials/footer.ejs'),{footerSection:""} %>
+                            </div>
 
-    <script src="/js/main.js"></script>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <%- include('../partials/footer.ejs'),{footerSection:""} %>
+    </div>
+
+    <script src="/js/ejsPolicy.js"></script>
+
 </body>
+
 </html>

@@ -4,6 +4,7 @@ const editLandingService = require("../services/editLandingService.js");
 const {getPolicyDetails,getPolicyList,getQADetails,getQAList} = require("../services/footerService.js")
 
 const cheerio = require("cheerio");
+const adminController = require("./adminController.js");
 
 const convertStringToHTML = (str) => {
   const $ = cheerio.load(str);
@@ -15,6 +16,7 @@ module.exports = {
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
 
     try {
+      const listQA = await getQAList();  
       const listPolicy = await getPolicyList();  
       const news = await newService.getNewsLimit(3,lang);
       const categories = await categoryService.getAllCategoryAndProduct(lang);
@@ -32,7 +34,8 @@ module.exports = {
       const certificertHeading = await editLandingService.getCertificertHeadingSection(lang);
       const data= {
         listPolicy: listPolicy,
-        lang:lang ? lang : "vi",
+        listQA : listQA,
+        lang:lang ? lang : "vi",  
         news,
         categories,
         newsSection: convertStringToHTML(newsSection),
@@ -67,8 +70,9 @@ module.exports = {
       const news = await newService.getAllnews(lang);
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
-      
+      const listPolicy = await getPolicyList();  
       const data={
+        listPolicy: listPolicy,
         lang:lang ? lang : "vi",
         news,
         headerSection: convertStringToHTML(headerSection),
@@ -114,17 +118,46 @@ module.exports = {
     try {
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
-      const listPolicy = await getPolicyList();  
+      const listPolicy = await getPolicyList(); 
+      const listQA = await getQAList();  
+ 
       const data= {
         id,
         lang:lang ? lang : "vi",
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
-        listPolicy: listPolicy
+        listPolicy: listPolicy,
+        listQA : listQA
       } 
       return res.render('./Footer/policy.ejs',data)
     } catch (error) {
       console.log("error >>>", error);
+      return res.render("ErrorPage.ejs");
+    }
+  },
+  handleRenderQA: async (req,res) =>{
+    const {id} = req.params
+    const { lang } = req.params?.lang ? req.params : {lang:"vi"};
+
+    try {
+      const headerSection = await editLandingService.getHeaderSection(lang);
+      const footerSection = await editLandingService.getFooterSection(lang);
+      const listQA = await getQAList();  
+      const listPolicy = await getPolicyList();
+      const listQADetails = await getQADetails(); 
+
+      const data= {
+        id,
+        lang:lang ? lang : "vi",
+        headerSection: convertStringToHTML(headerSection),
+        footerSection: convertStringToHTML(footerSection),
+        listQA: listQA,
+        listPolicy : listPolicy,
+        listQADetails : listQADetails
+      } 
+      return res.render('./Footer/q&a.ejs',data)
+    } catch (error) {
+      console.log("error >>>", error);  
       return res.render("ErrorPage.ejs");
     }
   }

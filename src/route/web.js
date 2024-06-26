@@ -92,7 +92,9 @@ const InitApiRoute = (app) => {
   })
 
   //footer
-  router.get('/policy/:id',homeController.handleRenderPolicy)
+  router.get('/policy/:id/:lang',homeController.handleRenderPolicy)
+  router.get('/q&a/:id/:lang',homeController.handleRenderQA)
+
 
 
   //check login

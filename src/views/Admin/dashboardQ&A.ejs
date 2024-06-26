@@ -171,12 +171,11 @@ body{
                 </div>
                 <div class="main-content-bottom">
                     <div class="qa-list">
-                        <div class="qa-item">
-                            <div class="qa-name">Chính sách bảo mật</div>
-                        </div>
-                        <div class="qa-item">
-                            <div class="qa-name">Chính sách bảo hành</div>
-                        </div>
+                        <% listQA.forEach(function(QAItem) { %>                         
+                        <div id="<%= QAItem.id %>" class="qa-item">
+                            <div class="qa-name"><%= QAItem.name_vi %></div>
+                        </div>  
+                        <% }) %> 
                     </div>
                     <div class="qa-wrapper"> 
                           <nav>

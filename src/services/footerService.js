@@ -9,11 +9,11 @@ const getPolicyList = async () => {
     return results;
   }
 const getQADetails = async (id) => {
-    const [results] = await con.query('SELECT * FROM q_a WHERE id = ?', [id]);
+    const [results] = await con.query('SELECT * FROM contentQA WHERE cateId = ?', [id]);
     return results[0];
   }
 const getQAList = async () => {
-    const [results] = await con.query('SELECT id, name_vi, name_en FROM q_a');
+    const [results] = await con.query('SELECT id, name_vi, name_en FROM categoriesQA');
     return results;
   }
 

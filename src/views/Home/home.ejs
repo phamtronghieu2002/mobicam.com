@@ -940,40 +940,52 @@
     <script src="/js/main.js"></script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const thumbProduct = document.querySelector(".thumb_product");
-        const images = thumbProduct.querySelectorAll("img");
-        const totalImages = images.length;
-        let currentIndex = 0;
-        let isDragging = false;
-        let startX = 0;
-      
-        function showImage(index) {
-          for (let i = 0; i < images.length; i++) {
-            images[i].classList.remove("active");
-          }
-          images[index].classList.add("active");
-        }
-      
-   
-        thumbProduct.addEventListener("mousemove", function(e) {
+      document.addEventListener("DOMContentLoaded", function () {
+        const thumbProducts = document.querySelectorAll(".thumb_product");
 
-          const currentX = e.clientX;
-          const diffX = currentX - startX;
-      
-          if (Math.abs(diffX) > 20) { // Độ nhạy kéo (số pixel để thay đổi ảnh)
-            if (diffX > 0) {
-              currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Kéo sang phải, giảm chỉ số ảnh
-            } else {
-              currentIndex = (currentIndex + 1) % totalImages; // Kéo sang trái, tăng chỉ số ảnh
+        thumbProducts.forEach((thumbProduct) => {
+          const images = thumbProduct.querySelectorAll("img");
+          const totalImages = images.length;
+          let currentIndex = 0;
+          let startX = 0;
+          let isHovered = false; // Biến để kiểm tra hover vào vùng chứa ảnh
+
+          function showImage(index) {
+            for (let i = 0; i < images.length; i++) {
+              images[i].classList.remove("active");
             }
-            showImage(currentIndex);
-            startX = currentX; // Đặt lại startX để tính toán lần kéo tiếp theo
+            images[index].classList.add("active");
           }
+
+          thumbProduct.addEventListener("mouseenter", function () {
+            isHovered = true;
+          });
+
+          thumbProduct.addEventListener("mouseleave", function () {
+            isHovered = false;
+          });
+
+          thumbProduct.addEventListener("mousemove", function (e) {
+            if (!isHovered) return; // Chỉ xử lý khi đang hover vào vùng chứa ảnh
+
+            const currentX = e.clientX;
+            const diffX = currentX - startX;
+
+            if (Math.abs(diffX) > 20) {
+              // Độ nhạy kéo (số pixel để thay đổi ảnh)
+              if (diffX > 0) {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Kéo sang phải, giảm chỉ số ảnh
+              } else {
+                currentIndex = (currentIndex + 1) % totalImages; // Kéo sang trái, tăng chỉ số ảnh
+              }
+              showImage(currentIndex);
+              startX = currentX; // Đặt lại startX để tính toán lần kéo tiếp theo
+            }
+          });
+
+          // Hiển thị ảnh đầu tiên khi trang được tải
+          showImage(currentIndex);
         });
-      
-        // Hiển thị ảnh đầu tiên khi trang được tải
-        showImage(currentIndex);
       });
     </script>
   </body>

@@ -95,6 +95,7 @@
         <span id="policy-id" class="d-none">
             <%=id%>
         </span>
+        <span id="policy-lang" class="d-none"><%=lang%></span>
         <%- include('../partials/header.ejs') ,{headerSection} %>
             <div class="root container">
                 <section class="row">
@@ -107,12 +108,14 @@
                                 <div class="policy-item" id="<%= policyItem.id %>"
                                     onclick="SelectPolicy('<%= policyItem.id %>')">
                                     <div class="policy-name">
-                                        <%= policyItem.name_vi %>
+                                        <% const field = `name_${lang}`; %>
+                                        <%= policyItem[field] %>
                                     </div>
                                 </div>
                                 <% }) %>
                         </div>
                         <div class="content-policy">
+                            <!-- dữ liệu dc api đổ vào đây -->
                             <div class="content-policy-details">
 
                             </div>
