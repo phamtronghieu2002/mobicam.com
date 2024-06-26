@@ -93,10 +93,13 @@ module.exports = {
     const { id ,lang} = req.params;
     const headerSection = await editLandingService.getHeaderSection(lang);
     const footerSection = await editLandingService.getFooterSection(lang);
-
+    const listPolicy = await getPolicyList();  
+    const listQA = await getQAList();  
     try {
       const newDetail = await newService.getNewbyId(id,lang);
       const data={
+        listPolicy,
+        listQA,
         lang,
         newDetail,
         headerSection: convertStringToHTML(headerSection),
@@ -104,7 +107,7 @@ module.exports = {
       }
       return res.render("./New/detailNew.ejs",  data);
     } catch (error) {
-      console.log("error âs>>>", error);
+
       return res.render("ErrorPage.ejs");
     }
   },

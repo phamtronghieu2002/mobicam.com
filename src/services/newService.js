@@ -1,7 +1,15 @@
 const con = require("..//db/db.js");
-const {formatDate} = require("../utils/date.js");
+
 module.exports = {
-  addNew: (title_vi, title_en, content_vi, content_en, imageUrl) => {
+  addNew: (
+    title_vi,
+    title_en,
+    content_vi,
+    content_en,
+    imageUrl,
+    importance,
+    datePost
+  ) => {
     return new Promise(async (resolve, reject) => {
       try {
         const [result] = await con.execute(
@@ -10,10 +18,20 @@ module.exports = {
       content_vi,
       content_en,
       img,
+      importance,
       createdAt,
       updatedAt
-      ) VALUES (?,?,?,?,?,?,?)`,
-          [title_vi, title_en, content_vi, content_en, imageUrl,new Date(),new Date()]
+      ) VALUES (?,?,?,?,?,?,?,?)`,
+          [
+            title_vi,
+            title_en,
+            content_vi,
+            content_en,
+            imageUrl,
+            importance,
+            datePost,
+            datePost,
+          ]
         );
 
         if (result.affectedRows > 0) {
@@ -27,8 +45,19 @@ module.exports = {
     });
   },
 
-  updateNew: (title_vi, title_en, content_vi, content_en, imageUrl, id) => {
+  updateNew: (
+    title_vi,
+    title_en,
+    content_vi,
+    content_en,
+    imageUrl,
+    id,
+    importance,
+    datePost
+  ) => {
     return new Promise(async (resolve, reject) => {
+      console.log("alo", importance)
+      
       try {
         if (imageUrl) {
           const [result] = await con.execute(
@@ -38,12 +67,22 @@ module.exports = {
             content_vi = ?,
             content_en = ?,
             img = ?,
-            updatedAt = ?
+            updatedAt = ?,
+            importance = ?
             WHERE id = ?
            `,
-            [title_vi, title_en, content_vi, content_en, imageUrl,new Date(),id]
+            [
+              title_vi,
+              title_en,
+              content_vi,
+              content_en,
+              imageUrl,
+              datePost,
+              Number(importance),
+              id,
+            ]
           );
-
+         
           if (result.affectedRows > 0) {
             return resolve(true);
           }
@@ -54,9 +93,11 @@ module.exports = {
             title_vi = ?,
             title_en = ?,
             content_vi = ?,
-            content_en = ?
+            content_en = ?,
+            updatedAt = ?,
+            importance = ?
             WHERE id = ?`,
-            [title_vi, title_en, content_vi, content_en, id]
+            [title_vi, title_en, content_vi, content_en,datePost,Number(importance),  id]
           );
           if (result.affectedRows > 0) {
             return resolve(true);
@@ -77,8 +118,6 @@ module.exports = {
           id,
         ]);
 
-     
-
         if (result.length > 0) {
           let news = {};
           news.id = result[0].id;
@@ -95,7 +134,6 @@ module.exports = {
       }
     });
   },
-
 
   deleteNew: (id) => {
     return new Promise(async (resolve, reject) => {
@@ -118,14 +156,17 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       try {
         const [result] = await con.execute(
-          `select * from news order by id  desc`
-        ); 
-        if(result.length>0){
-
+          `SELECT * 
+FROM news 
+ORDER BY importance DESC,updatedAt DESC;`
+        );
+        if (result.length > 0) {
           result.forEach((element) => {
-            element.updatedAt = formatDate(element.updatedAt);
+            element.updatedAt = new Date(element.updatedAt).toLocaleDateString(
+              "en-CA"
+            );
           });
-       
+
           return resolve(result);
         }
       } catch (error) {
@@ -148,7 +189,7 @@ module.exports = {
             title: element[`title_${lang}`],
             content: element[`content_${lang}`],
             img: element.img,
-            updatedAt:formatDate(element.updatedAt),
+            updatedAt: element.updatedAt.toLocaleDateString("en-CA"),
           });
         });
 

@@ -3,7 +3,11 @@ let overlay = document.getElementById("overlay");
 let title_news_vi = document.getElementById("title_news_vi");
 let title_news_en = document.getElementById("title_news_en");
 let btn_close = document.querySelector(".btn-close");
-
+// function convertDateFormat(dateStr) {
+//   const [day, month, year] = dateStr.split('-');
+//   const formattedYear = `20${year}`; // Giả định năm là 2000+
+//   return `${formattedYear}-${month}-${day}`;
+// }
 const validateSizeImage = (size, height, type = "") => {
   if (type === "news") {
     if (size > 500) {
@@ -62,18 +66,6 @@ let easyMDE_product_en = new EasyMDE({
   element: document.getElementById("markdown_product_en"),
 });
 
-// //thêm sự kiện để  đếm số từ của markdown
-// easyMDE_product_vi.codemirror?.on("change", function () {
-//   updateWordCount();
-// });
-
-// // Hàm cập nhật số lượng từ
-// function updateWordCount() {
-//   const text = easyMDE_product_vi.value(); // Lấy nội dung markdown
-//   const words = text.trim().split(/\s+/).length; // Tách các từ và tính số lượng
-
-//   console.log(words);
-// }
 
 const reLoadPage = (path = "") => {
   setTimeout(function () {
@@ -99,7 +91,14 @@ let btnEditNews = document.querySelector(".editNews");
 let btnAddNews = document.querySelector(".addNews");
 let btnCancelNews = document.querySelector(".cancelNews");
 let id_edit_news = document.getElementById("id_edit_news");
-
+const dateInput = document.getElementById('datePost');
+const today = new Date();
+const day = String(today.getDate()).padStart(2, "0");
+const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+const year = today.getFullYear();
+const formattedDate = `${year}-${month}-${day}`;
+dateInput.value = formattedDate;
+const optionImportant = document.getElementById("importance");
 const handleAddNew = async () => {
   try {
     let markdownContent_vi = easyMDE_news_vi.value();
@@ -133,6 +132,8 @@ const handleAddNew = async () => {
       content_vi,
       content_en,
       imageUrl,
+      datePost: dateInput.value,
+      importance:optionImportant.value
     });
     if (result.data) {
       overlay.classList.add("d-none");
@@ -149,7 +150,12 @@ const handleClickEditNew = (id) => {
   btnEditNews.classList.remove("d-none");
   btnAddNews.classList.add("d-none");
   btnCancelNews.classList.remove("d-none");
+  
+  const dateStr = document.getElementById(`dateNews${id}`).innerText.trim();
 
+  dateInput.value = dateStr;
+  console.log
+  optionImportant.value = document.getElementById(`importanceNews_${id}`).innerText.trim();
   const titleEdit_vi = document.getElementById(`titleNews${id}_vi`).innerText;
   const titleEdit_en = document.getElementById(`titleNews${id}_en`).innerText;
 
@@ -214,6 +220,8 @@ const handleEditNews = async () => {
       content_vi: contentEdit_vi,
       content_en: contentEdit_en,
       imageUrl,
+      datePost: dateInput.value,
+      importance:optionImportant.value 
     });
     if (res.data) {
       overlay.classList.add("d-none");
@@ -630,7 +638,7 @@ if (btn_edit_news_id) {
   }, 400);
 }
 
-CKEDITOR.replace('policy-content-vi');
-CKEDITOR.replace('policy-content-en');
-CKEDITOR.replace('qa-content-vi');
-CKEDITOR.replace('qa-content-en');
+CKEDITOR?.replace("policy-content-vi");
+CKEDITOR?.replace("policy-content-en");
+CKEDITOR?.replace("qa-content-vi");
+CKEDITOR?.replace("qa-content-en");

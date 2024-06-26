@@ -45,7 +45,7 @@ const InitApiRoute = (app) => {
   //delete new
   router.get("/admin/delete-new", adminController.handleDeleteNew);
   //add new
-  router.put("/admin/update-new/:id", adminController.handleDeleteNewById);
+  router.put("/admin/update-new/:id", adminController.handleUpdateNews);
 
   // add product
   router.post("/admin/add-product", adminController.handleAddProduct);

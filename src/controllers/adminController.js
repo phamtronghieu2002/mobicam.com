@@ -17,14 +17,16 @@ module.exports = {
   },
 
   handleAddNew: async (req, res) => {
-    const { title_vi, title_en, content_vi, content_en, imageUrl } = req.body;
+    const { title_vi, title_en, content_vi, content_en, imageUrl ,importance,datePost} = req.body;
     try {
       const result = await newService.addNew(
         title_vi,
         title_en,
         content_vi,
         content_en,
-        imageUrl
+        imageUrl,
+        importance,
+        datePost
       );
       if (result) {
         return res.status(200).json(true);
@@ -39,15 +41,16 @@ module.exports = {
     try {
       const result = await newService.deleteNew(id);
       if (result) {
-        return res.redirect("/admin/dashboard");
+        return res.redirect("/admin/dashboard/page/news");
       }
     } catch (error) {
       return res.render("ErrorPage.ejs");
     }
   },
 
-  handleDeleteNewById: async (req, res) => {
-    const { title_vi, title_en, content_vi, content_en, imageUrl } = req.body;
+  handleUpdateNews: async (req, res) => {
+    const { title_vi, title_en, content_vi, content_en, imageUrl,importance,datePost } = req.body;
+    console.log("Req.body", req.body);
     const { id } = req.params;
     try {
       const result = await newService.updateNew(
@@ -56,7 +59,9 @@ module.exports = {
         content_vi,
         content_en,
         imageUrl,
-        id
+        id,
+        importance,
+        datePost
       );
       if (result) {
         return res.status(200).json(result);

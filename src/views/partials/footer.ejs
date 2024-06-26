@@ -79,7 +79,8 @@
       </div>
       <div class=" polyfy_footer col-lg-3 col-md-3 col-sm-7 col-xs-12">
         <div class="footer_item">
-          <h5 class="footer-title text-light mb-2">  </h5>
+          <h5 class="footer-title text-light mb-2"> 
+            <% if (lang == 'vi') { %> Chính sách <% } else { %> Polycies <% } %> </h5>
           <ul class="footer-list">
             <% listPolicy.forEach(function(policy){ %>  
             <li class="footer-item">
