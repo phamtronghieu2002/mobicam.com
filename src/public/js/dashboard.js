@@ -3,11 +3,18 @@ let overlay = document.getElementById("overlay");
 let title_news_vi = document.getElementById("title_news_vi");
 let title_news_en = document.getElementById("title_news_en");
 let btn_close = document.querySelector(".btn-close");
-// function convertDateFormat(dateStr) {
-//   const [day, month, year] = dateStr.split('-');
-//   const formattedYear = `20${year}`; // Giả định năm là 2000+
-//   return `${formattedYear}-${month}-${day}`;
-// }
+ 
+const setLoading = (title,html) => {
+  Swal.fire({
+    title: title,
+    html,
+    allowOutsideClick: false,
+    onBeforeOpen: () => {
+      Swal.showLoading()
+    },
+  });
+}
+
 const validateSizeImage = (size, height, type = "") => {
   if (type === "news") {
     if (size > 500) {
@@ -210,10 +217,12 @@ const handleEditNews = async () => {
 
     if (fileInputNews.files && fileInputNews.files[0]) {
       formData.append("image", fileInputNews.files[0]);
+      setLoading("đang cập nhật tin tức", "vui lòng chờ")
       const res = await axios.post("/admin/uploadimage", formData);
       console.log("res", res);
       imageUrl = res.data.path;
     }
+  
     const res = await axios.put(`/admin/update-new/${id}`, {
       title_vi: titleEdit_vi,
       title_en: titleEdit_en,
