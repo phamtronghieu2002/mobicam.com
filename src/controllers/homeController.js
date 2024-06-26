@@ -78,12 +78,17 @@ module.exports = {
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
       const listPolicy = await getPolicyList();  
+      const listQA = await getQAList();  
+      const listCoop = await getCoopList();  
       const data={
-        listPolicy: listPolicy,
+        listPolicy,
+        listCoop,
+        listQA,
         lang:lang ? lang : "vi",
         news,
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
+        
       }
       return res.render("./New/allNews.ejs", data);
     } catch (error) {
@@ -93,14 +98,18 @@ module.exports = {
   },
 
   handleGetNewById: async (req, res) => {
-    console.log("req.params", req.params);
     const { id ,lang} = req.params;
     const headerSection = await editLandingService.getHeaderSection(lang);
     const footerSection = await editLandingService.getFooterSection(lang);
-
+    const listPolicy = await getPolicyList();  
+    const listQA = await getQAList();  
+    const listCoop = await getCoopList();  
     try {
       const newDetail = await newService.getNewbyId(id,lang);
       const data={
+        listCoop,
+        listPolicy,
+        listQA,
         lang,
         newDetail,
         headerSection: convertStringToHTML(headerSection),
@@ -108,7 +117,7 @@ module.exports = {
       }
       return res.render("./New/detailNew.ejs",  data);
     } catch (error) {
-      console.log("error âs>>>", error);
+
       return res.render("ErrorPage.ejs");
     }
   },
@@ -119,7 +128,6 @@ module.exports = {
 
   handleRenderPolicy: async (req,res) =>{
     const {id} = req.params
-    console.log(id)
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
 
     try {
@@ -159,6 +167,7 @@ module.exports = {
 
       const data= {
         id,
+        listQA,
         lang:lang ? lang : "vi",
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),

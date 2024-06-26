@@ -1,7 +1,26 @@
 /*  */
+/* Cho modal SweetAlert2 */
+.swal2-container {
+  z-index: 9999999999 !important; /* Đặt giá trị z-index mong muốn tại đây */
+}
+
+/* Cho backdrop (nền mờ được thêm khi hiện SweetAlert2) */
+.swal2-backdrop {
+  z-index: 9999999998 !important; /* Đảm bảo rằng giá trị này thấp hơn một chút so với .swal2-container để backdrop nằm dưới modal */
+}
+
+.nested-carousel {
+  max-width: 200px; /* Set a maximum width for the nested carousel */
+  margin: 0 auto;  /* Center the carousel */
+  height: 200px;
+}
+
+.nested-carousel .owl-carousel-img img {
+  width: 200px !important; /* Ensure images inside the nested carousel are smaller */
+  height: 250px;
 
 
-
+}
 .wrapper .change_image_area{
   display: none;
 }

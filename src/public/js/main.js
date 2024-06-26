@@ -1,12 +1,12 @@
 $(document).ready(function () {
   //carousel certificert
   $(".owl-carousel").owlCarousel({
-    loop: true,
+
     margin: 0,
     responsiveClass: true,
     dots: true,
     slideTransition: "linear",
-
+    autoplay: false,
     navText: [
       "<i class='fa fa-chevron-left'></i>",
       "<i class='fa fa-chevron-right'></i>",
@@ -53,7 +53,6 @@ const handleClickMenu = (event) => {
 
   const href = event.currentTarget.getAttribute("href");
   const id = href.split("#")[1];
-  console.log("id", id);
   const targetElement = document.getElementById(id);
 
   if (targetElement) {
@@ -77,7 +76,6 @@ document
     anchor.addEventListener("click", function (e) {
       const targetId_vi = this.getAttribute("href").substring(2);
       const targetId_en = this.getAttribute("href").substring(5);
-      console.log("targetId_en", targetId_en);
       const targetElement_vi = document.getElementById(targetId_vi);
       const targetElement_en = document.getElementById(targetId_en);
 
@@ -111,35 +109,67 @@ if (checkIsMobileAndTabletWidth()) {
   }
 }
 const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
-  console.log("lang", lang);
   if (checkIsMobileAndTabletWidth()) {
     const res = await axios.get(`/category/${catid}/${lang}`);
     const products = res.data.products;
     const content_modal_product = document.querySelector(".carousel-inner");
 
     let htmlContent = "";
-    // Không cần tạo productItem ở đây nữa
     for (let i = 0; i < products.length; i++) {
-      active = i === 0 ? "active" : "";
+      let active = i === 0 ? "active" : "";
+      let images = products[i]?.images;
+
       htmlContent += `
-      <div class="carousel-item ${active}">
-      <div class="product-item">
-      <img
-      style="width: 250px; margin: 0 auto;"
-      src="${products[i].productimg}"
-      alt=""
-      class="product-thumb"
-    />
-    <h3 class="product-name text-primary text-center">${products[i].productname}</h3>
-    <div class="product-desc mt-5 pt-2">
-      ${products[i].productdesc}
-    </div>
-    </div>
-    </div>
-      `;
+        <div class="carousel-item ${active}">
+          <div class="product-item">
+            <div class="owl-carousel owl-theme nested-carousel">`; // Start of nested OwlCarousel
+
+      for (let j = 0; j < images.length; j++) {
+        htmlContent += `
+          <div class="owl-carousel-img">
+            <img
+              style="width: 250px; margin: 0 auto;"
+              src="${images[j]}"
+              alt=""
+              class="product-thumb"
+            />
+          </div>`;
+      }
+
+      htmlContent += `
+            </div> <!-- End of nested OwlCarousel -->
+            <h3 class="product-name text-primary text-center mt-5">${products[i].productname}</h3>
+            <div class="product-desc mt-5 pt-2">
+              ${products[i].productdesc}
+            </div>
+          </div>
+        </div>`;
     }
 
-    content_modal_product.innerHTML = `${htmlContent}`;
+    content_modal_product.innerHTML = htmlContent;
+    $(".nested-carousel").owlCarousel({
+     
+      autoplay: false,
+      margin: 10,
+      nav: true,
+      dots: false,
+      navText: [
+        "<i class='fa fa-chevron-left'></i>",
+        "<i class='fa fa-chevron-right'></i>",
+      ],
+      responsive: {
+        0: {
+          items: 1,
+     
+        },
+        600: {
+          items: 1,
+        },
+        1000: {
+          items: 1,
+        },
+      },
+    }); 
   }
 };
 
@@ -184,9 +214,6 @@ function hanndleOpenTabProduct(evt, productid, catid) {
 
   contentActive.style.display = "block";
   evt.currentTarget.className += " active";
-
-
-  
 }
 
 function hanndleOpenTabCat(evt, catid, lang) {

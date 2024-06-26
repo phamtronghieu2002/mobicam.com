@@ -67,7 +67,7 @@
   height: 40px;
   width: 40px;
   margin: auto;
-  top: -35px;
+  top: -54px;
 }
 .carousel-item .product-item{
   text-align: center;
@@ -102,5 +102,12 @@
   background: var(--primary-color) !important;
   display:block;
 
+
+}
+
+.product-item .owl-carousel .owl-nav button.owl-prev{
+
+  left: -47px;
+  right: -47px;
 
 }

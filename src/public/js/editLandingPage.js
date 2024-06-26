@@ -100,7 +100,6 @@ $(async function () {
     const tag_preview = parent.find("a");
 
     const type = parent.attr("type");
-    console.log("type", type);
     const imgChild = parent.find("img");
     input.onchange = async function () {
       const file = input.files[0];
@@ -125,7 +124,6 @@ $(async function () {
             },
           });
           const { data } = response;
-          console.log("data", data);
           const img_url = `/files/${data.fileName}`;
           imgChild.attr("src", img_url);
           tag_preview.attr("href", img_url);
@@ -149,7 +147,6 @@ $(async function () {
     input.type = "file";
     input.accept = "application/pdf";
     const role = document.getElementById("user_role").innerText;
-    console.log("role", role);
     input.onchange = async function () {
       const file = input.files[0];
       const fileSize = file.size;
@@ -192,7 +189,6 @@ $(async function () {
       const file = input.files[0];
       const fileSize = file.size;
       const fileSizeKB = fileSize / 1024;
-      console.log("fileSizeKB", fileSizeKB);
       if (!validateVideoReason(fileSizeKB)) {
         return;
       }
@@ -252,7 +248,6 @@ $(async function () {
     if (isConfirmed) {
       try {
         const result = await axios.post(`${baseURL}/restore`);
-        console.log("result", result);
         toastr.success("khôi phục giao diện!", "Thành Công");
 
         window.location.reload(true);

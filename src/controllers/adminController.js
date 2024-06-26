@@ -12,19 +12,21 @@ module.exports = {
   },
 
   handleUploadImage: (req, res) => {
-    console.log("req.file.path >>>>", req.file.path);
+
     return res.status(200).json({ path: req.file.path });
   },
 
   handleAddNew: async (req, res) => {
-    const { title_vi, title_en, content_vi, content_en, imageUrl } = req.body;
+    const { title_vi, title_en, content_vi, content_en, imageUrl ,importance,datePost} = req.body;
     try {
       const result = await newService.addNew(
         title_vi,
         title_en,
         content_vi,
         content_en,
-        imageUrl
+        imageUrl,
+        importance,
+        datePost
       );
       if (result) {
         return res.status(200).json(true);
@@ -39,15 +41,15 @@ module.exports = {
     try {
       const result = await newService.deleteNew(id);
       if (result) {
-        return res.redirect("/admin/dashboard");
+        return res.redirect("/admin/dashboard/page/news");
       }
     } catch (error) {
       return res.render("ErrorPage.ejs");
     }
   },
 
-  handleDeleteNewById: async (req, res) => {
-    const { title_vi, title_en, content_vi, content_en, imageUrl } = req.body;
+  handleUpdateNews: async (req, res) => {
+    const { title_vi, title_en, content_vi, content_en, imageUrl,importance,datePost } = req.body;
     const { id } = req.params;
     try {
       const result = await newService.updateNew(
@@ -56,7 +58,9 @@ module.exports = {
         content_vi,
         content_en,
         imageUrl,
-        id
+        id,
+        importance,
+        datePost
       );
       if (result) {
         return res.status(200).json(result);
@@ -137,14 +141,12 @@ module.exports = {
   },
   handleRenderDashboardNews: async (req, res) => {
     const { id } = req.query;
-    console.log("id news", id);
     let cats = await categoryService.getAllCategory();
     let news = await newService.getAllnews();
     return res.render("./Admin/dashboardNews.ejs", { cats, news, id });
   },
   handleRenderDashboardPolicy: async(req,res) => {
     const results = await getPolicyList()
-    console.log(results)
     return res.render('./Admin/dashboardPolicy.ejs', { listPolicy: results })
   },
   GetPolicyDetails: async(req,res)=>{
@@ -178,7 +180,6 @@ module.exports = {
   },
   GetCoopDetailsAdmin: async(req,res)=>{
     const id = req.params.id
-    console.log("id is",id);
     const results = await getCoopDetailsAdmin(id)
     return res.json(results)
   },

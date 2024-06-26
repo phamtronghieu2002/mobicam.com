@@ -10,7 +10,6 @@ const getPolicyList = async () => {
 }
 const updatePolicy = async (name_vi, name_en, content_vi, content_en, id) => {
   const [results] = await con.query('update policy set name_vi = ?, name_en = ?, content_vi = ?, content_en = ? where id = ?', [name_vi, name_en, content_vi, content_en, id])
-  console.log('ket qua update', results);
   return results.affectedRows
 }
 
@@ -29,7 +28,6 @@ const getCoopList = async () => {
 }
 const getCoopDetails = async (id,lang) => {
   try {
-    console.log('id',id);
     const [results] = await con.query(`SELECT name_${lang}, content_${lang} FROM cooperate WHERE id = ?`, [id]);
    
     const response = {}
@@ -50,7 +48,6 @@ const getCoopDetailsAdmin = async (id) => {
 }
 const updateCoop = async (name_vi, name_en, content_vi, content_en, id) => {
   const [results] = await con.query('update cooperate set name_vi = ?, name_en = ?, content_vi = ?, content_en = ? where id = ?', [name_vi, name_en, content_vi, content_en, id])
-  console.log('ket qua update', results);
   return results.affectedRows
 }
 
