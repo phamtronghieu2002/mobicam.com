@@ -12,7 +12,7 @@ const convertStringToHTML = (str) => {
 };
 
 module.exports = {
-  handleRenderHomePage: async (req, res,type="home") => {
+  handleRenderHomePage: async (req, res,type="home",roles) => {
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
 
     try {

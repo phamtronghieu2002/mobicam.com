@@ -148,14 +148,18 @@ $(async function () {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "application/pdf";
-
+    const role = document.getElementById("user_role").innerText;
+    console.log("role", role);
     input.onchange = async function () {
       const file = input.files[0];
       const fileSize = file.size;
       const fileSizeKB = fileSize / 1024;
-      console.log("fileSizeKB", fileSizeKB);
-      if (!validateSizePdf(fileSizeKB)) {
-        return;
+      let checkValidate = false;
+      if (role != "SUPERADMIN") {
+        checkValidate = validateSizePdf(fileSizeKB);
+        if (!checkValidate) {
+          return;
+        }
       }
 
       // Tạo FormData và thêm file PDF vào
@@ -250,11 +254,8 @@ $(async function () {
         const result = await axios.post(`${baseURL}/restore`);
         console.log("result", result);
         toastr.success("khôi phục giao diện!", "Thành Công");
-       
-          
-            
-           window.location.reload(true);
-       
+
+        window.location.reload(true);
       } catch (error) {
         console.log("error", error);
         toastr.error("Sao lưu dữ liệu!", error);
@@ -287,7 +288,7 @@ $(async function () {
       const certificertHeading = $("section.section-certificert h2");
 
       const certificertHtml = [];
-  
+
       $(".owl-item:not(.cloned)").each(function () {
         certificertHtml.push($(this).html());
       });
@@ -322,11 +323,15 @@ $(async function () {
             "Content-Type": "text/plain",
           },
         });
-        await axios.post(`${baseURL}/lang/${lang}?section=achieve`, achieveHtml, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        });
+        await axios.post(
+          `${baseURL}/lang/${lang}?section=achieve`,
+          achieveHtml,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        );
         await axios.post(
           `${baseURL}/lang/${lang}?section=experience`,
           experienceHtml,
@@ -336,11 +341,15 @@ $(async function () {
             },
           }
         );
-        await axios.post(`${baseURL}/lang/${lang}?section=benifit`, benefitHtml, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        });
+        await axios.post(
+          `${baseURL}/lang/${lang}?section=benifit`,
+          benefitHtml,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        );
         await axios.post(
           `${baseURL}/lang/${lang}?section=categories`,
           categoriesHtml.eq(0).prop("outerHTML"),

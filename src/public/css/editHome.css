@@ -113,4 +113,12 @@
   outline: 0;
   box-shadow: 0 0 8px rgba(3, 24, 41, 0.6);
 }
+ 
+ .wrapper_edit_landing .alert {
+  position: fixed ;
+  z-index: 9999999;
+  left: 0;
+  width: 250px;
+  top: 35%;
 
+}
