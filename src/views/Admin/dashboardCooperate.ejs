@@ -142,6 +142,21 @@
             .nav-tabs {
                 margin-bottom: 10px;
             }
+
+            .btn-css {
+                cursor: pointer;
+                border-color: #0d6efd;
+                padding: 5px 10px;
+                border-radius: 4px;
+                background-color: white;
+                color: #0d6efd;
+            }
+
+            .hover-btn:hover {
+                background-color: #0d6efd;
+                color: white;
+                transition:  0.3s ease;
+            }
         </style>
 </head>
 
@@ -165,9 +180,9 @@
                         <span>Danh sách hiện có</span>
                     </div>
                     <div class="main-content-top-right">
-                        <button class="add-coop-btn hover-btn">+ Thêm mới</button>
-                        <button class="delete-coop-btn hover-btn">Xóa</button>
-                        <button class="save-coop-btn hover-btn" onclick="updateCoop()">Lưu</button>
+                        <button class="add-coop-btn hover-btn btn-css">+ Thêm mới</button>
+                        <button class="delete-coop-btn hover-btn btn-css">Xóa</button>
+                        <button class="save-coop-btn hover-btn btn-css" onclick="updateCoop()">Lưu</button>
                     </div>
                 </div>
                 <div class="main-content-bottom">

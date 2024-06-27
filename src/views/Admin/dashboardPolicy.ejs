@@ -115,13 +115,26 @@
                 margin-bottom: 5px;
             }
 
+            .btn-css {
+                cursor: pointer;
+                border-color: #0d6efd;
+                padding: 5px 10px;
+                border-radius: 4px;
+                background-color: white;
+                color: #0d6efd;
+            }
+
+            .hover-btn:hover {
+                background-color: #0d6efd;
+                color: white;
+                transition: linear 0.3s;;
+            }
 
             .abc input,
             .abc textarea {
                 padding: 5px;
                 border: 1px solid var(--border-color);
                 border-radius: 4px;
-                width: 90%;
                 box-sizing: border-box;
             }
 
@@ -166,9 +179,9 @@
                         <span>Các chính sách hiện có</span>
                     </div>
                     <div class="main-content-top-right">
-                        <button class="add-policy-btn hover-btn">+ Thêm mới</button>
-                        <button class="delete-policy-btn hover-btn">Xóa</button>
-                        <button class="save-policy-btn hover-btn" onclick="updatePolicy()">Lưu</button>
+                        <button class="add-policy-btn hover-btn btn-css">+ Thêm mới</button>
+                        <button class="delete-policy-btn hover-btn btn-css">Xóa</button>
+                        <button class="save-policy-btn hover-btn btn-css" onclick="updatePolicy()">Lưu</button>
                     </div>
                 </div>
                 <div class="main-content-bottom">

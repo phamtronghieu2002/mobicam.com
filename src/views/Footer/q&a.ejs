@@ -1,10 +1,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera giám sát hành trình MobiCAM</title>
-    <%- include('../partials/head.ejs') %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera giám sát hành trình MobiCAM</title>
+  <%- include('../partials/head.ejs') %>
     <style>
       body {
         font-family: Roboto, sans-serif;
@@ -37,12 +37,13 @@
         justify-content: space-between;
       }
 
-  
+
       .qa-item {
         cursor: pointer;
         margin-bottom: 20px;
         border-bottom: 1px solid var(--white-color);
       }
+
       .qa-item-tab {
         margin-bottom: 10px;
         cursor: pointer;
@@ -79,6 +80,7 @@
         padding-left: 12px;
         max-width: 480px;
       }
+
       .qa-name {
         display: flex;
         justify-content: space-between;
@@ -100,12 +102,17 @@
         display: none;
       }
     </style>
-  </head>
+</head>
 
-  <body>
-    <div class="app">
-      <span id="qa-id" class="d-none"> <%=id%> </span>
-      <%- include('../partials/header.ejs') ,{headerSection} %>
+<body>
+  <div class="app">
+    <span id="qa-id" class="d-none">
+      <%=id%>
+    </span>
+    <span id="qa-lang">
+      <%=lang%>
+    </span>
+    <%- include('../partials/header.ejs') ,{headerSection} %>
       <div class="root container">
         <section>
           <div class="head">
@@ -114,37 +121,33 @@
           <div class="qa-body row">
             <div class="list-qa col-lg-4 col-sm-12">
               <% listQA.forEach(function(qaItem){ %>
-              <div
-                class="qa-item-tab hide-on-mobile"
-                id="tab_<%= qaItem.id %>"
-                onclick="SelectQA('<%= qaItem.id %>')"
-              >
-                <div class="tab-qa-name">
-                  <% const field = `name_${lang}`; %> <%= qaItem[field]%>
+                <div class="qa-item-tab hide-on-mobile" id="tab_<%= qaItem.id %>"
+                  onclick="SelectQA('<%= qaItem.id %>')">
+                  <div class="tab-qa-name">
+                    <% const field=`name_${lang}`; %>
+                      <%= qaItem[field]%>
+                  </div>
                 </div>
-              </div>
 
-              <% }) %>
-              <select
-                class="hide-on-pc show-on-mobile form-select mb-3"
-                name=""
-                id="optTap_qa"
-              >
-                <% listQA.forEach(function(qaItem){ %>
-                <option value="<%= qaItem.id %>">
-                  <% const field = `name_${lang}`; %> <%= qaItem[field] %>
-                </option>
                 <% }) %>
-              </select>
+                  <select class="hide-on-pc show-on-mobile form-select mb-3" name="" id="optTap_qa">
+                    <% listQA.forEach(function(qaItem){ %>
+                      <option value="<%= qaItem.id %>">
+                        <% const field=`name_${lang}`; %>
+                          <%= qaItem[field] %>
+                      </option>
+                      <% }) %>
+                  </select>
             </div>
             <div class="content-qa col-lg-8 col-sm-12"></div>
           </div>
         </section>
       </div>
       <%- include('../partials/footer.ejs'),{footerSection:""} %>
-    </div>
+  </div>
 
-    <script src="/js/ejsPolicy.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
+  <script src="/js/ejsPolicy.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
 </html>

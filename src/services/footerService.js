@@ -1,5 +1,7 @@
 const con = require("../db/db.js");
 
+
+//==================Policy==================
 const getPolicyDetails = async (id) => {
   const [results] = await con.query('SELECT * FROM policy WHERE id = ?', [id]);
   return results[0];
@@ -12,16 +14,24 @@ const updatePolicy = async (name_vi, name_en, content_vi, content_en, id) => {
   const [results] = await con.query('update policy set name_vi = ?, name_en = ?, content_vi = ?, content_en = ? where id = ?', [name_vi, name_en, content_vi, content_en, id])
   return results.affectedRows
 }
+const addPolicy = async (name_vi, name_en, content_vi, content_en ) => {
+  const [results] = await db.query('insert into news (name_vi, name_en, content_vi, content_en) values (?,?,?,?)', [name_vi, name_en, content_vi, content_en ])
+  return results
+}
 
+
+//==================Q&A==================
 const getQADetails = async (id) => {
   const [results] = await con.query('SELECT * FROM contentQA WHERE cateId = ?', [id]);
-  return results[0];
+  return results;
 }
 const getQAList = async () => {
   const [results] = await con.query('SELECT id, name_vi, name_en FROM categoriesQA');
   return results;
 }
 
+
+//==================Cooperate==================
 const getCoopList = async () => {
   const [results] = await con.query('SELECT id,name_vi,name_en from cooperate');
   return results;  
@@ -51,4 +61,6 @@ const updateCoop = async (name_vi, name_en, content_vi, content_en, id) => {
   return results.affectedRows
 }
 
-module.exports = { getPolicyDetails, getPolicyList, getQADetails, getQAList, updatePolicy,getCoopList, getCoopDetails,updateCoop,getCoopDetailsAdmin }
+module.exports = { getPolicyDetails, getPolicyList, updatePolicy, addPolicy,
+                  getQADetails, getQAList, getCoopList, 
+                  getCoopDetails, updateCoop, getCoopDetailsAdmin }

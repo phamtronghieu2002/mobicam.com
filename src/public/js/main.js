@@ -148,7 +148,7 @@ const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
 
     content_modal_product.innerHTML = htmlContent;
     $(".nested-carousel").owlCarousel({
-     
+
       autoplay: false,
       margin: 10,
       nav: true,
@@ -160,7 +160,7 @@ const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
       responsive: {
         0: {
           items: 1,
-     
+
         },
         600: {
           items: 1,
@@ -169,7 +169,7 @@ const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
           items: 1,
         },
       },
-    }); 
+    });
   }
 };
 
@@ -247,14 +247,17 @@ const viehical = document.querySelector(".viehical .sub__number");
 
 // handle Open modal video
 const modalVideo = document.getElementById("openPopup_video");
-modalVideo.onclick = function () {
-  const sourceVideo = modalVideo.getAttribute("data-video");
-  const videoReason = document.querySelector("#content_modal_video source");
-  const videoElement = document.querySelector("#content_modal_video video");
+if (modalVideo) {
+  modalVideo.onclick = function () {
+    const sourceVideo = modalVideo.getAttribute("data-video");
+    const videoReason = document.querySelector("#content_modal_video source");
+    const videoElement = document.querySelector("#content_modal_video video");
 
-  videoReason.setAttribute("src", sourceVideo);
-  videoElement.load();
-};
+    videoReason.setAttribute("src", sourceVideo);
+    videoElement.load();
+  };
+}
+
 
 function counterUp(el, to) {
   let speed = 200;

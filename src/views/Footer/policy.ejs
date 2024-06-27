@@ -1,10 +1,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera giám sát hành trình MobiCAM</title>
-    <%- include('../partials/head.ejs') %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera giám sát hành trình MobiCAM</title>
+  <%- include('../partials/head.ejs') %>
     <style>
       body {
         font-family: Roboto, sans-serif;
@@ -78,20 +78,27 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         overflow: auto;
       }
+
       .content-policy-details {
         color: #555;
         font-size: 16px;
         line-height: 1.6;
       }
     </style>
-  </head>
+</head>
 
-  <body>
-    <div class="app">
-      <span id="policy-id" class="d-none"> <%=id%> </span>
-      <span id="qa-lang"> <%=lang%> </span>
-      <span id="policy-lang" class="d-none"><%=lang%></span>
-      <%- include('../partials/header.ejs') ,{headerSection} %>
+<body>
+  <div class="app">
+    <span id="policy-id" class="d-none">
+      <%=id%>
+    </span>
+    <span id="qa-lang">
+      <%=lang%>
+    </span>
+    <span id="policy-lang" class="d-none">
+      <%=lang%>
+    </span>
+    <%- include('../partials/header.ejs') ,{headerSection} %>
       <div class="root container policy">
         <section>
           <div class="head">
@@ -100,25 +107,22 @@
           <div class="policy-body row">
             <div class="list-policy col-lg-4 col-sm-12">
               <% listPolicy.forEach(function(policyItem){ %>
-              <div
-                class="policy-item hide-on-mobile"
-                id="<%= policyItem.id %>"
-                onclick="SelectPolicy('<%= policyItem.id %>')"
-              >
-                <div class="policy-name">
-                  <% const field = `name_${lang}`; %> <%= policyItem[field] %>
+                <div class="policy-item hide-on-mobile" id="<%= policyItem.id %>"
+                  onclick="SelectPolicy('<%= policyItem.id %>')">
+                  <div class="policy-name">
+                    <% const field=`name_${lang}`; %>
+                      <%= policyItem[field] %>
+                  </div>
                 </div>
-              </div>
-              <% }) %>
-              <select class="hide-on-pc show-on-mobile form-select" name="" id="optTap_policy">
-                <% listPolicy.forEach(function(policyItem){ %>
-                <option
-               
-                 value="<%= policyItem.id %>">
-                  <% const field = `name_${lang}`; %> <%= policyItem[field] %>
-                </option>
                 <% }) %>
-              </select>
+                  <select class="hide-on-pc show-on-mobile form-select" name="" id="optTap_policy">
+                    <% listPolicy.forEach(function(policyItem){ %>
+                      <option value="<%= policyItem.id %>">
+                        <% const field=`name_${lang}`; %>
+                          <%= policyItem[field] %>
+                      </option>
+                      <% }) %>
+                  </select>
             </div>
             <div class="content-policy col-lg-8 col-sm-12">
               <!-- dữ liệu dc api đổ vào đây -->
@@ -128,9 +132,10 @@
         </section>
       </div>
       <%- include('../partials/footer.ejs'),{footerSection:""} %>
-    </div>
+  </div>
 
-    <script src="/js/ejsPolicy.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
+  <script src="/js/ejsPolicy.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
 </html>
