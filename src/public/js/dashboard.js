@@ -42,7 +42,7 @@ const validateSizeImageProduct = (height, width) => {
   return false;
 };
 const validateSizeImageNews = (height, width) => {
-  if (width >= 800 && height >= 700) {
+  if (width >= 800 && height >= 600) {
     return true;
   }
   toastr.error("ảnh bài viết phải có kích thước tối thiểu 800x700", "Lỗi");
@@ -656,3 +656,6 @@ CKEDITOR.replace('qa-content-vi');
 CKEDITOR.replace('qa-content-en');
 CKEDITOR.replace('coop-content-vi');
 CKEDITOR.replace('coop-content-en');
+
+
+

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>all tin tuc</title>
-    <%- include('../partials/head.ejs') ,{headerSection}%>
-  </head>
-  <body>
-    <div class="wrapper wrapper_new_page">
-      <%- include('../partials/header.ejs') %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>all tin tuc</title>
+  <%- include('../partials/head.ejs') ,{headerSection}%>
+</head>
+
+<body>
+  <div class="wrapper wrapper_new_page">
+    <%- include('../partials/header.ejs') %>
       <section class="news pt-3 pb-5">
         <div class="container">
           <h2 class="text-primary text-center fw-bold mb-2">Tin tức</h2>
@@ -17,54 +19,36 @@
           </div>
           <div class="content mt-4">
             <div class="row">
-               <% for (let i = 0; i < news.length; i++) {
-              %>
-              <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a
-                  href="/news/detail/<%= news[i].id %>/<%=lang %> "
-                  class="item rounded d-block text-decoration-none overflow-hidden position-relative pb-2"
-                >
-                  <div  class="thumb_news overflow-hidden">
-                    <img src="<%= news[i].img %>" alt="thumb_new" />
-                  </div>
-                  <div
-                    class="title fw-bold pt-1 pe-3 ps-3 pb-4 text-decoration"
-                  >
-                    <%  var fieldName = `title_${lang}`;
-                    %> <%= news[i][fieldName] %>
-                  </div>
-                  <span
-                  class="date position-absolute pt-2 text-end pe-3"
-                  style="
+              <% for (let i=0; i < news.length; i++) { %>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                  <a href="/news/detail/<%= news[i].id %>/<%=lang %> "
+                    class="item rounded d-block text-decoration-none overflow-hidden position-relative pb-2">
+                    <div class="thumb_news overflow-hidden">
+                      <img src="<%= news[i].img %>" alt="thumb_new" />
+                    </div>
+                    <div class="title fw-bold pt-1 pe-3 ps-3 pb-4 text-decoration">
+                      <% var fieldName=`title_${lang}`; %>
+                        <%= news[i][fieldName] %>
+                    </div>
+                    <span class="date position-absolute pt-2 text-end pe-3" style="
                     font-size: 0.9rem;
                     color: gray;
                     bottom:15px;
                     right: 0;
-                  "
-                >
-                  <i class="fa-regular fa-clock"></i>
-                  <%= news[i].updatedAt %>
-                </span>
-                </a>
-              </div>
-              <% } %>
+                  ">
+                      <i class="fa-regular fa-clock"></i>
+                      <%= news[i].updatedAt %>
+                    </span>
+                  </a>
+                </div>
+                <% } %>
             </div>
           </div>
         </div>
       </section>
       <%- include('../partials/footer.ejs'),{footerSection} %>
-    </div>
-  </body>
-  <script
-    defer
-    src="https://translate.google.com/translate_a/element.js?cb=initGoogleTranslate"
-  ></script>
-  <script>
-    function initGoogleTranslate() {
-      new google.translate.TranslateElement(
-        { includedLanguages: "vi,en" },
-        "google_translate_element"
-      );
-    }
-  </script>
+  </div>
+</body>
+<%- include('../partials/foot.ejs') %>
+
 </html>

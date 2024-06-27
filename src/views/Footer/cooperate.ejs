@@ -40,7 +40,6 @@
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
             }
-
         </style>
 </head>
 
@@ -50,10 +49,13 @@
             <div class="root container">
                 <section class="row">
                     <div class="policy-head">
-                        <h3>Chính sách đại lý</h3>
+                        <h3>
+
+                            <%=lang === 'vi' ? 'Chính sách đại lý' : 'Agency policy'%>
+                        </h3>
                     </div>
-                    <div class="policy-body">
-                     <%- content %> 
+                    <div class="policy-body p-4">
+                        <%- content %>
 
 
 

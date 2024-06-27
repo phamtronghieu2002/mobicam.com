@@ -20,6 +20,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
+	
 
 }
 /* HTML5 display-role reset for older browsers */
@@ -31,7 +32,7 @@ body {
 	font-family: 'Roboto', sans-serif;
     line-height: 1.5;
 }
-ol, ul {
+ol, ul,li {
 	list-style: none;
 }
 blockquote, q {

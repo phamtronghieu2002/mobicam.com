@@ -393,7 +393,10 @@
                               />
                             </td>
                             <td class="text-center">
-                              <span id="importanceNews_<%=item.id%>">
+                              <span
+                                class="d-none"
+                                id="importanceNews_<%=item.id%>"
+                              >
                                 <%=item.importance%>
                               </span>
                               <% if (item.importance == 1) { %>
@@ -431,7 +434,8 @@
       </div>
     </div>
   </body>
-  <%- include('../partials/scriptDashboard.ejs') %>
+  <%- include('../partials/foot.ejs') %> <%-
+  include('../partials/scriptDashboard.ejs') %>
   <script src="/js/dashboard.js"></script>
   <script src="/js/sidebar.js"></script>
   <script>

@@ -65,7 +65,7 @@ function updatePolicy() {
     content_vi,
     content_en
   }).then(response => {
-    if(response.data) {
+    if (response.data) {
       toastr.success('Cập nhật thành công');
       setTimeout(() => {
         window.location.reload();
@@ -79,7 +79,7 @@ function updatePolicy() {
 
 //update coop Admin
 function updateCoop() {
-const coopId = document.querySelector('.selected').getAttribute('id')
+  const coopId = document.querySelector('.selected').getAttribute('id')
   const name_vi = document.getElementById('coop-name-vi').value
   const name_en = document.getElementById('coop-name-en').value
   const content_vi = CKEDITOR.instances['coop-content-vi'].getData();
@@ -90,7 +90,7 @@ const coopId = document.querySelector('.selected').getAttribute('id')
     content_vi,
     content_en
   }).then(response => {
-    if(response.data){
+    if (response.data) {
       toastr.success('Cập nhật thành công');
       setTimeout(() => {
         window.location.reload();
@@ -115,15 +115,11 @@ function SelectPolicy(policyId) {
   fetch(`/api/policy/${policyId}`)
     .then((response) => response.json())
     .then((policyItem) => {
-      console.log("policyItem", policyItem);
-      const lang = document.getElementById("policy-lang").innerText;
-
+      const lang = document.getElementById("policy-lang").innerText.trim();
       const contentPolicy = document.querySelector(".content-policy-details");
-
       contentPolicy.innerHTML = policyItem[`content_${lang}`];
     });
 }
-
 
 //Render giao diện Q&A
 function SelectQA(qaId) {
@@ -137,11 +133,12 @@ function SelectQA(qaId) {
   fetch(`/api/q&a/${qaId}`)
     .then((response) => response.json())
     .then((qaItem) => {
+      const lang = document.getElementById("qa-lang").innerText.trim();
       qaItem.forEach((item, index) => {
         const div = document.createElement("div");
         div.className = "qa-item";
-        const title = item.name_vi;
-        const desc = item.content_vi;
+        const title = item[`name_${lang}`];
+        const desc = item[`content_${lang}`];
         div.innerHTML = `
         <div class="qa-name">
           <span>   ${title}</span>
@@ -154,7 +151,6 @@ function SelectQA(qaId) {
       });
       $(document).ready(function () {
         const q_a_detail = $(".qa-item");
-   
 
         q_a_detail.click(function () {
           const arrow = $(this).find("i");
@@ -167,20 +163,20 @@ function SelectQA(qaId) {
     });
 }
 
-
 const optTap_policy = document.getElementById("optTap_policy");
 optTap_policy?.addEventListener("change", function (e) {
   const policyId = e.target.value;
- 
+
   SelectPolicy(Number(policyId));
 });
 
 const optTap_qa = document.getElementById("optTap_qa");
 optTap_qa?.addEventListener("change", function (e) {
   const qaId = e.target.value;
- 
+
   SelectQA(Number(qaId));
 });
+
 let id = document.getElementById('policy-id')
 if (id) {
   SelectPolicy(Number(id.innerText))
@@ -190,3 +186,5 @@ let idqa = document.getElementById('qa-id')
 if (idqa) {
   SelectQA(Number(idqa.innerText))
 }
+
+

@@ -146,7 +146,6 @@ const InitApiRoute = (app) => {
     "/api/landingPage/uploadFile",
     uploadFile.single("file"),
     (req, res) => {
-      console.log("req.file", req.file);
       const fileName = req.file.filename;
       const file_size = req.file.size / (1024 * 1000);
       if (fileName) {

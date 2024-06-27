@@ -1,3 +1,6 @@
+
+
+
 /*  */
 /* Cho modal SweetAlert2 */
 .swal2-container {
@@ -309,7 +312,7 @@ section.the-best-feture-section .item_desc {
   text-align: justify;
   display: block;
   line-height: 1.1rem;
-  color: var(--text-color);
+  color: black;
   padding-bottom: 20px;
   overflow: hidden;
   font-size: 0.9rem;
@@ -844,5 +847,14 @@ section.news .item {
 /*  */
 
 /*     custome */
-
+section.news .item {
+  padding-bottom: 45px !important;
+}
+.news .title{
+  display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-bottom: 0 !important;
+}
 

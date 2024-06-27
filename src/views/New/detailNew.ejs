@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-    <%- include('../partials/head.ejs') %>
-  </head>
 
-  <body>
-    <div class="wrapper wrapper_detail_page position-relative">
-      <%- include('../partials/header.ejs') ,{headerSection}%>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page</title>
+  <%- include('../partials/head.ejs') %>
+</head>
+   <style>
+  
+   </style>
+<body>
+  <div class="wrapper wrapper_detail_page position-relative">
+    <%- include('../partials/header.ejs') ,{headerSection}%>
       <section class="detail-new pt-3 pb-5">
         <div class="container">
           <div class="box">
@@ -18,31 +21,32 @@
                 <%= newDetail.title %>
               </h1>
 
-              <div
-                style=" border-radius: 10px"
-                class="thumb-new overflow-hidden"
-              >
+              <div style=" border-radius: 10px" class="thumb-new overflow-hidden">
                 <img src="<%= newDetail.img %>" alt="thumb-news" />
               </div>
             </div>
             <div class="box-body">
-              <article><%= newDetail.content %></article>
+              <article>
+                <%= newDetail.content %>
+              </article>
             </div>
           </div>
         </div>
       </section>
       <%- include('../partials/footer.ejs'),{footerSection} %>
-    </div>
-    <script src="/js/main.js"></script>
-    <script>
-      $(document).ready(function () {
-        let article = document.getElementsByTagName("article")[0];
-        let articleString = article.innerText;
-        const parser = new DOMParser();
-        let articleHtml = parser.parseFromString(articleString, "text/html");
+  </div>
+  <%- include('../partials/foot.ejs') %>
+  <script src="/js/main.js"></script>
+  <script>
+    $(document).ready(function () {
+      let article = document.getElementsByTagName("article")[0];
+      let articleString = article.innerText;
+      const parser = new DOMParser();
+      let articleHtml = parser.parseFromString(articleString, "text/html");
 
-        article.innerHTML = articleHtml.body.innerHTML;
-      });
-    </script>
-  </body>
+      article.innerHTML = articleHtml.body.innerHTML;
+    });
+  </script>
+</body>
+
 </html>

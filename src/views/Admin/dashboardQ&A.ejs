@@ -1,154 +1,174 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <%- include('../partials/head.ejs') %>
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css"
-  />
-  <script
-    type="text/javascript"
-    charset="utf8"
-    src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"
-  ></script>
-  <style>
-    :root{
-        --text-color: #212529;
-        --bg-hover: #f1f1f1;
-        --border-color: #e0e0e0;
-        --box-shadow-color: rgba(0, 0, 0, 0.1);
-        --td-main-border-color: #e5e5e5
-    }
-    * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-body{
-    height: 100%;
-}
-.root{
-    display: flex;
-    background-color: var(--bg-hover);
-    height: 100%;
-}
-.main{
-    display: flex;
-    flex-direction: column;
-    margin-left: 240px;
-    width: 100%;
-    height: 100vh;
-    }
-.main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: white;
-    font-weight: bold;
-    height: 50px;
-}
-.main-header .left-header {
-    margin-left: 10px;
-}
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css" />
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <style>
+            :root {
+                --text-color: #212529;
+                --bg-hover: #f1f1f1;
+                --border-color: #e0e0e0;
+                --box-shadow-color: rgba(0, 0, 0, 0.1);
+                --td-main-border-color: #e5e5e5
+            }
 
-.main-content{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
 
+            body {
+                height: 100%;
+            }
 
-}
-.main-content-top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    height: 50px;
-    padding: 10px;
-    margin-top: 10px;
-    box-shadow: 0 2px 10px var(--box-shadow-color);
-}
-.main-content-top span{
-    font-weight: bold;
-    font-size: 15px;
-    padding: 10px;
-    color: #0d6efd;
+            .root {
+                display: flex;
+                background-color: var(--bg-hover);
+                height: 100%;
+            }
 
-}
-.main-content-bottom{
-    display: flex;
-    padding: 10px;    
-    flex: 1;
+            .main {
+                display: flex;
+                flex-direction: column;
+                margin-left: 240px;
+                width: 100%;
+                height: 100vh;
+            }
 
-}
+            .main-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: white;
+                font-weight: bold;
+                height: 50px;
+            }
 
-.qa-list {
-    width: 250px;
-    padding: 10px;
-    overflow: auto;
-    background-color: white;
-    margin-right: 10px;
-    border-radius: 7px;
-    height: 100%;
-    box-shadow: 0 2px 10px var(--box-shadow-color);
+            .main-header .left-header {
+                margin-left: 10px;
+            }
 
-}
-.qa-wrapper{
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    border-radius: 7px;
-    box-shadow: 0 2px 10px var(--box-shadow-color);
-
-}
-.abc {
-
-    margin-bottom: 5px;
-}
-.abc input,.abc textarea{
-    padding: 5px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.qa-item {
-    padding: 7px;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-}
-.qa-item:hover {
-    background-color: var(--bg-hover);
-}
-.qa-name {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.nav-tabs{
-    margin-bottom: 10px;
-}
+            .main-content {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
 
 
+            }
 
+            .main-content-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: white;
+                height: 50px;
+                padding: 10px;
+                margin-top: 10px;
+                box-shadow: 0 2px 10px var(--box-shadow-color);
+            }
 
-  </style>
+            .main-content-top span {
+                font-weight: bold;
+                font-size: 15px;
+                padding: 10px;
+                color: #0d6efd;
+
+            }
+
+            .main-content-bottom {
+                display: flex;
+                padding: 10px;
+                flex: 1;
+
+            }
+
+            .qa-list {
+                width: 250px;
+                padding: 10px;
+                overflow: auto;
+                background-color: white;
+                margin-right: 10px;
+                border-radius: 7px;
+                height: 100%;
+                box-shadow: 0 2px 10px var(--box-shadow-color);
+
+            }
+
+            .qa-wrapper {
+                background-color: white;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                border-radius: 7px;
+                box-shadow: 0 2px 10px var(--box-shadow-color);
+
+            }
+
+            .abc {
+
+                margin-bottom: 5px;
+            }
+
+            .abc input,
+            .abc textarea {
+                padding: 5px;
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .qa-item {
+                padding: 7px;
+                border-bottom: 1px solid var(--border-color);
+                cursor: pointer;
+            }
+
+            .qa-item:hover {
+                background-color: var(--bg-hover);
+            }
+
+            .qa-name {
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            .nav-tabs {
+                margin-bottom: 10px;
+            }
+
+            .btn-css {
+                cursor: pointer;
+                border-color: #0d6efd;
+                padding: 5px 10px;
+                border-radius: 4px;
+                background-color: white;
+                color: #0d6efd;
+            }
+
+            .hover-btn:hover {
+                background-color: #0d6efd;
+                color: white;   
+                transition: linear 0.3s;
+            }
+        </style>
 </head>
 
 <body>
     <div class="root">
-        <div class="sidebar">    
+        <div class="sidebar">
             <%- include('../partials/sidebar.ejs') %>
         </div>
         <div class="main">
             <div class="main-header">
-                <div class="left-header">               
+                <div class="left-header">
                     <span>Trang / Hỏi đáp</span>
                 </div>
                 <div class="right-header">
@@ -161,28 +181,35 @@ body{
                         <span>Danh sách hiện có</span>
                     </div>
                     <div class="main-content-top-right">
-                        <button class="add-qa-btn hover-btn">+ Thêm mới</button>
-                        <button class="delete-qa-btn hover-btn">Xóa</button>
-                        <button class="save-qa-btn hover-btn">Lưu</button>
+                        <button class="add-qa-btn hover-btn btn-css">+ Thêm mới</button>
+                        <button class="delete-qa-btn hover-btn btn-css">Xóa</button>
+                        <button class="save-qa-btn hover-btn btn-css">Lưu</button>
                     </div>
                 </div>
                 <div class="main-content-bottom">
                     <div class="qa-list">
-                        <% listQA.forEach(function(QAItem) { %>                         
-                        <div id="<%= QAItem.id %>" class="qa-item">
-                            <div class="qa-name"><%= QAItem.name_vi %></div>
-                        </div>  
-                        <% }) %> 
-                    </div>
-                    <div class="qa-wrapper"> 
-                          <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Việt Ngữ</button>
-                              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Anh Ngữ</button>
+                        <% listQA.forEach(function(QAItem) { %>
+                            <div id="<%= QAItem.id %>" class="qa-item">
+                                <div class="qa-name">
+                                    <%= QAItem.name_vi %>
+                                </div>
                             </div>
-                          </nav>
-                          <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <% }) %>
+                    </div>
+                    <div class="qa-wrapper">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">Việt Ngữ</button>
+                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">Anh Ngữ</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-home-tab">
                                 <div class="abc mb-3 mt-3">
                                     <label for="qa-name-vi"> Tên: </label>
                                     <input type="text" name="qa-name-vi" id="qa-name-vi" class="form-control">
@@ -192,11 +219,12 @@ body{
                                     <input type="text" name="qa-name-vi" id="qa-name-vi" class="form-control">
                                 </div>
                                 <div class="abc">
-                                    <label for="qa-content-vi"> Nội dung:  </label>
+                                    <label for="qa-content-vi"> Nội dung: </label>
                                     <textarea name="qa-content-vi" id="qa-content-vi"></textarea>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
                                 <div class="abc mb-3 mt-3">
                                     <label for="qa-name-en"> Tên: </label>
                                     <input type="text" name="qa-name-en" id="qa-name-en" class="form-control">
@@ -206,11 +234,11 @@ body{
                                     <input type="text" name="qa-question-en" id="qa-question-en" class="form-control">
                                 </div>
                                 <div class="abc">
-                                    <label for="qa-content-en"> Nội dung:  </label>
+                                    <label for="qa-content-en"> Nội dung: </label>
                                     <textarea name="qa-content-en" id="qa-content-en"></textarea>
                                 </div>
                             </div>
-                      </div>
+                        </div>
                     </div>
 
                 </div>
@@ -219,7 +247,9 @@ body{
     </div>
 
 </body>
+<%- include('../partials/foot.ejs') %>
 <%- include('../partials/scriptDashboard.ejs') %>
-<script src="/js/dashboard.js"></script>
-<script src="/js/sidebar.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/sidebar.js"></script>
+
 </html>

@@ -145,6 +145,8 @@ module.exports = {
     let news = await newService.getAllnews();
     return res.render("./Admin/dashboardNews.ejs", { cats, news, id });
   },
+
+//====================PolicyController============================
   handleRenderDashboardPolicy: async(req,res) => {
     const results = await getPolicyList()
     return res.render('./Admin/dashboardPolicy.ejs', { listPolicy: results })
@@ -154,6 +156,19 @@ module.exports = {
     const results = await getPolicyDetails(id)
     return res.json(results)
   },
+  UpdatePolicy: async (req,res) =>{
+    const {name_en,name_vi,content_vi,content_en} = req.body
+    const {id} = req.params
+    const results = await updatePolicy(name_vi, name_en, content_vi, content_en, id);
+    return res.json(results)
+  },
+  AddPolicy: async (req, res) =>{
+    const {name_en,name_vi,content_vi,content_en} = req.body
+    const results = await addPolicy(name_vi, name_en, content_vi, content_en);
+    return res.json(results)
+  },
+
+  //====================Q&AController============================
   handleRenderDashboardQA: async(req,res) => {
     const results = await getQAList()
     return res.render('./Admin/dashboardQ&A.ejs', { listQA: results })
@@ -163,12 +178,9 @@ module.exports = {
     const results = await getQADetails(id)
     return res.json(results)
   },
-  UpdatePolicy: async (req,res) =>{
-    const {name_en,name_vi,content_vi,content_en} = req.body
-    const {id} = req.params
-    const results = await updatePolicy(name_vi, name_en, content_vi, content_en, id);
-    return res.json(results)
-  },
+
+
+  //====================Cooperate Controller============================
   handleRenderDashboardCoop: async(req,res) => {
     const results = await getCoopList()
     return res.render('./Admin/dashboardCooperate.ejs', { listCoop: results })
