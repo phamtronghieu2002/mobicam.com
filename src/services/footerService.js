@@ -15,7 +15,7 @@ const updatePolicy = async (name_vi, name_en, content_vi, content_en, id) => {
 
 const getQADetails = async (id) => {
   const [results] = await con.query('SELECT * FROM contentQA WHERE cateId = ?', [id]);
-  return results[0];
+  return results;
 }
 const getQAList = async () => {
   const [results] = await con.query('SELECT id, name_vi, name_en FROM categoriesQA');
