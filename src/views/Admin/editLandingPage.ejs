@@ -272,7 +272,9 @@
         <div class="container d-flex gap-5">
           <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-12">
-              <div class="method_image h-100 img_wp position-relative hide-on-mobile show-on-pc">
+              <div
+                class="method_image h-100 img_wp position-relative hide-on-mobile show-on-pc"
+              >
                 <img
                   class="h-100"
                   src="/images/introduce/introduce.jpg"
@@ -283,16 +285,19 @@
             <div class="col-lg-7 col-md-7 col-sm-12">
               <div class="information">
                 <h4 class="fw-bold mb-2">Camera giám sát hành trình</h4>
-                <h3 class="text-primary fw-bold d-inline-block">MOBICAM
+                <h3 class="text-primary fw-bold d-inline-block">
+                  MOBICAM
 
                   <div class="dot_method d-block">
-                    <div class="wrapper_dot  w-100">
+                    <div class="wrapper_dot w-100">
                       <div class="dot"></div>
                     </div>
                   </div>
                 </h3>
-           
-                <div class="method_image h-100 img_wp position-relative hide-on-pc show-on-mobile method-img-res">
+
+                <div
+                  class="method_image h-100 img_wp position-relative hide-on-pc show-on-mobile method-img-res"
+                >
                   <img
                     class="h-100"
                     src="/images/introduce/introduce.jpg"
@@ -329,9 +334,8 @@
       </section>
 
       <section id="the-best-feture-section" class="the-best-feture-section">
-        <% if (typeof fetureSection !== 'undefined' && fetureSection) { %>
-          <%- fetureSection %>
-        <% } else { %>
+        <% if (typeof fetureSection !== 'undefined' && fetureSection) { %> <%-
+        fetureSection %> <% } else { %>
         <div class="container">
           <h2 class="text-primary text-center fw-bold mb-2">
             Tính năng ưu việt
@@ -341,10 +345,7 @@
           </div>
 
           <div class="list-best-feture mt-5">
-            <div class="row list" id="sortableList">
-
-
-            </div>
+            <div class="row list" id="sortableList"></div>
           </div>
         </div>
 
@@ -684,8 +685,16 @@
               >
                 <button class="nav-link nav-link-horizal">
                   <div class="btn-inner">
-                    <div class="icon-box">
-                      <i class="fa-solid fa-robot"></i>
+                    <div
+                      class="icon-box <% if (i == 1 || i == 2) { %> align-items-center <% } %>"
+                    >
+                      <% if(i == 0) { %>
+                      <i class="fi fi-sr-webcam"></i>
+                      <% } else if(i == 1) { %>
+                      <i class="fi fi-sr-router"></i>
+                      <% } else { %>
+                      <i class="fa-solid fa-toolbox"></i>
+                      <% } %>
                     </div>
                     <h4><%= categories[i].name %></h4>
                   </div>
@@ -794,8 +803,7 @@
           </div>
           <div class="content mt-4">
             <div class="row">
-             <% for (let i = 0; i < news.length; i++) {
-              %>
+              <% for (let i = 0; i < news.length; i++) { %>
               <div class="col-lg-4 col-md-6 col-sm-12 mb-3 position-relative">
                 <a
                   style="border-radius: 15px"
@@ -830,7 +838,7 @@
       </section>
       <%- include('../partials/footer.ejs'),{footerSection:""} %>
     </div>
-  <%- include('../partials/foot.ejs') %>
+    <%- include('../partials/foot.ejs') %>
     <script src="/js/main.js"></script>
     <script src="/js/editLandingPage.js"></script>
     <script>
