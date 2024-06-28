@@ -31,7 +31,13 @@
                 margin-bottom: 50px;
                 font-weight: 700;
             }
-
+            .policy-body ul li{
+            list-style: none;
+      }
+   
+      .policy-body ol{
+            list-style: none;
+      }
             .policy-body {
                 display: flex;
                 width: 100%;
@@ -50,8 +56,12 @@
                 <section class="row">
                     <div class="policy-head">
                         <h3>
-
-                            <%=lang === 'vi' ? 'Chính sách đại lý' : 'Agency policy'%>
+                          
+                                <% if (id == 1) { %>
+                                   
+                                    <%= lang == 'vi' ? 'Chính sách đại lý' : 'Agency policy' %>
+                                <% } %>
+                                
                         </h3>
                     </div>
                     <div class="policy-body p-4">

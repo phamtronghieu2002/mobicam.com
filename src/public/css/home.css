@@ -1,10 +1,9 @@
-section h2.text-primary{
-  font-family: 'Roboto', sans-serif;
+section h2.text-primary {
+  font-family: "Roboto", sans-serif;
   color: #0c5adb !important;
   text-transform: uppercase;
   font-size: 1.8rem;
 }
-
 
 /*  */
 /* Cho modal SweetAlert2 */
@@ -19,33 +18,32 @@ section h2.text-primary{
 
 .nested-carousel {
   max-width: 200px; /* Set a maximum width for the nested carousel */
-  margin: 0 auto;  /* Center the carousel */
+  margin: 0 auto; /* Center the carousel */
   height: 200px;
 }
 
 .nested-carousel .owl-carousel-img img {
   width: 200px !important; /* Ensure images inside the nested carousel are smaller */
   height: 250px;
-
-
 }
-.wrapper .change_image_area{
+.wrapper .change_image_area {
   display: none;
 }
 
-.wrapper #btn_upload_file_hero
-{
+.wrapper #btn_upload_file_hero {
   display: none !important;
-
 }
 
-.wrapper #btn_upload_reason_video
-{
+.wrapper #btn_upload_reason_video {
   display: none !important;
-
 }
 
-
+.desc {
+  border-radius: 10px;
+  display: block;
+  max-height: 360px;
+  overflow-y: scroll;
+}
 
 /* header  */
 header {
@@ -56,6 +54,9 @@ header {
   z-index: 999;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 30%);
   width: 100%;
+}
+header ul {
+  list-style: none;
 }
 header .change-lang {
   margin-top: -4px;
@@ -70,7 +71,7 @@ header .header-top {
 header .header-top span {
   font-size: 0.9rem;
 }
-header .header-bottom .logo{
+header .header-bottom .logo {
   width: 130px;
   display: flex;
   align-items: center;
@@ -81,10 +82,9 @@ header .header-bottom {
   align-items: center;
 }
 header .header_navigation img {
- 
   height: 40px;
 }
-header .header_navigation .lang-flag{
+header .header_navigation .lang-flag {
   width: 35px;
   height: 20px;
 }
@@ -114,7 +114,7 @@ header .header_navigation a:hover::before {
   left: 0;
 }
 
-header .header_navigation li>a:hover {
+header .header_navigation li > a:hover {
   color: var(--primary-color) !important;
 }
 header .header_navigation a.active {
@@ -155,14 +155,14 @@ header .menu-responsive a {
 section.hero-section {
   position: relative;
   overflow: hidden;
- 
+
   margin-top: 120px;
 }
-section.hero-section article{
+section.hero-section article {
   width: 70%;
   margin: 0 auto;
 }
-section.hero-section .btn_dowloand{
+section.hero-section .btn_dowloand {
   position: relative;
   padding: 8px 36px;
   border: none;
@@ -171,17 +171,14 @@ section.hero-section .btn_dowloand{
   border-radius: 999px;
   font-size: 1rem;
   z-index: 1;
-  transition: .3s;
+  transition: 0.3s;
 }
 
-
-section.hero-section .btn_dowloand:hover{
+section.hero-section .btn_dowloand:hover {
   box-shadow: 0 18px 17px 0 rgb(0 0 0 / 10%);
-    background: var(--yellow-color);
-    color: #333;
-
+  background: var(--yellow-color);
+  color: #333;
 }
-
 
 section.hero-section .hero-video {
   /* width: 100%; Chiều rộng video chiếm toàn bộ phần hero */
@@ -216,7 +213,7 @@ section.hero-section .overlay {
 }
 /* method section */
 section.method_section .method_image img {
-    object-fit: cover;
+  object-fit: cover;
 }
 section.method_section .method-img-res {
   margin-top: 17px;
@@ -225,7 +222,7 @@ section.method_section .method-img-res {
 section.method_section .information p {
   font-size: 0.9rem;
 }
-section.method_section .list_introduce  .item {
+section.method_section .list_introduce .item {
   background-color: var(--primary-color2);
   box-shadow: 4px 4px 4px rgb(0 0 0 / 30%);
   height: 70px;
@@ -234,7 +231,7 @@ section.method_section .list_introduce  .item {
   justify-content: center;
   transition: 0.3s linear;
 }
-section.method_section .list_introduce  .col-lg-3:first-child .item{
+section.method_section .list_introduce .col-lg-3:first-child .item {
   background-color: var(--primary-color);
 }
 
@@ -245,31 +242,30 @@ section.method_section .list_introduce .item:hover {
 
 section.method_section .list_introduce .item .svg_iso {
   height: 44px;
-
 }
-section.method_section .list_introduce .item .cls-2{
-    fill: var(--primary-color);
-}
-section.method_section .list_introduce .item .cls-1{
+section.method_section .list_introduce .item .cls-2 {
   fill: var(--primary-color);
 }
-section.method_section .list_introduce  .col-lg-3:first-child .item .cls-2{
+section.method_section .list_introduce .item .cls-1 {
+  fill: var(--primary-color);
+}
+section.method_section .list_introduce .col-lg-3:first-child .item .cls-2 {
   fill: var(--primary-color2);
 }
-section.method_section .list_introduce  .col-lg-3:first-child .item .cls-1{
+section.method_section .list_introduce .col-lg-3:first-child .item .cls-1 {
   fill: var(--primary-color2);
 }
-section.method_section .list_introduce .item:hover .cls-2{
+section.method_section .list_introduce .item:hover .cls-2 {
   fill: var(--primary-color2);
 }
-section.method_section .list_introduce .item:hover .cls-1{
+section.method_section .list_introduce .item:hover .cls-1 {
   fill: var(--primary-color2);
 }
-section.method_section .list_introduce .item:hover .cls-z{
-  fill: var(--primary-color2); 
+section.method_section .list_introduce .item:hover .cls-z {
+  fill: var(--primary-color2);
 }
-section.method_section .list_introduce .item:hover .cls-zz{
-  fill: var(--primary-color2); 
+section.method_section .list_introduce .item:hover .cls-zz {
+  fill: var(--primary-color2);
 }
 /* best feture section */
 section.the-best-feture-section {
@@ -307,10 +303,10 @@ section.the-best-feture-section .feture-item-img {
   justify-content: center;
   border-radius: 50%;
 }
-section.the-best-feture-section .information{
+section.the-best-feture-section .information {
   flex: 1;
 }
-section.the-best-feture-section .feture-item-img svg{
+section.the-best-feture-section .feture-item-img svg {
   width: 36px;
 }
 section.the-best-feture-section .item_title {
@@ -368,7 +364,6 @@ section.achieve-section {
   padding: calc(var(--height-about) + 50px) 0 100px 0px;
 }
 
-
 section.achieve-section .item {
   display: flex;
   flex-direction: column;
@@ -417,7 +412,6 @@ section.benifit-section .right-content .benifit-item {
   display: flex;
   gap: 10px;
   cursor: pointer;
-
 }
 
 section.benifit-section .right-content .benifit-icon {
@@ -669,7 +663,7 @@ section.category .icon-box {
   color: #6377ee;
   position: relative;
 }
-section.category .icon-box  i{
+section.category .icon-box i {
   font-size: 1.6rem;
 }
 section.category .icon-box::before {
@@ -686,17 +680,17 @@ section.category .icon-box::before {
   transition: all 500ms ease;
   background: #6377ee;
 }
-section.category .icon-box::after{
+section.category .icon-box::after {
   position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    z-index: -1;
-    border-radius: 50%;
-    box-shadow: 0 30px 50px 0px rgba(99, 119, 238, 0.3);  
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  z-index: -1;
+  border-radius: 50%;
+  box-shadow: 0 30px 50px 0px rgba(99, 119, 238, 0.3);
 }
 section.category h4 {
   position: relative;
@@ -766,15 +760,14 @@ section.category .thumb_product {
   display: flex;
   flex-direction: column;
 }
-section.category .thumb_product  span{
+section.category .thumb_product span {
   position: absolute;
   top: 0;
-  left: calc(100%/6 *var(--i));
-  width: calc(100%/6);
+  left: calc(100% / 6 * var(--i));
+  width: calc(100% / 6);
   height: 100%;
 }
-section.category .thumb_product  img {
-
+section.category .thumb_product img {
   position: absolute;
   top: 0;
   left: 0;
@@ -782,8 +775,7 @@ section.category .thumb_product  img {
   height: 100%;
   display: none;
 }
-section.category .thumb_product  img.active{
-
+section.category .thumb_product img.active {
   display: block;
 }
 
@@ -804,7 +796,7 @@ section.news .item:hover {
   color: var(--primary-color);
 }
 
-section.news  .thumb_news{
+section.news .thumb_news {
   height: 190px;
 }
 section.news {
@@ -835,8 +827,6 @@ section.news .item {
 
 /* change language */
 .goog-te-combo {
-
-
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
   font-size: 1rem;
@@ -881,12 +871,12 @@ section.news .item {
 section.news .item {
   padding-bottom: 45px !important;
 }
-.news .title{
+.news .title {
   display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    padding-bottom: 0 !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding-bottom: 0 !important;
 }
 .ytb  :hover{
   color: #0c5adb;

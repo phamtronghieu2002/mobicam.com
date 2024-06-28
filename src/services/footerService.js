@@ -3,8 +3,12 @@ const con = require("../db/db.js");
 
 //==================Policy==================
 const getPolicyDetails = async (id) => {
+try {
   const [results] = await con.query('SELECT * FROM policy WHERE id = ?', [id]);
   return results[0];
+} catch (error) {
+  console.log("Error getting policy", error);
+}
 }
 const getPolicyList = async () => {
   const [results] = await con.query('SELECT id, name_vi, name_en FROM policy');

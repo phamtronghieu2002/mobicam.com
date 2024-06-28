@@ -4,6 +4,11 @@ let title_news_vi = document.getElementById("title_news_vi");
 let title_news_en = document.getElementById("title_news_en");
 let btn_close = document.querySelector(".btn-close");
 
+const toggleOverflowBody = () => {
+ 
+  document.body.style.overflow = document.body.style.overflow === "hidden" ? "auto" : "hidden";
+};
+
 const setLoading = (title, html) => {
   Swal.fire({
     title: title,
@@ -158,6 +163,7 @@ const handleAddNew = async () => {
 };
 
 const handleClickEditNew = (id) => {
+  toggleOverflowBody();
   id_edit_news.innerText = id;
   btnEditNews.classList.remove("d-none");
   btnAddNews.classList.add("d-none");
@@ -248,6 +254,7 @@ const handleEditNews = async () => {
   }
 };
 const handleCancelEdit = () => {
+  toggleOverflowBody();
   overlay.classList.remove("d-block");
   overlay.classList.add("d-none");
   btnEditNews.classList.add("d-none");
@@ -296,6 +303,7 @@ const handleDelete = async (path, title) => {
 };
 
 const handleCancelEditProduct = () => {
+  toggleOverflowBody();
   overlay.classList.remove("d-block");
   overlay.classList.add("d-none");
   btnEditProduct.classList.add("d-none");
@@ -404,6 +412,7 @@ const handleAddProduct = async () => {
 };
 
 const handleClickEditProduct = (id) => {
+  toggleOverflowBody();
   id_edit_product.innerText = id;
   btnEditProduct.classList.remove("d-none");
   btnAddProduct.classList.add("d-none");

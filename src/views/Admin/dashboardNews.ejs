@@ -78,7 +78,7 @@
                         class="btn-close position-absolute d-none"
                       ></div>
                       <div class="form-group row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-6">
                           <label class="form-label" for=""
                             >Tiêu đề tiếng việt</label
                           >
@@ -90,7 +90,7 @@
                             placeholder="title"
                           />
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-6">
                           <label class="form-label" for=""
                             >Tiêu đề tiếng anh</label
                           >
@@ -125,9 +125,24 @@
                         </div>
                       </div>
                       <!-- upload image -->
+                  <div class="row">
+                    <div class="col-lg-9">
+                      <div class="form-group d-flex row">
+                        <div class="col-lg-12">
+                          <label for="">Nội dung tiếng việt</label>
+                          <Textarea id="markdown_news_vi"></Textarea>
+                        </div>
+
+                        <div class="col-lg-12">
+                          <label for="">Nội dung tiếng anh</label>
+                          <Textarea id="markdown_news_en"></Textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 pt-4">
                       <div class="form-group">
                         <div class="row">
-                          <div class="col-lg-6">
+                          <div class="col-lg-12">
                             <div class="container">
                               <label for="" class="mb-1">Ảnh sản phẩm</label>
                               <div class="header position-relative">
@@ -245,7 +260,7 @@
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6">
+                          <div class="col-lg-12">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               style="display: none"
@@ -301,30 +316,21 @@
                           </div>
                         </div>
                       </div>
-                      <div class="form-group d-flex row">
-                        <div class="col-lg-6">
-                          <label for="">Nội dung tiếng việt</label>
-                          <Textarea id="markdown_news_vi"></Textarea>
-                        </div>
-
-                        <div class="col-lg-6">
-                          <label for="">Nội dung tiếng anh</label>
-                          <Textarea id="markdown_news_en"></Textarea>
-                        </div>
-                      </div>
+                    </div>
+                  </div>
                       <button class="addNews btn btn-primary">Thêm</button>
-                      <div class="form-group">
+                      <div class="form-group  d-flex justify-content-end gap-2">
                         <div
                           onclick="handleEditNews()"
                           class="editNews btn btn-warning d-none"
                         >
-                          Sửa
+                          edit news
                         </div>
                         <div
                           onclick="handleCancelEdit()"
                           class="cancelNews btn btn-danger d-none"
                         >
-                          Hủy
+                          cancel
                         </div>
                       </div>
                     </form>

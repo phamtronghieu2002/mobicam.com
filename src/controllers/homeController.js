@@ -186,10 +186,9 @@ module.exports = {
   handleRenderCooperate: async (req, res)=>{
     const {id} = req.params
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
-    console.log("khoai lang thang",lang);
+
     const {name,content}= await getCoopDetails(id,lang);
-    console.log("content >>",content);
-    console.log("lang",lang);
+
     try {
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);

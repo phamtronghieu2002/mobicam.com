@@ -1,18 +1,18 @@
 .modal_absolute_content{
-    position: fixed !important;
-    background: white;
-    top: 20px;
-    bottom: 20px;
-    overflow: scroll;
-    left: 50%;
-    right: 50%;
-    padding: 30px;
-    z-index: 9999;
-    width: 1000px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border-radius: 10px;
-    padding-top: 45px;
+  position: fixed !important;
+  background: white;
+  top: -42px;
+  bottom: 107px;
+  overflow-y: scroll;
+  left: 50%;
+  right: 50%;
+  padding: 30px;
+  z-index: 9999;
+  transform: translate(-50%, 0);
+  border-radius: 10px;
+  padding-top: 45px;
+  height: 90vh;
+  margin-top: -24px;
 }
 
 #markdownFormProduct .btn-close{
@@ -26,7 +26,7 @@
 
 .dashboard  .container {
     height: 300px;
-    width: 300px;
+
     border-radius: 10px;
     box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
     display: flex;

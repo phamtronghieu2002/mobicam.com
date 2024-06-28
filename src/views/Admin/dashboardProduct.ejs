@@ -196,8 +196,6 @@
                         <div class="col-lg-6">
                           <label for="">Nội dung tiếng việt</label>
                           <Textarea id="markdown_product_vi"></Textarea>
-                       
-
                         </div>
 
                         <div class="col-lg-6">
@@ -206,13 +204,14 @@
                         </div>
                       </div>
                       <button class="addProduct btn btn-primary">
-                        Thêm                      </button>
-                      <div class="form-group">
+                        Thêm
+                      </button>
+                      <div class="form-group float-end">
                         <div
                           onclick="handleEditProduct()"
-                          class="editProduct btn btn-warning d-none"
+                          class="editProduct btn btn-warning d-none mt-4"
                         >
-                          sửa sản phẩm
+                          Cập nhật
                         </div>
                       </div>
                     </form>
@@ -228,13 +227,13 @@
                     <table class="display" id="product_table">
                       <thead>
                         <tr>
-                          <th scope="col" class="text-center">#</th>
-                          <th scope="col" class="text-center">ID</th>
-                          <th scope="col" class="text-center">Tên SP tiếng việt</th>
-                          <th scope="col" class="text-center">Tên SP tiếng anh</th>
-                          <th scope="col" class="text-center">Hình ảnh</th>
-                          <th scope="col" class="text-center">Mã danh mục</th>
-                          <th scope="col" class="text-center">Hành động</th>
+                          <th class="text-center">STT</th>
+                          <th class="text-center">ID</th>
+                          <th class="text-center">Tên Tiếng Việt</th>
+                          <th class="text-center">Tên Tiếng Anh</th>
+                          <th class="text-center">Hình ảnh</th>
+                          <th class="">Mã Danh Mục </th>
+                          <th class="text-center">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -278,7 +277,10 @@
                             />
                             <% }) %>
                           </td>
-                          <td class="text-center d-none"  id="catProduct<%=item.id%>">
+                          <td
+                            class="text-center"
+                            id="catProduct<%=item.id%>"
+                          >
                             <%= item.catid %>
                           </td>
                           <td class="text-center">
@@ -382,8 +384,8 @@
       </div>
     </div>
   </body>
-  <%- include('../partials/foot.ejs') %>
-  <%- include('../partials/scriptDashboard.ejs') %>
+  <%- include('../partials/foot.ejs') %> <%-
+  include('../partials/scriptDashboard.ejs') %>
 
   <script src="/js/sidebar.js"></script>
   <script>
