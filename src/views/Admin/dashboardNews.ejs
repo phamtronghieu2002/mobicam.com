@@ -312,7 +312,7 @@
                           <Textarea id="markdown_news_en"></Textarea>
                         </div>
                       </div>
-                      <button class="addNews btn btn-primary">add news</button>
+                      <button class="addNews btn btn-primary">Thêm</button>
                       <div class="form-group">
                         <div
                           onclick="handleEditNews()"
@@ -344,15 +344,15 @@
                             <th scope="col" class="text-center">STT</th>
 
                             <th scope="col" class="text-center">
-                              tiêu đề Tiếng việt
+                              Tiêu đề Tiếng việt
                             </th>
                             <th scope="col" class="text-center">
-                              tiêu đề Tiếng Anh
+                              Tiêu đề Tiếng Anh
                             </th>
-                            <th scope="col" class="text-center">ngày đăng</th>
-                            <th scope="col" class="text-center">ảnh bìa</th>
+                            <th scope="col" class="text-center">Ngày đăng</th>
+                            <th scope="col" class="text-center">Ảnh bìa</th>
                             <th scope="col" class="text-center">Nổi bật</th>
-                            <th scope="col" class="text-center">thao tác</th>
+                            <th scope="col" class="text-center">Thao tác</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -409,14 +409,14 @@
                               <a
                                 onclick="handleDelete('/admin/delete-new?id=<%= item.id %>','tin tức')"
                                 class="btn btn-sm btn-danger"
-                                >xóa tin</a
-                              >
+                                >Xóa</a>
+                              
                               <div
                                 id="btn_edit_news_<%= item.id %>"
                                 onclick="handleClickEditNew('<%= item.id %>')"
                                 class="btn btn-warning btn-sm"
                               >
-                                chỉnh sửa
+                               Sửa
                               </div>
                               <span id="id_edit_news" class="d-none"></span>
                             </td>

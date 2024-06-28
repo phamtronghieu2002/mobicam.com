@@ -267,12 +267,12 @@
       </section>
 
       <section class="method_section pt-5 pb-5">
-        <% if (typeof methodSection !== 'undefined' && methodSection) { %> <%-
+        <% if (typeof methodSection == 'undefined' && methodSection) { %> <%-
         methodSection %> <% } else { %>
         <div class="container d-flex gap-5">
           <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-12">
-              <div class="method_image h-100 img_wp position-relative">
+              <div class="method_image h-100 img_wp position-relative hide-on-mobile show-on-pc">
                 <img
                   class="h-100"
                   src="/images/introduce/introduce.jpg"
@@ -283,11 +283,21 @@
             <div class="col-lg-7 col-md-7 col-sm-12">
               <div class="information">
                 <h4 class="fw-bold mb-2">Camera giám sát hành trình</h4>
-                <h3 class="text-primary fw-bold">MOBICAM</h3>
-                <div class="dot_method d-inline-block">
-                  <div class="wrapper_dot">
-                    <div class="dot"></div>
+                <h3 class="text-primary fw-bold d-inline-block">MOBICAM
+
+                  <div class="dot_method d-block">
+                    <div class="wrapper_dot  w-100">
+                      <div class="dot"></div>
+                    </div>
                   </div>
+                </h3>
+           
+                <div class="method_image h-100 img_wp position-relative hide-on-pc show-on-mobile method-img-res">
+                  <img
+                    class="h-100"
+                    src="/images/introduce/introduce.jpg"
+                    alt="mobicam_introduce-product"
+                  />
                 </div>
                 <article class="pt-1 pb-1">
                   <p>

@@ -43,7 +43,7 @@ section.benifit {
 /*  */
 .wrapper_dot {
   font-size: 1rem;
-  height: 0.59rem;
+  height: 0.4rem;
   width: 88px;
   margin: 0 auto;
   display: flex;
@@ -60,8 +60,8 @@ section.benifit {
 .wrapper_dot .dot {
   position: absolute;
   border-radius: 50%;
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.5rem;
+  height: 0.5rem;
   background-color: var(--primary-color);
 
   position: absolute;

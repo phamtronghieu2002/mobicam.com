@@ -33,7 +33,8 @@
   }
 
   section.hero-section .hero-content h1 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    margin-bottom: 4px !important;
   }
   section.hero-section .hero-content h4 {
     font-size: 1.1rem;
@@ -54,6 +55,7 @@
   }
   section.method_section .information {
     margin-top: 20px;
+    text-align: center;
   }
 
   section.the-best-feture-section .item {
@@ -63,7 +65,7 @@
   }
   section.the-best-feture-section .item_title {
     text-align: left;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
   }
   section.the-best-feture-section .item_desc {
     font-size: 0.9rem;
@@ -86,57 +88,86 @@
     flex-direction: column;
     align-items: center;
   }
-
-  footer {
-    font-size: 0.8rem;
-  }
-  footer .footer_follow-wrapper {
-    position: absolute;
-    bottom: -25px;
-    left: 12px;
-
-    display: flex;
-    flex-direction: column;
-  }
-  footer .footer_follow-wrapper h5 {
-    font-size: 14px;
-    color: #8ab9ff !important;
-  }
-
-  footer .contact_footer {
-    order: 1;
-  }
-  footer .polyfy_footer {
-    order: 3;
-  }
-  footer .qa_footer {
-    order: 4;
-  }
-  footer .colab_footer {
-    order: 2;
-  }
-
-  section.aboutus .inner {
-    padding-right: 20px !important;
-    padding-left: 20px !important;
-  }
-  section.method_section .list_introduce .item {
-    margin-bottom: 5px;
-  }
-
-  .wrapper .detail-new {
-    margin-top: 90px;
-  }
-
-  .fancybox-button--arrow_left {
-    left: 0px !important;
-  }
-
-  .fancybox-button--arrow_right {
-    right: 0px !important;
-  }
-
 }
+section h2.text-primary {
+  font-size: 1.5rem;
+}
+footer {
+  font-size: 0.8rem;
+}
+footer .footer_follow-wrapper {
+  position: absolute;
+  bottom: -25px;
+  left: 12px;
+
+  display: flex;
+  flex-direction: column;
+}
+footer .footer_follow-wrapper h5 {
+  font-size: 14px;
+  color: #8ab9ff !important;
+}
+
+footer .contact_footer {
+  order: 1;
+}
+footer .polyfy_footer {
+  order: 3;
+}
+footer .qa_footer {
+  order: 4;
+}
+footer .colab_footer {
+  order: 2;
+}
+
+section.aboutus .inner {
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+section.method_section .list_introduce .item {
+  margin-bottom: 5px;
+}
+
+section.section-experience .experience_left {
+  width: 100%;
+}
+
+section.section-experience .experience_left-title {
+  font-size: 1.65rem;
+  line-height: 2rem;
+}
+section.section-experience .experience_left-desc {
+  text-align: center;
+  font-size: 0.9rem;
+}
+section.achieve-section {
+  padding-bottom: 35px;
+}
+
+section.achieve-section .achieve_item-text {
+  font-size: 1rem;
+}
+section.hero-section .btn_dowloand {
+  padding: 7px 24px;
+  font-size: 0.9rem !important;
+  margin-top: 10px !important;
+}
+section.method_section {
+  padding-top: 11px !important;
+}
+.wrapper .detail-new {
+  margin-top: 90px;
+}
+
+.fancybox-button--arrow_left {
+  left: 0px !important;
+}
+
+.fancybox-button--arrow_right {
+  right: 0px !important;
+}
+
 /* tab let and mobile */
 @media (max-width: 1024px) {
   .hide-on-tablet-mobile {
@@ -168,11 +199,14 @@
     text-align: center;
     margin-bottom: 10px;
   }
+  section.category{
+    padding-bottom: 45px;
+  }
   section.category .tab_btns_horizal {
-    box-shadow: none;
+    /* box-shadow: none; */
   }
 
-  .root .head  h3{
+  .root .head h3 {
     text-align: center;
     font-size: 25px;
     margin-bottom: 10px;

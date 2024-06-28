@@ -229,10 +229,10 @@
                         <tr>
                           <th scope="col" class="text-center">#</th>
                           <th scope="col" class="text-center">id</th>
-                          <th scope="col" class="text-center">name_vi</th>
-                          <th scope="col" class="text-center">name_en</th>
-                          <th scope="col" class="text-center">img</th>
-                          <th scope="col" class="text-center">catid</th>
+                          <th scope="col" class="text-center">Tên Tiếng Việt</th>
+                          <th scope="col" class="text-center">Tên Tiếng Anh</th>
+                          <th scope="col" class="text-center">Hình ảnh</th>
+                     
                           <th scope="col" class="text-center">actions</th>
                         </tr>
                       </thead>
@@ -277,21 +277,21 @@
                             />
                             <% }) %>
                           </td>
-                          <td class="text-center" id="catProduct<%=item.id%>">
+                          <td class="text-center d-none" id="catProduct<%=item.id%>">
                             <%= item.catid %>
                           </td>
                           <td class="text-center">
                             <a
                               onclick="handleDelete('/admin/delete-product?id=<%= item.id %>','sản phẩm')"
                               class="btn btn-sm btn-danger"
-                              >remove</a
+                              >Xóa</a
                             >
                             <button
                               id="btn_edit_product_<%= item.id %>"
                               onclick="handleClickEditProduct('<%= item.id %>')"
                               class="btn btn-warning btn-sm"
                             >
-                              edit
+                             Sửa
                             </button>
                             <span id="id_edit_product" class="d-none"></span>
                           </td>

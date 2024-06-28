@@ -32,7 +32,7 @@ $(document).ready(function () {
   $(".btn_bar").click(function () {
     $(".btn_bar").toggleClass("fa-xmark");
     $(".btn_bar").toggleClass("fa-bars");
-    $(".menu-responsive").toggleClass("show-on-mobile");
+    $(".menu-responsive").slideToggle(200);
   });
 });
 
