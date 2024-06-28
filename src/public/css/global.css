@@ -10,6 +10,7 @@ article {
 }
 a {
   display: block;
+  text-decoration: none;
 }
 section.benifit {
   text-align: justify;

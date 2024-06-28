@@ -95,7 +95,7 @@ header .header_navigation a {
   position: relative;
   color: black;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.8px;
   text-decoration: none;
 }
@@ -185,8 +185,8 @@ section.hero-section .btn_dowloand:hover{
 
 section.hero-section .hero-video {
   /* width: 100%; Chiều rộng video chiếm toàn bộ phần hero */
-  height: 78vh;
-  width: 100%;
+  height: 83vh;
+  width: 100%;  
   object-fit: cover;
 }
 section.hero-section .hero-content {
