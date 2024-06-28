@@ -5,8 +5,9 @@ let title_news_en = document.getElementById("title_news_en");
 let btn_close = document.querySelector(".btn-close");
 
 const toggleOverflowBody = () => {
- 
+  
   document.body.style.overflow = document.body.style.overflow === "hidden" ? "auto" : "hidden";
+  window.scrollTo(0, 0);
 };
 
 const setLoading = (title, html) => {
@@ -423,7 +424,7 @@ const handleClickEditProduct = (id) => {
   const contentEdit_vi = document.getElementById(
     `contentProduct${id}_vi`
   ).innerHTML;
-  console.log("cib", contentEdit_vi);
+
   const contentEdit_en = document.getElementById(
     `contentProduct${id}_en`
   ).innerHTML;
@@ -645,10 +646,10 @@ const btn_edit_product_id = document.getElementById(
 if (btn_edit_product_id) {
   setTimeout(() => {
     tab_editProduct?.click();
-  }, 100);
+  }, 200);
   setTimeout(() => {
     btn_edit_product_id?.click();
-  }, 400);
+  }, 500);
 }
 
 const newsEditPrams = document.querySelector("#new_param_id")?.innerText;
@@ -658,10 +659,10 @@ const btn_edit_news_id = document.getElementById(
 if (btn_edit_news_id) {
   setTimeout(() => {
     tab_editNews?.click();
-  }, 100);
+  }, 200);
   setTimeout(() => {
     btn_edit_news_id?.click();
-  }, 400);
+  }, 500);
 }
 
 CKEDITOR.replace('policy-content-vi');

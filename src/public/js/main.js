@@ -105,8 +105,11 @@ document
 if (checkIsMobileAndTabletWidth()) {
   const tabCats = document.getElementsByClassName("nav-item");
   const content_tab_product = document.getElementById("content_tab_product");
-  content_tab_product.style.display = "none";
 
+  if(content_tab_product)
+    {
+      content_tab_product.style.display = "none";
+    }
   for (let i = 0; i < tabCats.length; i++) {
     tabCats[i].setAttribute("data-bs-toggle", "modal");
     tabCats[i].setAttribute("data-bs-target", "#modalProductTab");

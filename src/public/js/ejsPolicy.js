@@ -166,7 +166,7 @@ function SelectQA(qaId) {
 const optTap_policy = document.getElementById("optTap_policy");
 optTap_policy?.addEventListener("change", function (e) {
   const policyId = e.target.value;
-
+  this.value = policyId;
   SelectPolicy(Number(policyId));
 });
 
@@ -174,17 +174,24 @@ const optTap_qa = document.getElementById("optTap_qa");
 optTap_qa?.addEventListener("change", function (e) {
   const qaId = e.target.value;
 
+
   SelectQA(Number(qaId));
 });
+
+
+
 
 let id = document.getElementById('policy-id')
 if (id) {
   SelectPolicy(Number(id.innerText))
+  optTap_policy.value = id.innerText.trim();
 }
 
 let idqa = document.getElementById('qa-id')
 if (idqa) {
   SelectQA(Number(idqa.innerText))
+
+  optTap_qa.value = idqa.innerText.trim();
 }
 
 

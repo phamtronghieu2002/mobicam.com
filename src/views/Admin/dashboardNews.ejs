@@ -144,7 +144,7 @@
                         <div class="row">
                           <div class="col-lg-12">
                             <div class="container">
-                              <label for="" class="mb-1">Ảnh sản phẩm</label>
+                              <label for="" class="mb-1">Ảnh bìa</label>
                               <div class="header position-relative">
                                 <svg
                                   viewBox="0 0 24 24"
@@ -324,13 +324,13 @@
                           onclick="handleEditNews()"
                           class="editNews btn btn-warning d-none"
                         >
-                          edit news
+                          Cập nhật
                         </div>
                         <div
                           onclick="handleCancelEdit()"
                           class="cancelNews btn btn-danger d-none"
                         >
-                          cancel
+                          Hủy
                         </div>
                       </div>
                     </form>
@@ -415,14 +415,14 @@
                               <a
                                 onclick="handleDelete('/admin/delete-new?id=<%= item.id %>','tin tức')"
                                 class="btn btn-sm btn-danger"
-                                >xóa tin</a
+                                >Xóa</a
                               >
                               <div
                                 id="btn_edit_news_<%= item.id %>"
                                 onclick="handleClickEditNew('<%= item.id %>')"
                                 class="btn btn-warning btn-sm"
                               >
-                                chỉnh sửa
+                                Sửa
                               </div>
                               <span id="id_edit_news" class="d-none"></span>
                             </td>
