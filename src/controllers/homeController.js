@@ -204,6 +204,11 @@ module.exports = {
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
       } 
+      if(data.id == 2){
+        return res.render('./Footer/register.ejs',data)
+      }
+      if(data.id == 3){
+          }
       return res.render('./Footer/cooperate.ejs',data)
     } catch (error) {
       console.log("error >>>", error);  

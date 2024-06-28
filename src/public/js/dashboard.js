@@ -17,8 +17,8 @@ const setLoading = (title, html) => {
 
 const validateSizeImage = (size, height, type = "") => {
   if (type === "news") {
-    if (size > 500) {
-      toastr.error("Dung lượng ảnh không được vượt quá 500KB", "Lỗi");
+    if (size > 1000) {
+      toastr.error("Dung lượng ảnh không được vượt quá 1000KB", "Lỗi");
       return false;
     }
   } else {
@@ -42,7 +42,7 @@ const validateSizeImageProduct = (height, width) => {
   return false;
 };
 const validateSizeImageNews = (height, width) => {
-  if (width >= 800 && height >= 700) {
+  if (width >= 800 && height >= 600) {
     return true;
   }
   toastr.error("ảnh bài viết phải có kích thước tối thiểu 800x700", "Lỗi");
