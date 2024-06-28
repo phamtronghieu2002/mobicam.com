@@ -15,7 +15,7 @@ app.set("views", "./src/views");
 
 //cònig static file
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 //config file upload
 const filesDirectory = path.join(__dirname, 'files');
 app.use('/files', express.static(filesDirectory));

@@ -50,28 +50,30 @@ const validateSizeImageNews = (height, width) => {
 };
 btn_close?.classList.add("d-none");
 //khởi tạo markdown editor cho news
-let easyMDE_news_vi = new EasyMDE({
-  element: document.getElementById("markdown_news_vi"),
-});
-let easyMDE_news_en = new EasyMDE({
-  element: document.getElementById("markdown_news_en"),
-});
+
+
+let easyMDE_news_vi = new FroalaEditor('#markdown_news_vi');
+
+
+let easyMDE_news_en = new FroalaEditor('#markdown_news_en');
+
+
 //khởi tạo markdown editor cho product vi
-let easyMDE_product_vi = new EasyMDE({
-  element: document.getElementById("markdown_product_vi"),
-  previewRender: function (plainText) {
-    return easyMDE_product_en.markdown(plainText); // Use EasyMDE's default markdown rendering
-  },
-  renderingConfig: {
-    singleLineBreaks: false,
-    codeSyntaxHighlighting: true,
-  },
-  autoDownloadFontAwesome: false, // If you have FontAwesome loaded separately
-});
+
+
+
+
+let easyMDE_product_vi =new FroalaEditor('#markdown_product_vi');
+
+
+
+
+
+
 //khởi tạo markdown editor cho product en
-let easyMDE_product_en = new EasyMDE({
-  element: document.getElementById("markdown_product_en"),
-});
+let easyMDE_product_en = new FroalaEditor('#markdown_product_en');
+
+
 
 
 const reLoadPage = (path = "") => {
@@ -111,8 +113,8 @@ if (dateInput) {
 const optionImportant = document.getElementById("importance");
 const handleAddNew = async () => {
   try {
-    let markdownContent_vi = easyMDE_news_vi.value();
-    let markdownContent_en = easyMDE_news_en.value();
+    let markdownContent_vi = easyMDE_news_vi.html.get();
+    let markdownContent_en = easyMDE_news_en.html.get();
     let content_vi = converter.makeHtml(markdownContent_vi);
     let content_en = converter.makeHtml(markdownContent_en);
     let titleTxt_vi = title_news_vi.value;
@@ -164,17 +166,17 @@ const handleClickEditNew = (id) => {
   const dateStr = document.getElementById(`dateNews${id}`).innerText.trim();
 
   dateInput.value = dateStr;
-  console.log
+
   optionImportant.value = document.getElementById(`importanceNews_${id}`).innerText.trim();
   const titleEdit_vi = document.getElementById(`titleNews${id}_vi`).innerText;
   const titleEdit_en = document.getElementById(`titleNews${id}_en`).innerText;
 
   const contentEdit_vi = document.getElementById(
     `contentNews${id}_vi`
-  ).innerText;
+  ).innerHTML;
   const contentEdit_en = document.getElementById(
     `contentNews${id}_en`
-  ).innerText;
+  ).innerHTML;
 
   const imgEdit = document.getElementById(`imgNews${id}`).innerText;
   const turndownService = new TurndownService();
@@ -182,10 +184,10 @@ const handleClickEditNew = (id) => {
   const markdown_en = turndownService.turndown(contentEdit_en);
 
   title_news_vi.value = titleEdit_vi;
-  easyMDE_news_vi.value(markdown_vi);
+  easyMDE_news_vi.html.set(markdown_vi);
 
   title_news_en.value = titleEdit_en;
-  easyMDE_news_en.value(markdown_en);
+  easyMDE_news_en.html.set(markdown_en);
 
   blah_news.src = imgEdit;
   blah_news.parentElement.setAttribute("href", imgEdit);
@@ -209,8 +211,8 @@ const handleEditNews = async () => {
     var titleEdit_vi = title_news_vi.value;
     var titleEdit_en = title_news_en.value;
 
-    var markdownContent_vi = easyMDE_news_vi.value();
-    var markdownContent_en = easyMDE_news_en.value();
+    var markdownContent_vi = easyMDE_news_vi.html.get();
+    var markdownContent_en = easyMDE_news_en.html.get();
 
     var contentEdit_vi = converter.makeHtml(markdownContent_vi);
     var contentEdit_en = converter.makeHtml(markdownContent_en);
@@ -253,8 +255,8 @@ const handleCancelEdit = () => {
   btnCancelNews.classList.add("d-none");
   title_news_vi.value = "";
   title_news_en.value = "";
-  easyMDE_news_vi.value("");
-  easyMDE_news_en.value("");
+  easyMDE_news_vi.html.set("");
+  easyMDE_news_en.html.set("");
   btn_close?.classList.add("d-none");
   blah_news.src =
     "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
@@ -301,9 +303,9 @@ const handleCancelEditProduct = () => {
   btn_close?.classList.add("d-none");
   // btnCancelProduct.classList.add("d-none");
   nameProduct_vi.value = "";
-  easyMDE_product_vi.value("");
+  easyMDE_product_vi.html.set("");
   nameProduct_en.value = "";
-  easyMDE_product_en.value("");
+  easyMDE_product_en.html.set("");
   pond.removeFiles();
   parentContentProduct.appendChild(markdownFormProduct);
   markdownFormProduct.classList.remove("d-block");
@@ -334,8 +336,8 @@ const handleCancelEditProduct = () => {
 // })();
 const handleAddProduct = async () => {
   try {
-    let markdownContent_vi = easyMDE_product_vi.value();
-    let markdownContent_en = easyMDE_product_en.value();
+    let markdownContent_vi = easyMDE_product_vi.html.get();
+    let markdownContent_en = easyMDE_product_en.html.get();
     let content_vi = converter.makeHtml(markdownContent_vi);
     let content_en = converter.makeHtml(markdownContent_en);
 
@@ -411,10 +413,11 @@ const handleClickEditProduct = (id) => {
 
   const contentEdit_vi = document.getElementById(
     `contentProduct${id}_vi`
-  ).innerText;
+  ).innerHTML;
+  console.log("cib", contentEdit_vi);
   const contentEdit_en = document.getElementById(
     `contentProduct${id}_en`
-  ).innerText;
+  ).innerHTML;
 
   const turndownService = new TurndownService();
   const markdown_vi = turndownService.turndown(contentEdit_vi);
@@ -423,10 +426,11 @@ const handleClickEditProduct = (id) => {
   nameProduct_vi.value = nameEdit_vi;
   nameProduct_en.value = nameEdit_en;
 
-  easyMDE_product_vi.value(markdown_vi);
-  easyMDE_product_en.value(markdown_en);
+  easyMDE_product_vi.html.set(markdown_vi);
+  easyMDE_product_en.html.set(markdown_en);
 
-  categories.value = document.getElementById(`catProduct${id}`).innerText;
+
+  categories.value = document.getElementById(`catProduct${id}`).innerText.trim();
 
   // Các URL ảnh bạn muốn hiển thị
   const imageUrls = Array.from(
@@ -466,8 +470,9 @@ const handleEditProduct = async () => {
     overlay.classList.remove("d-none");
 
     var id = id_edit_product.innerText;
-    let markdownContent_vi = easyMDE_product_vi.value();
-    let markdownContent_en = easyMDE_product_en.value();
+    let markdownContent_vi = easyMDE_product_vi.html.get();
+   
+    let markdownContent_en = easyMDE_product_en.html.get();
     let content_vi = converter.makeHtml(markdownContent_vi);
     let content_en = converter.makeHtml(markdownContent_en);
 
@@ -477,7 +482,7 @@ const handleEditProduct = async () => {
 
     const pond = FilePond.find(document.querySelector(".filepond"));
     const files = pond.getFiles();
-    console.log("files", files);
+   
     const formData = new FormData();
 
     files.forEach((fileItem) => {

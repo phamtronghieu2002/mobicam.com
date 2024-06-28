@@ -328,6 +328,11 @@ section.the-best-feture-section .item_desc {
   overflow: hidden;
   font-size: 0.9rem;
 }
+.desc{
+  padding: 10px 30px !important;
+  /* max-height: 400px !important;
+  overflow: auto !important; */
+}
 /* aboutus-section */
 section.aboutus {
   position: absolute;
@@ -882,5 +887,16 @@ section.news .item {
     -webkit-box-orient: vertical;
     overflow: hidden;
     padding-bottom: 0 !important;
+}
+.ytb  :hover{
+  color: #0c5adb;
+
+}
+.fr-emoticon.fr-deletable.fr-emoticon-img{
+  background-repeat: no-repeat;
+    background-size: cover;
+    width: 24px;
+    display: inline-block;
+    height: 24px;
 }
 
