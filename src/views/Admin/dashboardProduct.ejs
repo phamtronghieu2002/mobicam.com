@@ -276,7 +276,7 @@
                             />
                             <% }) %>
                           </td>
-                          <td class="text-center" id="catProduct<%=item.id%>">
+                          <td class="text-center d-none" id="catProduct<%=item.id%>">
                             <%= item.catid %>
                           </td>
                           <td class="text-center">
@@ -380,7 +380,7 @@
       </div>
     </div>
   </body>
-
+  <%- include('../partials/foot.ejs') %>
   <%- include('../partials/scriptDashboard.ejs') %>
 
   <script src="/js/sidebar.js"></script>

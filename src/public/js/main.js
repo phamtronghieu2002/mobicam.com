@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  // 
+
+  const button = $('button')
+  button.attr("aria-label", "button")
   //carousel certificert
   $(".owl-carousel").owlCarousel({
 
@@ -28,7 +32,7 @@ $(document).ready(function () {
   $(".btn_bar").click(function () {
     $(".btn_bar").toggleClass("fa-xmark");
     $(".btn_bar").toggleClass("fa-bars");
-    $(".menu-responsive").toggleClass("show-on-mobile");
+    $(".menu-responsive").slideToggle(200);
   });
 });
 
@@ -252,7 +256,6 @@ if (modalVideo) {
     const sourceVideo = modalVideo.getAttribute("data-video");
     const videoReason = document.querySelector("#content_modal_video source");
     const videoElement = document.querySelector("#content_modal_video video");
-
     videoReason.setAttribute("src", sourceVideo);
     videoElement.load();
   };

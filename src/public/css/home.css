@@ -1,3 +1,11 @@
+section h2.text-primary{
+  font-family: 'Roboto', sans-serif;
+  color: #0c5adb !important;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
+
+
 /*  */
 /* Cho modal SweetAlert2 */
 .swal2-container {
@@ -123,10 +131,12 @@ header .header_navigation ul {
 header .menu-responsive {
   background-color: white;
   position: fixed;
-  top: 74px;
+  top: 73px;
   left: 0;
   right: 0;
   padding-left: 20px;
+  display: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 header .menu-responsive li {
   position: relative;
@@ -207,6 +217,10 @@ section.hero-section .overlay {
 /* method section */
 section.method_section .method_image img {
     object-fit: cover;
+}
+section.method_section .method-img-res {
+  margin-top: 17px;
+  margin-bottom: 15px;
 }
 section.method_section .information p {
   font-size: 0.9rem;
@@ -309,7 +323,7 @@ section.the-best-feture-section .item_desc {
   text-align: justify;
   display: block;
   line-height: 1.1rem;
-  color: var(--text-color);
+  color: black;
   padding-bottom: 20px;
   overflow: hidden;
   font-size: 0.9rem;
@@ -379,7 +393,7 @@ section.achieve-section .overlay {
   background-size: cover;
   position: absolute;
   inset: 0;
-  opacity: 0.5;
+  opacity: 1.5;
   z-index: -1;
 }
 
@@ -646,9 +660,12 @@ section.category .icon-box {
   z-index: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+
   color: #6377ee;
   position: relative;
+}
+section.category .icon-box  i{
+  font-size: 1.6rem;
 }
 section.category .icon-box::before {
   position: absolute;
@@ -663,6 +680,18 @@ section.category .icon-box::before {
   z-index: -1;
   transition: all 500ms ease;
   background: #6377ee;
+}
+section.category .icon-box::after{
+  position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+    border-radius: 50%;
+    box-shadow: 0 30px 50px 0px rgba(99, 119, 238, 0.3);  
 }
 section.category h4 {
   position: relative;
@@ -844,5 +873,14 @@ section.news .item {
 /*  */
 
 /*     custome */
-
+section.news .item {
+  padding-bottom: 45px !important;
+}
+.news .title{
+  display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-bottom: 0 !important;
+}
 

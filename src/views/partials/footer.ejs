@@ -24,11 +24,14 @@
 
                     <li class="footer-item footer-address mb-2">
                       <a target="_blank"
-                        href="https://www.google.com/maps/place/TRUNG+T%C3%82M+D%E1%BB%8CH+V%E1%BB%A4+KH%C3%81CH+H%C3%80NG+MID+VI%E1%BB%86T+NAM/@10.8641493,106.738995,17z/data=!3m1!4b1!4m5!3m4!1s0x317527cde4070bbf:0xf3ac3de2d1513297!8m2!3d10.8641493!4d106.738995"
+                        href="https://www.google.com/maps/place/TRUNG+T%C3%82M+D%E1%BB%8CH+V%E1%BB%A4+KH%C3%81CH+H%C3%80NG+MID+VI%E1%BB%86T+NAM/@10.8641493,106.738995...6.738995"
                         class="footer-item-link text-decoration-none text-light">
                         <i class="fa-solid fa-location-dot footer-icon text-light"></i>
                         <p class="address-text text-light d-inline">
-                          45 đường số 5, KDC Thăng Long Home
+                          <% if (lang=='vi' ) { %>     45 đường số 5, KDC Thăng Long Home <% } else { %> 
+                            45 Street No. 5, Thang Long Home Residential Area, Tam Phu, Thu Duc City
+                            <% } %>
+                      
                           <p class="address-text text-light"> P. Tam Phú, TP. Thủ Đức</p>
                         </p>
                       </a>

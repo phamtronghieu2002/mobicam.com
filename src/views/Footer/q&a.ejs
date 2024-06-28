@@ -116,7 +116,10 @@
       <div class="root container">
         <section>
           <div class="head">
-            <h3>Các câu hỏi thường gặp</h3>
+            <h3>
+              <%=lang === 'vi' ? 'Hỏi đáp' : 'Question and Answer'%>
+
+            </h3>
           </div>
           <div class="qa-body row">
             <div class="list-qa col-lg-4 col-sm-12">
@@ -145,7 +148,7 @@
       </div>
       <%- include('../partials/footer.ejs'),{footerSection:""} %>
   </div>
-
+  <%- include('../partials/foot.ejs') %>
   <script src="/js/ejsPolicy.js"></script>
   <script src="/js/main.js"></script>
 </body>

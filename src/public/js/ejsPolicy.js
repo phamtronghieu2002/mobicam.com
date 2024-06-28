@@ -152,7 +152,6 @@ function SelectQA(qaId) {
       $(document).ready(function () {
         const q_a_detail = $(".qa-item");
 
-
         q_a_detail.click(function () {
           const arrow = $(this).find("i");
           arrow.toggleClass("fa-chevron-down");

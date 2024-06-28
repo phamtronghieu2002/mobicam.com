@@ -41,8 +41,8 @@ const getCoopDetails = async (id,lang) => {
     const [results] = await con.query(`SELECT name_${lang}, content_${lang} FROM cooperate WHERE id = ?`, [id]);
    
     const response = {}
-    response.name = results[0].name_vi;
-    response.content = results[0].content_vi;
+    response.name = results[0][`name_${lang}`];
+    response.content = results[0][`content_${lang}`]
     return response;
   } catch (error) {
     console.log(error);

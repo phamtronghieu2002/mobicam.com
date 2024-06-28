@@ -344,10 +344,10 @@
                             <th scope="col" class="text-center">STT</th>
 
                             <th scope="col" class="text-center">
-                              Tiêu đề tiếng việt
+                              tiêu đề Tiếng việt
                             </th>
                             <th scope="col" class="text-center">
-                              Tiêu đề tiếng anh
+                              tiêu đề Tiếng Anh
                             </th>
                             <th scope="col" class="text-center">Ngày đăng</th>
                             <th scope="col" class="text-center">Ảnh bìa</th>
@@ -393,7 +393,10 @@
                               />
                             </td>
                             <td class="text-center">
-                              <span id="importanceNews_<%=item.id%>">
+                              <span
+                                class="d-none"
+                                id="importanceNews_<%=item.id%>"
+                              >
                                 <%=item.importance%>
                               </span>
                               <% if (item.importance == 1) { %>
@@ -406,14 +409,14 @@
                               <a
                                 onclick="handleDelete('/admin/delete-new?id=<%= item.id %>','tin tức')"
                                 class="btn btn-sm btn-danger"
-                                >Xóa</a
+                                >xóa tin</a
                               >
                               <div
                                 id="btn_edit_news_<%= item.id %>"
                                 onclick="handleClickEditNew('<%= item.id %>')"
                                 class="btn btn-warning btn-sm"
                               >
-                                Sửa
+                                chỉnh sửa
                               </div>
                               <span id="id_edit_news" class="d-none"></span>
                             </td>
@@ -431,7 +434,8 @@
       </div>
     </div>
   </body>
-  <%- include('../partials/scriptDashboard.ejs') %>
+  <%- include('../partials/foot.ejs') %> <%-
+  include('../partials/scriptDashboard.ejs') %>
   <script src="/js/dashboard.js"></script>
   <script src="/js/sidebar.js"></script>
   <script>

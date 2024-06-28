@@ -49,14 +49,6 @@
       <%- include('../partials/footer.ejs'),{footerSection} %>
   </div>
 </body>
-<script defer src="https://translate.google.com/translate_a/element.js?cb=initGoogleTranslate"></script>
-<script>
-  function initGoogleTranslate() {
-    new google.translate.TranslateElement(
-      { includedLanguages: "vi,en" },
-      "google_translate_element"
-    );
-  }
-</script>
+<%- include('../partials/foot.ejs') %>
 
 </html>
