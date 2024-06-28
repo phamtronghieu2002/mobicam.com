@@ -85,7 +85,7 @@ document
 
       if (targetElement_vi || targetElement_en) {
         e.preventDefault();
-        const offset = 100;
+        const offset = 0;
 
         const elementPosition = targetElement_vi
           ? targetElement_vi.offsetTop
