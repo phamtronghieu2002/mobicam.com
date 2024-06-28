@@ -5,8 +5,9 @@ let title_news_en = document.getElementById("title_news_en");
 let btn_close = document.querySelector(".btn-close");
 
 const toggleOverflowBody = () => {
- 
+  
   document.body.style.overflow = document.body.style.overflow === "hidden" ? "auto" : "hidden";
+  window.scrollTo(0, 0);
 };
 
 const setLoading = (title, html) => {
@@ -423,7 +424,7 @@ const handleClickEditProduct = (id) => {
   const contentEdit_vi = document.getElementById(
     `contentProduct${id}_vi`
   ).innerHTML;
-  console.log("cib", contentEdit_vi);
+
   const contentEdit_en = document.getElementById(
     `contentProduct${id}_en`
   ).innerHTML;
