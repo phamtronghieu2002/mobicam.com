@@ -293,7 +293,7 @@ section.the-best-feture-section .row div:first-child .item {
 
 section.the-best-feture-section .feture-item-img {
   text-align: center;
-  padding: 6px;
+  padding: 6px; 
   margin: 0 auto 15px;
   background: var(--primary-color);
   width: 60px;

@@ -179,8 +179,6 @@ optTap_qa?.addEventListener("change", function (e) {
 });
 
 
-
-
 let id = document.getElementById('policy-id')
 if (id) {
   SelectPolicy(Number(id.innerText))

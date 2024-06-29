@@ -48,7 +48,7 @@ $(async function () {
       case "certificert":
         if (height < 320) {
           toastr.error(
-            "giấy chứng nhận phải có chiều dài lớn hơn  >= 320px",
+            "Giấy chứng nhận phải có chiều dài lớn hơn  >= 320px",
             "Lỗi"
           );
           return false;
@@ -242,13 +242,13 @@ $(async function () {
 
   btn_restore.click(async function () {
     const isConfirmed = await poupConfirm(
-      "bạn có muốn khôi phục lại giao diện ban đầu không ?",
+      "Bạn có muốn khôi phục lại giao diện ban đầu không ?",
       "Giao diện sẽ trở lại như cũ!"
     );
     if (isConfirmed) {
       try {
         const result = await axios.post(`${baseURL}/restore`);
-        toastr.success("khôi phục giao diện!", "Thành Công");
+        toastr.success("Khôi phục giao diện!", "Thành Công");
 
         window.location.reload(true);
       } catch (error) {
@@ -261,7 +261,7 @@ $(async function () {
   // Xử lý sự kiện click vào nút lưu
   btn_save.on("click", async function () {
     const isConfirmed = await poupConfirm(
-      "bạn có muốn lưu thay đổi không?",
+      "Bạn có muốn lưu thay đổi không?",
       "Dữ liệu của bạn sẽ được cập nhật!"
     );
 
