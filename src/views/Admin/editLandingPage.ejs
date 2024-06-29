@@ -830,7 +830,10 @@
               <% } %>
 
               <div class="viewmore text-center">
-                <a href="/news/all/<%=lang %>" class="fs-5"> view more </a>
+                <a href="/news/all/<%=lang %>" class="fs-5 text-decoration-underline">
+                  <% if (lang == 'vi') { %> Xem thêm <% } else { %> View more <%
+                  } %>
+                </a>
               </div>
             </div>
           </div>

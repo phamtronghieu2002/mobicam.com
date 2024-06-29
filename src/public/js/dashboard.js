@@ -10,6 +10,16 @@ const toggleOverflowBody = () => {
   window.scrollTo(0, 0);
 };
 
+const resetDate =(dateInput)=>{
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const year = today.getFullYear();
+  const formattedDate = `${year}-${month}-${day}`;
+  dateInput.value = formattedDate;
+  //set max date
+  dateInput.setAttribute("max", formattedDate);
+}
 const setLoading = (title, html) => {
   Swal.fire({
     title: title,
@@ -109,12 +119,7 @@ let id_edit_news = document.getElementById("id_edit_news");
 const dateInput = document.getElementById('datePost');
 
 if (dateInput) {
-  const today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
-  const year = today.getFullYear();
-  const formattedDate = `${year}-${month}-${day}`;
-  dateInput.value = formattedDate;
+  resetDate(dateInput)
 }
 const optionImportant = document.getElementById("importance");
 const handleAddNew = async () => {
@@ -256,6 +261,7 @@ const handleEditNews = async () => {
 };
 const handleCancelEdit = () => {
   toggleOverflowBody();
+  resetDate(dateInput);
   overlay.classList.remove("d-block");
   overlay.classList.add("d-none");
   btnEditNews.classList.add("d-none");
@@ -266,8 +272,7 @@ const handleCancelEdit = () => {
   easyMDE_news_vi.html.set("");
   easyMDE_news_en.html.set("");
   btn_close?.classList.add("d-none");
-  blah_news.src =
-    "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
+  blah_news.src ="https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
   parentContentNews.appendChild(markdownFormNews);
   markdownFormNews.classList.remove("d-block");
   markdownFormNews.classList.add("d-none");

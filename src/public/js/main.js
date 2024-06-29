@@ -36,6 +36,14 @@ $(document).ready(function () {
   });
 });
 
+$('#modalVideo').on('hidden.bs.modal', function () {
+  var video = document.getElementById('video_reasion');
+  if (video) {
+      video.pause();  // Tạm dừng video
+      video.currentTime = 0;  // Đặt lại thời gian phát video về 0
+  }
+});
+
 //check with screen and handle when click cat tab
 const checkIsMobileAndTabletWidth = () => {
   const screenWidth = window.innerWidth;

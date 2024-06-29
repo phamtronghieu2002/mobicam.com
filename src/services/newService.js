@@ -179,7 +179,7 @@ ORDER BY importance DESC,updatedAt DESC;`
     return new Promise(async (resolve, reject) => {
       try {
         const [result] = await con.execute(
-          `select * from news  order by id  desc  limit ${limit_num}`
+          `select * from news  ORDER BY importance DESC,updatedAt DESC  limit ${limit_num}`
         );
         const news = [];
         result.forEach((element) => {

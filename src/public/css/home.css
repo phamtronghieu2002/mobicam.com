@@ -41,7 +41,7 @@ section h2.text-primary {
 .desc {
   border-radius: 10px;
   display: block;
-  max-height: 360px;
+  max-height: 370px;
   overflow-y: scroll;
 }
 
@@ -824,7 +824,10 @@ section.news .item {
 .footer_follow-item img {
   border-radius: 50%;
 }
+footer ul,ol{
+  list-style: none;
 
+}
 /* change language */
 .goog-te-combo {
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
