@@ -110,7 +110,7 @@ const InitApiRoute = (app) => {
     try {
       const result = await authService.checkLogin(res, username, password);
       if (result) {
-        return res.redirect("/admin/editLandingPage/vi");
+        return res.redirect("/admin/dashboard");
       }
       req.flash("message", "Invalid username or password");
       return res.redirect(`/admin`);

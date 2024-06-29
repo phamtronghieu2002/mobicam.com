@@ -1,7 +1,7 @@
 .modal_absolute_content{
   position: fixed !important;
   background: white;
-  top: -42px;
+  top: -66px;
   bottom: 107px;
   overflow-y: scroll;
   left: 50%;
