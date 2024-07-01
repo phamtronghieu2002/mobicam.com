@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>parentNode vs parentElement</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="child">
+        <p>alo</p>
+        <h3>xin chao</h3>
+      </div>
+    </div>
+    <script>
+      const createComponent = (data, Component) => {
+        return data.map((item, index) => Component(item)).join("");
+      };
+      const UserItem = ({ name, age }) => {
+        let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        return `<div>
+            <h3>${name}</h3>
+            <p>${age}</p>
+            ${x.map((item, index) => `<p>${item}</p>`)}
+            </div>`;
+      };
+
+      let users = [
+        {
+          name: "nguyen van a",
+          age: 20,
+        },
+        {
+          name: "nguyen van b",
+          age: 21,
+        },
+      ];
+      const child = document.getElementById("child");
+      let components = ``;
+      users.forEach((user) => {
+        components += UserItem(user);
+      });
+      child.innerHTML = createComponent(users, UserItem);
+    </script>
+  </body>
+</html>

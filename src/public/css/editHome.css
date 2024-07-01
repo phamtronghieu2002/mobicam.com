@@ -6,7 +6,13 @@
 .wrapper_edit_landing  .change_image_area{
   display: block;
 }
-
+.wrapper_edit_landing footer input {
+  display: block !important;
+}
+.wrapper_edit_landing footer .change_image_area label
+{
+display: none;
+}
 .wrapper_edit_landing  #btn_upload_file_hero
 {
   display: flex !important;
@@ -17,6 +23,9 @@
 {
   display: block !important;
 
+}
+.wrapper_edit_landing #url_input_change_location{
+  display: block !important;
 }
 
 .wrapper_edit_landing .img_wp{

@@ -12,7 +12,7 @@ const convertStringToHTML = (str) => {
 };
 
 module.exports = {
-  handleRenderHomePage: async (req, res,type="home",roles) => {
+  async handleRenderHomePage  (req, res,type="home",roles)  {
     const { lang } = req.params.lang =="favicon.ico"  ? {lang:"vi"} : (req.params.lang ? req.params : {lang:"vi"}) ;
 
 
@@ -34,6 +34,8 @@ module.exports = {
       const categoriesSection= await editLandingService.getCategoriesSection(lang);
       const newsSection = await editLandingService.getNewsSection(lang);
       const certificertHeading = await editLandingService.getCertificertHeadingSection(lang);
+      const footerIcon = await editLandingService.getFooterIconSection(lang);
+      console.log("footer icon  >>", footerIcon);
       const data= {
         roles,
         listPolicy: listPolicy,
@@ -58,6 +60,7 @@ module.exports = {
         benifitSection: convertStringToHTML(benifitSection),
         certificertSection: convertStringToHTML(certificertSection),
         categoriesSection: convertStringToHTML(categoriesSection),
+        footerIcon: convertStringToHTML(footerIcon),
       } 
 
       if(type=="home"){
@@ -81,6 +84,7 @@ module.exports = {
       const listPolicy = await getPolicyList();  
       const listQA = await getQAList();  
       const listCoop = await getCoopList();  
+      const footerIcon = await editLandingService.getFooterIconSection(lang);
       const data={
         listPolicy,
         listCoop,
@@ -89,6 +93,7 @@ module.exports = {
         news,
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
+        footerIcon: convertStringToHTML(footerIcon),
         
       }
       return res.render("./New/allNews.ejs", data);
@@ -99,14 +104,15 @@ module.exports = {
   },
 
   handleGetNewById: async (req, res) => {
-    const { id ,lang} = req.params;
+    const {lang,slug} = req.params;
     const headerSection = await editLandingService.getHeaderSection(lang);
     const footerSection = await editLandingService.getFooterSection(lang);
     const listPolicy = await getPolicyList();  
     const listQA = await getQAList();  
     const listCoop = await getCoopList();  
+    const footerIcon = await editLandingService.getFooterIconSection(lang);
     try {
-      const newDetail = await newService.getNewbyId(id,lang);
+      const newDetail = await newService.getNewbyId(slug,lang);
       const data={
         listCoop,
         listPolicy,
@@ -115,6 +121,7 @@ module.exports = {
         newDetail,
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
+        footerIcon: convertStringToHTML(footerIcon),
       }
       return res.render("./New/detailNew.ejs",  data);
     } catch (error) {
@@ -137,7 +144,7 @@ module.exports = {
       const listPolicy = await getPolicyList(); 
       const listQA = await getQAList();
       const listCoop = await getCoopList();  
-  
+      const footerIcon = await editLandingService.getFooterIconSection(lang);
  
       const data= {
         id,
@@ -147,6 +154,7 @@ module.exports = {
         listPolicy: listPolicy,
         listQA : listQA,
         listCoop: listCoop,
+        footerIcon: convertStringToHTML(footerIcon),
       } 
       return res.render('./Footer/policy.ejs',data)
     } catch (error) {
@@ -157,7 +165,7 @@ module.exports = {
   handleRenderQA: async (req,res) =>{
     const {id} = req.params
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
-
+    const footerIcon = await editLandingService.getFooterIconSection(lang);
     try {
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
@@ -175,7 +183,9 @@ module.exports = {
         listQA: listQA,
         listPolicy : listPolicy,
         listQADetails : listQADetails,
-        listCoop : listCoop
+        listCoop : listCoop,
+        footerIcon: convertStringToHTML(footerIcon),
+        
       } 
       return res.render('./Footer/q&a.ejs',data)
     } catch (error) {
@@ -188,7 +198,7 @@ module.exports = {
     const { lang } = req.params?.lang ? req.params : {lang:"vi"};
 
     const {name,content}= await getCoopDetails(id,lang);
-
+    const footerIcon = await editLandingService.getFooterIconSection(lang);
     try {
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
@@ -206,6 +216,7 @@ module.exports = {
         lang:lang ? lang : "vi",
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
+        footerIcon: convertStringToHTML(footerIcon),
       } 
       if(data.id == 2){
         return res.render('./Footer/register.ejs',data)

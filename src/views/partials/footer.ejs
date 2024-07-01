@@ -1,4 +1,4 @@
-<footer class="footer_wrappper pt-5 pb-5" style="background: #111a3b">
+                                                          <footer class="footer_wrappper pt-5 pb-5" style="background: #111a3b">
   <% var field=`name_${lang}`; %>
     <% if (false) { %> <%- footerSection %>
         <% } else { %>
@@ -42,23 +42,43 @@
                       <% if (lang=='vi' ) { %> Kết nối với chúng tôi <% } else { %> Connect with us <% } %>
                     </h5>
                     <ul class="footer_follow-list d-flex gap-3">
-                      <li class="footer_follow-item">
-                        <a href="https://www.facebook.com/mobicam.vn" class="footer_follow-link">
-                          <img src="https://mobicam.vn/assets/images/mobiCamLogoCircle.png" alt="facebook"
-                            class="footer_follow-img" />
-                        </a>
-                      </li>
-                      <li class="footer_follow-item">
-                        <a href="https://zalo.me/3584014033005677673" class="footer_follow-link">
-                          <img src="https://mobicam.vn/assets/images/zalo.png" alt="zalo" class="footer_follow-img" />
-                        </a>
-                      </li>
-                      <li class="footer_follow-item">
-                        <a href="tel:0899191919" class="footer_follow-link">
-                          <img src="https://mobicam.vn/assets/images/phonecontact.png" alt="phone"
-                            class="footer_follow-img" />
-                        </a>
-                      </li>
+                          <% if(footerIcon) { %>
+                            <%-footerIcon%>
+                          <% } else { %>
+                            <li class="footer_follow-item position-relative"> 
+                              <a href="https://www.facebook.com/mobicam.vn" class="footer_follow-link img_wp ">
+                                <img src="https://mobicam.vn/assets/images/mobiCamLogoCircle.png" alt="facebook"
+                                  class="footer_follow-img" />
+                             
+                              </a>
+                              <input 
+                              style=" left: -263px; width: 259px;"
+                              placeholder="link facebook"
+                              type="url" name="" id="url_input_change_facbook" class="form-control position-absolute  top-0 d-none  ">
+                            </li>
+                            <li class="footer_follow-item position-relative">
+                              <a href="https://zalo.me/3584014033005677673" class="footer_follow-link img_wp">
+                                <img src="https://mobicam.vn/assets/images/zalo.png" alt="zalo" class="footer_follow-img" />
+                              </a>
+                              <input 
+                              style="bottom: -52px;width: 259px;left: -93px;"
+                              placeholder="link zalo"
+                              type="url" name="" id="url_input_change_zalo" class="form-control position-absolute  d-none  ">
+                            </li>
+                            <li class="footer_follow-item position-relative">
+                              <a href="tel:0899191919" class="footer_follow-link img_wp ">
+                                <img src="https://mobicam.vn/assets/images/phonecontact.png" alt="phone"
+                                  class="footer_follow-img" />
+                
+                              </a>
+                              <input 
+                              style="bottom:-1px;width: 257px;left: 44px;"
+                              placeholder="số điện thoại"
+                              type="url" name="" id="url_input_change_phone" class="form-control position-absolute d-none   ">
+                            </li>
+                          <% } %>
+                          
+
                     </ul>
                   </div>
                 </div>

@@ -149,6 +149,7 @@ module.exports = {
 //====================PolicyController============================
   handleRenderDashboardPolicy: async(req,res) => {
     const results = await getPolicyList()
+    
     return res.render('./Admin/dashboardPolicy.ejs', { listPolicy: results })
   },
   GetPolicyDetails: async(req,res)=>{

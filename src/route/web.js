@@ -28,8 +28,8 @@ const InitApiRoute = (app) => {
     homeController.handleRenderHomePage(req, res, "home");
   });
 
-  router.get("/news/detail/:id/:lang", homeController.handleGetNewById);
-  router.get("/news/all/:lang", homeController.handleGetAllNews);
+  router.get("/tintuc/chitiet/:lang/:slug", homeController.handleGetNewById);
+  router.get("/tintuc/:lang/", homeController.handleGetAllNews);
 
   router.get("/new", homeController.handleRenderNewPage);
 
@@ -57,9 +57,6 @@ const InitApiRoute = (app) => {
     adminController.handleUpdateProductById
   );
 
-  
-  
-
   //access dashboard
 
   router.get(
@@ -80,28 +77,34 @@ const InitApiRoute = (app) => {
     adminController.handleRenderDashboardNews
   );
 
-  router.get('/admin/dashboard/page/policy',veryfyUser,adminController.handleRenderDashboardPolicy)
-  router.get('/api/policy/:id',adminController.GetPolicyDetails)
-  router.put('/api/update/:id',adminController.UpdatePolicy)
+  router.get(
+    "/admin/dashboard/page/policy",
+    veryfyUser,
+    adminController.handleRenderDashboardPolicy
+  );
+  router.get("/api/policy/:id", adminController.GetPolicyDetails);
+  router.put("/api/update/:id", adminController.UpdatePolicy);
 
+  router.get(
+    "/admin/dashboard/page/q&a",
+    veryfyUser,
+    adminController.handleRenderDashboardQA
+  );
+  router.get("/api/q&a/:id", adminController.GetQADetails);
 
-  router.get('/admin/dashboard/page/q&a',veryfyUser,adminController.handleRenderDashboardQA)
-  router.get('/api/q&a/:id',adminController.GetQADetails)
-
-  router.get('/admin/dashboard/page/cooperate',veryfyUser,adminController.handleRenderDashboardCoop)
-  router.get('/api/coop/:id',adminController.GetCoopDetailsAdmin)
-  router.put('/api/updateCoop/:id',adminController.UpdateCoop)
-  router.get('/api/cooperation/:id',adminController.GetCoopDetails)
-
-
+  router.get(
+    "/admin/dashboard/page/cooperate",
+    veryfyUser,
+    adminController.handleRenderDashboardCoop
+  );
+  router.get("/api/coop/:id", adminController.GetCoopDetailsAdmin);
+  router.put("/api/updateCoop/:id", adminController.UpdateCoop);
+  router.get("/api/cooperation/:id", adminController.GetCoopDetails);
 
   //footer
-  router.get('/policy/:id/:lang',homeController.handleRenderPolicy)
-  router.get('/q&a/:id/:lang',homeController.handleRenderQA)
-  router.get('/cooperate/:id/:lang',homeController.handleRenderCooperate)
-
-
-
+  router.get("/policy/:id/:lang", homeController.handleRenderPolicy);
+  router.get("/q&a/:id/:lang", homeController.handleRenderQA);
+  router.get("/cooperate/:id/:lang", homeController.handleRenderCooperate);
 
   //check login
 
@@ -139,7 +142,7 @@ const InitApiRoute = (app) => {
 
   router.get("/admin/editLandingPage/:lang", veryfyUser, (req, res) => {
     const roles = req?.roles;
-    homeController.handleRenderHomePage(req, res, "editLandingPage",roles);
+    homeController.handleRenderHomePage(req, res, "editLandingPage", roles);
   });
 
   router.post(
@@ -155,18 +158,21 @@ const InitApiRoute = (app) => {
       return res.status(500).json({ message: "Internal Server Error" });
     }
   );
-  router.post("/admin/uploadFile",uploadFile.array("files", 10), (req, res) => {
-    
-    console.log("req.file", req.files);
-    const files = req.files;
+  router.post(
+    "/admin/uploadFile",
+    uploadFile.array("files", 10),
+    (req, res) => {
+      console.log("req.file", req.files);
+      const files = req.files;
 
-    const filePaths = files.map(file => `/files/${file.filename}`);
-    if (filePaths) {
-      return res.status(200).json({ filePaths});
+      const filePaths = files.map((file) => `/files/${file.filename}`);
+      if (filePaths) {
+        return res.status(200).json({ filePaths });
+      }
+
+      return res.status(500).json({ message: "Internal Server Error" });
     }
-
-    return res.status(500).json({ message: "Internal Server Error" });
-  });
+  );
 
   router.post("/api/landingPage/lang/:lang", async (req, res) => {
     try {
@@ -211,6 +217,9 @@ const InitApiRoute = (app) => {
             break;
           case "footer":
             await editLandingService.updateFooter(content, lang);
+            break;
+          case "footerIcon":
+            await editLandingService.updateFooterIcon(content, lang);
             break;
           default:
             break;
