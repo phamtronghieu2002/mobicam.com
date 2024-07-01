@@ -171,6 +171,9 @@
   .wrapper_new_page .news {
     margin-top: 77px;
   }
+  .box-head h1{
+    text-align: left !important;
+  }
 }
 
 /* tab let and mobile */
