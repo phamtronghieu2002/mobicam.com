@@ -699,9 +699,10 @@
             <div class="row">
               <% for (let i = 0; i < news.length; i++) { %>
               <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          
                 <a
                   style="border-radius: 15px"
-                  href="/news/detail/<%= news[i].id %>/<%= lang %>"
+                  href="/tintuc/chitiet/<%= lang %>/<%= news[i].slug %>"
                   class="item text-decoration-none overflow-hidden h-100 position-relative pb-2"
                 >
                   <div class="thumb_news overflow-hidden">
@@ -729,7 +730,7 @@
               </div>
               <% } %>
               <div class="viewmore text-center">
-                <a href="/news/all/<%=lang %>" class="fs-5 text-decoration-underline">
+                <a href="/tintuc/<%=lang %>" class="fs-5 text-decoration-underline">
 
                   <% if (lang == 'vi') { %> Xem thêm <% } else { %> View more <%
                   } %>

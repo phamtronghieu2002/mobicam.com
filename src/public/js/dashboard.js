@@ -85,7 +85,6 @@ let easyMDE_product_vi =new FroalaEditor('#markdown_product_vi');
 
 
 
-
 //khởi tạo markdown editor cho product en
 let easyMDE_product_en = new FroalaEditor('#markdown_product_en');
 

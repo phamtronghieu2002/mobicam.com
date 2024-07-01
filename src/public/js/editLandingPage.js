@@ -82,7 +82,41 @@ $(async function () {
   const btn_edit_product = $(".btn_edit_product");
   const btn_edit_news = $(".btn_edit_news");
   const btn_restore = $("#btn_restore");
+  const inputChangeUrlLocation = $("#url_input_change_location");
+  const inputChangeUrlFacebook = $("#url_input_change_facbook");
+  const inputChangeUrlPhone = $("#url_input_change_phone");
+  const inputChangeUrlZalo = $("#url_input_change_zalo");
 
+  const handleChangeLink = function (type = "", curent = "") {
+    const url = $(this).val();
+    const parrent = $(this).parent();
+    const a_link = parrent.find("a");
+    if (type == "phone") {
+      a_link.attr("href", `tel:${url}`);
+      return;
+    }
+
+    a_link.attr("href", url);
+  };
+
+  inputChangeUrlZalo.on("input", handleChangeLink);
+  inputChangeUrlFacebook.on("input", handleChangeLink);
+  inputChangeUrlPhone.on("input", function () {
+    const url = $(this).val();
+    const parrent = $(this).parent();
+    const a_link = parrent.find("a");
+
+    a_link.attr("href", `tel:${url}`);
+    return;
+  });
+
+  inputChangeUrlLocation.on("input", async function () {
+    const url = $(this).val();
+    const parent = $(this).parent();
+    console.log("url", url);
+    console.log("parent", parent);
+    parent.attr("href", url);
+  });
   img_wp.append(`<div class="change_image_area">
  
       <i class="fa-solid fa-camera fs-3"></i>
@@ -281,7 +315,7 @@ $(async function () {
       const categoriesHtml = $("section.category h2");
       const newsHtml = $("section.news h2");
       const certificertHeading = $("section.section-certificert h2");
-
+      const footerIcon = $("footer .footer_follow-list");
       const certificertHtml = [];
 
       $(".owl-item:not(.cloned)").each(function () {
@@ -375,6 +409,15 @@ $(async function () {
         await axios.post(
           `${baseURL}/lang/${lang}?section=news`,
           newsHtml.eq(0).prop("outerHTML"),
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        );
+        await axios.post(
+          `${baseURL}/lang/${lang}?section=footerIcon`,
+          getContentHtml(footerIcon),
           {
             headers: {
               "Content-Type": "text/plain",

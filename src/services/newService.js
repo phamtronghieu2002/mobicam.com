@@ -10,6 +10,8 @@ module.exports = {
     importance,
     datePost
   ) => {
+    const slug_vi = title_vi.toLowerCase().replace(/ /g, "-");
+    const slug_en = title_en.toLowerCase().replace(/ /g, "-");
     return new Promise(async (resolve, reject) => {
       try {
         const [result] = await con.execute(
@@ -20,8 +22,10 @@ module.exports = {
       img,
       importance,
       createdAt,
-      updatedAt
-      ) VALUES (?,?,?,?,?,?,?,?)`,
+      updatedAt,
+      slug_vi,
+      slug_en
+      ) VALUES (?,?,?,?,?,?,?,?,?,?)`,
           [
             title_vi,
             title_en,
@@ -31,6 +35,8 @@ module.exports = {
             importance,
             datePost,
             datePost,
+            slug_vi,
+            slug_en,
           ]
         );
 
@@ -56,8 +62,9 @@ module.exports = {
     datePost
   ) => {
     return new Promise(async (resolve, reject) => {
-      
       try {
+        const slug_vi = title_vi.toLowerCase().replace(/ /g, "-");
+        const slug_en = title_en.toLowerCase().replace(/ /g, "-");
         if (imageUrl) {
           const [result] = await con.execute(
             `UPDATE news SET  
@@ -67,7 +74,9 @@ module.exports = {
             content_en = ?,
             img = ?,
             updatedAt = ?,
-            importance = ?
+            importance = ?,
+            slug_vi = ?,
+            slug_en = ?
             WHERE id = ?
            `,
             [
@@ -78,10 +87,12 @@ module.exports = {
               imageUrl,
               datePost,
               Number(importance),
+              slug_vi,
+              slug_en,
               id,
             ]
           );
-         
+
           if (result.affectedRows > 0) {
             return resolve(true);
           }
@@ -94,9 +105,21 @@ module.exports = {
             content_vi = ?,
             content_en = ?,
             updatedAt = ?,
-            importance = ?
+            importance = ?,
+            slug_vi = ?,
+            slug_en = ?
             WHERE id = ?`,
-            [title_vi, title_en, content_vi, content_en,datePost,Number(importance),  id]
+            [
+              title_vi,
+              title_en,
+              content_vi,
+              content_en,
+              datePost,
+              Number(importance),
+              slug_vi,
+              slug_en,
+              id,
+            ]
           );
           if (result.affectedRows > 0) {
             return resolve(true);
@@ -110,16 +133,16 @@ module.exports = {
     });
   },
 
-  getNewbyId: (id, lang) => {
+  getNewbyId: (slug, lang) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const [result] = await con.execute(`SELECT * FROM news WHERE id = ?`, [
-          id,
+        const [result] = await con.execute(`SELECT * FROM news WHERE slug_${lang} = ?`, [
+          slug,
         ]);
 
         if (result.length > 0) {
           let news = {};
-          news.id = result[0].id;
+          news.slug = result[0].slug;
           news.title = result[0][`title_${lang}`];
           news.content = result[0][`content_${lang}`];
           news.img = result[0].img;
@@ -187,9 +210,11 @@ ORDER BY importance DESC,updatedAt DESC;`
             id: element.id,
             title: element[`title_${lang}`],
             content: element[`content_${lang}`],
+            slug: element[`slug_${lang}`],
             img: element.img,
             updatedAt: element.updatedAt.toLocaleDateString("en-CA"),
           });
+
         });
 
         return resolve(news);

@@ -220,6 +220,7 @@
           <source src="/video/videoHero.mp4" type="video/mp4" />
           Trình duyệt của bạn không hỗ trợ thẻ video.
         </video>
+
         <div
           class="hero-content w-100"
           data-step="3"
@@ -830,7 +831,10 @@
               <% } %>
 
               <div class="viewmore text-center">
-                <a href="/news/all/<%=lang %>" class="fs-5 text-decoration-underline">
+                <a
+                  href="/news/all/<%=lang %>"
+                  class="fs-5 text-decoration-underline"
+                >
                   <% if (lang == 'vi') { %> Xem thêm <% } else { %> View more <%
                   } %>
                 </a>
@@ -862,20 +866,28 @@
           selector: ".btn_edit_news",
           content: "Chỉnh sửa tin tức",
         },
+        {
+          selector: ".localtion",
+          content: "Nhập link dẫn tới trang",
+          zIndex: 9999,
+        },
       ];
-
       tooltips.forEach((tooltip) => {
-        const instance = tippy(tooltip.selector, {
-          content: tooltip.content,
-          placement: "right",
-          trigger: "manual", // Disable default trigger
-          hideOnClick: false,
-          zIndex: 4,
-          animation: "fade", // Custom animation
-          delay: [100, 100], // Delay for show and hide
-        });
+        const element = document.querySelector(tooltip.selector);
 
-        instance[0].show(); // Show the tooltip immediately
+        if (element) {
+          const instance = tippy(element, {
+            content: tooltip.content,
+            placement: "right",
+            trigger: "manual", 
+            hideOnClick: false,
+   
+            animation: "fade", // Custom animation
+            delay: [100, 100], // Delay for show and hide
+          });
+
+          instance.show(); // Show the tooltip immediately
+        }
       });
     </script>
 

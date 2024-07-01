@@ -421,6 +421,39 @@ const getCertificertHeadingSection = (lang) => {
   });
 };
 
+const updateFooterIcon = (FooterIconHtml, lang) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const [result] = await con.execute(
+        `update htmlcontent set content_${lang} = ? where section = 'footerIcon'`,
+        [FooterIconHtml]
+      );
+
+      if (result.affectedRows > 0) {
+        return resolve(true);
+      }
+    } catch (error) {
+      console.log("error >>>", error);
+      return reject(false);
+    }
+  });
+};
+
+const getFooterIconSection = (lang) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const [result] = await con.execute(
+        `select * from htmlcontent where section = 'footerIcon'`
+      );
+      if (result.length > 0) {
+        return resolve(result[0][`content_${lang}`]);
+      }
+    } catch (error) {
+      console.log("error >>>", error);
+      return reject(false);
+    }
+  });
+};
 
 module.exports = {
   updateHeader,
@@ -448,4 +481,6 @@ module.exports = {
   getNewsSection,
   updateCertificertHeading,
   getCertificertHeadingSection,
+  updateFooterIcon,
+  getFooterIconSection,
 };

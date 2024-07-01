@@ -144,3 +144,9 @@ td img {
   opacity: 0;
   display: none;
 }
+.left-negative-35{
+    left: -35px;
+}
+.right-negative-35{
+  right: -35px;
+}
