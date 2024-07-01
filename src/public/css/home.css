@@ -1,3 +1,7 @@
+.modal-product::-webkit-scrollbar{
+  display: none;
+}
+
 section h2.text-primary {
   font-family: "Roboto", sans-serif;
   color: #0c5adb !important;
