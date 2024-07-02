@@ -1,4 +1,8 @@
-.modal-product::-webkit-scrollbar{
+p[data-f-id="pbf"] {
+  display: none !important;
+}
+
+.modal-product::-webkit-scrollbar {
   display: none;
 }
 
@@ -187,7 +191,7 @@ section.hero-section .btn_dowloand:hover {
 section.hero-section .hero-video {
   /* width: 100%; Chiều rộng video chiếm toàn bộ phần hero */
   height: 83vh;
-  width: 100%;  
+  width: 100%;
   object-fit: cover;
 }
 section.hero-section .hero-content {
@@ -328,7 +332,7 @@ section.the-best-feture-section .item_desc {
   overflow: hidden;
   font-size: 0.9rem;
 }
-.desc{
+.desc {
   padding: 10px 30px !important;
   /* max-height: 400px !important;
   overflow: auto !important; */
@@ -828,9 +832,9 @@ section.news .item {
 .footer_follow-item img {
   border-radius: 50%;
 }
-footer ul,ol{
+footer ul,
+ol {
   list-style: none;
-
 }
 /* change language */
 .goog-te-combo {
@@ -885,15 +889,13 @@ section.news .item {
   overflow: hidden;
   padding-bottom: 0 !important;
 }
-.ytb  :hover{
+.ytb :hover {
   color: #0c5adb;
-
 }
-.fr-emoticon.fr-deletable.fr-emoticon-img{
+.fr-emoticon.fr-deletable.fr-emoticon-img {
   background-repeat: no-repeat;
-    background-size: cover;
-    width: 24px;
-    display: inline-block;
-    height: 24px;
+  background-size: cover;
+  width: 24px;
+  display: inline-block;
+  height: 24px;
 }
-

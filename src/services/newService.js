@@ -10,8 +10,9 @@ module.exports = {
     importance,
     datePost
   ) => {
-    const slug_vi = title_vi.toLowerCase().replace(/ /g, "-");
-    const slug_en = title_en.toLowerCase().replace(/ /g, "-");
+    const slug_vi = title_vi.toLowerCase().replace(/[\s\/]+/g, "-");
+    const slug_en = title_en.toLowerCase().replace(/[\s\/]+/g, "-");
+
     return new Promise(async (resolve, reject) => {
       try {
         const [result] = await con.execute(
@@ -63,8 +64,9 @@ module.exports = {
   ) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const slug_vi = title_vi.toLowerCase().replace(/ /g, "-");
-        const slug_en = title_en.toLowerCase().replace(/ /g, "-");
+        const slug_vi = title_vi.toLowerCase().replace(/[\s\/]+/g, "-");
+        const slug_en = title_en.toLowerCase().replace(/[\s\/]+/g, "-");
+
         if (imageUrl) {
           const [result] = await con.execute(
             `UPDATE news SET  
@@ -136,9 +138,10 @@ module.exports = {
   getNewbyId: (slug, lang) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const [result] = await con.execute(`SELECT * FROM news WHERE slug_${lang} = ?`, [
-          slug,
-        ]);
+        const [result] = await con.execute(
+          `SELECT * FROM news WHERE slug_${lang} = ?`,
+          [slug]
+        );
 
         if (result.length > 0) {
           let news = {};
@@ -174,6 +177,49 @@ module.exports = {
     });
   },
 
+  getAllnewsPagination: (lang = "vi", page = 1, pageSize = 10) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const offset = (page - 1) * pageSize;
+
+        const [result] = await con.execute(
+          `SELECT * 
+           FROM news 
+           ORDER BY importance DESC, updatedAt DESC
+           LIMIT ? OFFSET ?;`,
+          [pageSize, offset]
+        );
+
+        const [totalResult] = await con.execute(
+          `SELECT COUNT(*) as total 
+           FROM news;`
+        );
+        const totalItems = totalResult[0].total;
+        const totalPages = Math.ceil(totalItems / pageSize);
+
+        if (result.length > 0) {
+          result.forEach((element) => {
+            element.updatedAt = new Date(element.updatedAt).toLocaleDateString(
+              "en-CA"
+            );
+          });
+
+          return resolve({
+            news: result,
+            pagination: {
+              page,
+              pageSize,
+              totalItems,
+              totalPages,
+            },
+          });
+        }
+      } catch (error) {
+        console.log("Error >>>", error);
+        return reject(error);
+      }
+    });
+  },
   getAllnews: (lang = "vi") => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -197,7 +243,6 @@ ORDER BY importance DESC,updatedAt DESC;`
       }
     });
   },
-
   getNewsLimit: (limit_num, lang = "vi") => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -214,7 +259,6 @@ ORDER BY importance DESC,updatedAt DESC;`
             img: element.img,
             updatedAt: element.updatedAt.toLocaleDateString("en-CA"),
           });
-
         });
 
         return resolve(news);

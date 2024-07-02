@@ -5,12 +5,12 @@ let title_news_en = document.getElementById("title_news_en");
 let btn_close = document.querySelector(".btn-close");
 
 const toggleOverflowBody = () => {
-  
-  document.body.style.overflow = document.body.style.overflow === "hidden" ? "auto" : "hidden";
+  document.body.style.overflow =
+    document.body.style.overflow === "hidden" ? "auto" : "hidden";
   window.scrollTo(0, 0);
 };
 
-const resetDate =(dateInput)=>{
+const resetDate = (dateInput) => {
   const today = new Date();
   const day = String(today.getDate()).padStart(2, "0");
   const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
@@ -19,17 +19,17 @@ const resetDate =(dateInput)=>{
   dateInput.value = formattedDate;
   //set max date
   dateInput.setAttribute("max", formattedDate);
-}
+};
 const setLoading = (title, html) => {
   Swal.fire({
     title: title,
     html,
     allowOutsideClick: false,
     onBeforeOpen: () => {
-      Swal.showLoading()
+      Swal.showLoading();
     },
   });
-}
+};
 
 const validateSizeImage = (size, height, type = "") => {
   if (type === "news") {
@@ -67,29 +67,16 @@ const validateSizeImageNews = (height, width) => {
 btn_close?.classList.add("d-none");
 //khởi tạo markdown editor cho news
 
+let easyMDE_news_vi = new FroalaEditor("#markdown_news_vi");
 
-let easyMDE_news_vi = new FroalaEditor('#markdown_news_vi');
-
-
-let easyMDE_news_en = new FroalaEditor('#markdown_news_en');
-
+let easyMDE_news_en = new FroalaEditor("#markdown_news_en");
 
 //khởi tạo markdown editor cho product vi
 
-
-
-
-let easyMDE_product_vi =new FroalaEditor('#markdown_product_vi');
-
-
-
-
+let easyMDE_product_vi = new FroalaEditor("#markdown_product_vi");
 
 //khởi tạo markdown editor cho product en
-let easyMDE_product_en = new FroalaEditor('#markdown_product_en');
-
-
-
+let easyMDE_product_en = new FroalaEditor("#markdown_product_en");
 
 const reLoadPage = (path = "") => {
   setTimeout(function () {
@@ -115,10 +102,10 @@ let btnEditNews = document.querySelector(".editNews");
 let btnAddNews = document.querySelector(".addNews");
 let btnCancelNews = document.querySelector(".cancelNews");
 let id_edit_news = document.getElementById("id_edit_news");
-const dateInput = document.getElementById('datePost');
+const dateInput = document.getElementById("datePost");
 
 if (dateInput) {
-  resetDate(dateInput)
+  resetDate(dateInput);
 }
 const optionImportant = document.getElementById("importance");
 const handleAddNew = async () => {
@@ -131,7 +118,7 @@ const handleAddNew = async () => {
     let titleTxt_en = title_news_en.value;
     let formData = new FormData();
     if (fileInputNews.files && fileInputNews.files[0]) {
-      formData.append("image", fileInputNews.files[0]);
+      formData.append("files", fileInputNews.files[0]);
     }
     if (
       !titleTxt_vi ||
@@ -146,16 +133,22 @@ const handleAddNew = async () => {
       return;
     }
     overlay.classList.remove("d-none");
-    const res = await axios.post("/admin/uploadimage", formData);
-    const imageUrl = res.data.path;
+
+    const res = await axios.post("/admin/uploadFile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    const imgs = res?.data?.filePaths;
+
     const result = await axios.post("/admin/add-new", {
       title_vi: titleTxt_vi,
       title_en: titleTxt_en,
       content_vi,
       content_en,
-      imageUrl,
+      imageUrl: imgs[0],
       datePost: dateInput.value,
-      importance: optionImportant.value
+      importance: optionImportant.value,
     });
     if (result.data) {
       overlay.classList.add("d-none");
@@ -178,7 +171,9 @@ const handleClickEditNew = (id) => {
 
   dateInput.value = dateStr;
 
-  optionImportant.value = document.getElementById(`importanceNews_${id}`).innerText.trim();
+  optionImportant.value = document
+    .getElementById(`importanceNews_${id}`)
+    .innerText.trim();
   const titleEdit_vi = document.getElementById(`titleNews${id}_vi`).innerText;
   const titleEdit_en = document.getElementById(`titleNews${id}_en`).innerText;
 
@@ -233,7 +228,7 @@ const handleEditNews = async () => {
 
     if (fileInputNews.files && fileInputNews.files[0]) {
       formData.append("image", fileInputNews.files[0]);
-      setLoading("đang cập nhật tin tức", "vui lòng chờ")
+      setLoading("đang cập nhật tin tức", "vui lòng chờ");
       const res = await axios.post("/admin/uploadimage", formData);
       console.log("res", res);
       imageUrl = res.data.path;
@@ -246,7 +241,7 @@ const handleEditNews = async () => {
       content_en: contentEdit_en,
       imageUrl,
       datePost: dateInput.value,
-      importance: optionImportant.value
+      importance: optionImportant.value,
     });
     if (res.data) {
       overlay.classList.add("d-none");
@@ -271,7 +266,8 @@ const handleCancelEdit = () => {
   easyMDE_news_vi.html.set("");
   easyMDE_news_en.html.set("");
   btn_close?.classList.add("d-none");
-  blah_news.src ="https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
+  blah_news.src =
+    "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg";
   parentContentNews.appendChild(markdownFormNews);
   markdownFormNews.classList.remove("d-block");
   markdownFormNews.classList.add("d-none");
@@ -361,7 +357,7 @@ const handleAddProduct = async () => {
 
     const pond = FilePond.find(document.querySelector(".filepond"));
     const files = pond.getFiles();
-    console.log("files", files);
+
     const formData = new FormData();
 
     files.forEach((fileItem) => {
@@ -443,8 +439,9 @@ const handleClickEditProduct = (id) => {
   easyMDE_product_vi.html.set(markdown_vi);
   easyMDE_product_en.html.set(markdown_en);
 
-
-  categories.value = document.getElementById(`catProduct${id}`).innerText.trim();
+  categories.value = document
+    .getElementById(`catProduct${id}`)
+    .innerText.trim();
 
   // Các URL ảnh bạn muốn hiển thị
   const imageUrls = Array.from(
@@ -485,7 +482,7 @@ const handleEditProduct = async () => {
 
     var id = id_edit_product.innerText;
     let markdownContent_vi = easyMDE_product_vi.html.get();
-   
+
     let markdownContent_en = easyMDE_product_en.html.get();
     let content_vi = converter.makeHtml(markdownContent_vi);
     let content_en = converter.makeHtml(markdownContent_en);
@@ -496,7 +493,7 @@ const handleEditProduct = async () => {
 
     const pond = FilePond.find(document.querySelector(".filepond"));
     const files = pond.getFiles();
-   
+
     const formData = new FormData();
 
     files.forEach((fileItem) => {
@@ -669,12 +666,9 @@ if (btn_edit_news_id) {
   }, 500);
 }
 
-CKEDITOR.replace('policy-content-vi');
-CKEDITOR.replace('policy-content-en');
-CKEDITOR.replace('qa-content-vi');
-CKEDITOR.replace('qa-content-en');
-CKEDITOR.replace('coop-content-vi');
-CKEDITOR.replace('coop-content-en');
-
-
-
+CKEDITOR.replace("policy-content-vi");
+CKEDITOR.replace("policy-content-en");
+CKEDITOR.replace("qa-content-vi");
+CKEDITOR.replace("qa-content-en");
+CKEDITOR.replace("coop-content-vi");
+CKEDITOR.replace("coop-content-en");
