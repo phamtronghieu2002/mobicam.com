@@ -1,3 +1,14 @@
+const chatApp = new ChatApp__({
+  payload: {
+    ui: {
+      right: "10px",
+      bottom: "10px",
+    },
+  },
+});
+chatApp.create();
+
+
 $(document).ready(function () {
   // 
 

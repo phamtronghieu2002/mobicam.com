@@ -109,4 +109,15 @@
     </div>
   </body>
   <%- include('../partials/foot.ejs') %>
+  <script>
+    const chatApp = new ChatApp__({
+      payload: {
+        ui: {
+          right: "10px",
+          bottom: "10px",
+        },
+      },
+    });
+    chatApp.create();
+  </script>
 </html>
