@@ -34,6 +34,9 @@
       <div class="d-flex">
         <%- include('../partials/sidebar.ejs') %>
         <div class="right-content" style="flex: 1">
+          <div class="btn_bar mb-3 hide-on-pc show-on-mobile">
+            <i class="fa-solid fa-bars fs-4"></i>
+          </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <button
@@ -232,7 +235,7 @@
                           <th class="text-center">Tên Tiếng Việt</th>
                           <th class="text-center">Tên Tiếng Anh</th>
                           <th class="text-center">Hình ảnh</th>
-                          <th class="">Mã Danh Mục </th>
+                          <th class="">Mã Danh Mục</th>
                           <th class="text-center">Actions</th>
                         </tr>
                       </thead>
@@ -277,10 +280,7 @@
                             />
                             <% }) %>
                           </td>
-                          <td
-                            class="text-center"
-                            id="catProduct<%=item.id%>"
-                          >
+                          <td class="text-center" id="catProduct<%=item.id%>">
                             <%= item.catid %>
                           </td>
                           <td class="text-center">
@@ -389,14 +389,15 @@
 
   <script src="/js/sidebar.js"></script>
   <script>
-    $(document).ready(function () {
-      $("#product_table").DataTable();
-    });
+    var table = $("#product_table").DataTable();
+
+    // Lấy tất cả dữ liệu hàng
+    var allData = table.rows().data().toArray();
+    console.log(allData);
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
   <script>
     // Đăng ký plugin
-
     FilePond.registerPlugin(
       FilePondPluginFileEncode,
       FilePondPluginFileValidateSize,
@@ -408,19 +409,23 @@
       // Tính năng kéo và thả: Kéo một thư mục vào
       dropOnPage: true,
       dropOnElement: false,
-
       // Cho phép sắp xếp lại hình ảnh được upload
       allowReorder: true,
-
       // Xác định giới hạn file tối đa
       maxFiles: 5,
+      onprocessfile: (file) => {
+        const allowedTypes = ["image/jpeg", "image/png"]; // Danh sách loại file cho phép
 
-      // Định cấu hình nút "Thêm ảnh"
+        if (!allowedTypes.includes(file.type)) {
+          // Loại file không hợp lệ
+          file.status = "invalid"; // Thay đổi trạng thái file
+          file.error = "Chỉ cho phép tải ảnh!"; // Thêm thông báo lỗi
+        }
+      },
       labelIdle:
         'Kéo & thả ảnh của bạn hoặc <span class="filepond--label-action">Chọn Ảnh</span>',
     });
 
-    // Modal functionality
   </script>
 
   <script src="/js/dashboard.js"></script>

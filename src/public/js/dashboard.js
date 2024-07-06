@@ -293,6 +293,8 @@ const parentContentProduct = document.getElementById("nav-addProduct");
 
 let categories = document.getElementById("category_product");
 
+
+
 const handleDelete = async (path, title) => {
   const isConfirmed = await poupConfirm(
     `bạn chắc chắc muốn xóa ${title}?","Dữ liệu của bạn sẽ được cập nhật!`
@@ -418,6 +420,8 @@ const handleClickEditProduct = (id) => {
   btnEditProduct.classList.remove("d-none");
   btnAddProduct.classList.add("d-none");
   // btnCancelProduct.classList.remove("d-none");
+  console.log("id", id);
+  console.log("343434", document.getElementById(`nameProduct_vi${id}`));
   const nameEdit_vi = document.getElementById(`nameProduct_vi${id}`).innerText;
   const nameEdit_en = document.getElementById(`nameProduct_en${id}`).innerText;
 
@@ -647,10 +651,10 @@ const btn_edit_product_id = document.getElementById(
 if (btn_edit_product_id) {
   setTimeout(() => {
     tab_editProduct?.click();
-  }, 200);
+  }, 400);
   setTimeout(() => {
     btn_edit_product_id?.click();
-  }, 500);
+  }, 900);
 }
 
 const newsEditPrams = document.querySelector("#new_param_id")?.innerText;
@@ -666,7 +670,7 @@ if (btn_edit_news_id) {
   }, 500);
 }
 
-CKEDITOR.replace("policy-content-vi");
+ CKEDITOR.replace("policy-content-vi");
 CKEDITOR.replace("policy-content-en");
 CKEDITOR.replace("qa-content-vi");
 CKEDITOR.replace("qa-content-en");

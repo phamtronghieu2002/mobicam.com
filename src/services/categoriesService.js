@@ -1,4 +1,9 @@
 const con = require("..//db/db.js");
+const cheerio = require("cheerio");
+const convertStringToHTML = (str) => {
+  const $ = cheerio.load(str);
+  return $.html();
+};
 
 const getAllCategory = (lang = "vi") => {
   return new Promise(async (resolve, reject) => {
@@ -45,7 +50,7 @@ const getAllCategoryAndProduct = (lang = "vi") => {
             productname: product[`productname_${lang}`],
             productimg: product.productimg,
             images: product.images,
-            productdesc: product[`productdesc_${lang}`],
+            productdesc: convertStringToHTML(product[`productdesc_${lang}`]),
           });
         }
         category.products = products_res;

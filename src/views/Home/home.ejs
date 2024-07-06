@@ -35,8 +35,7 @@
     <style></style>
     <div class="wrapper position-relative">
       <%- include('../partials/header.ejs') ,{headerSection} %>
-
-
+      
       <!-- modal product  -->
       <div
         class="modal fade"
@@ -45,6 +44,8 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
+     
+       
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content modal-product" style="overflow: scroll">
             <div class="modal-header text-center">
@@ -52,7 +53,7 @@
                 class="modal-title fs-5 text-center d-block"
                 id="heading_product_modal"
               >
-                Sản phẩm
+                <%= lang === 'vi' ? 'Sản phẩm' : 'Product' %>
               </h2>
               <button
                 type="button"
@@ -111,7 +112,6 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered modal-lg">
-          
           <div class="modal-content">
             <div class="modal-header text-center bg-dark text-light">
               <h2
@@ -483,7 +483,9 @@
                     <div class="experience_left-dowload">
                       <div class="experience_dowload-item">
                         <div class="experience_dowload-app">
-                          <a href="https://play.google.com/store/apps/details?id=vn.mobicam.v3&hl=vi">
+                          <a
+                            href="https://play.google.com/store/apps/details?id=vn.mobicam.v3&hl=vi"
+                          >
                             <img
                               src="/images/dowloand/chplay.png"
                               alt="mobicam_chplay"
@@ -579,7 +581,7 @@
               class="nav nav-pills mb-3 justify-content-center tab_btns_horizal"
             >
               <% for (let i = 0; i < categories.length; i++) { %>
-              <li 
+              <li
                 data-id="<%= categories[i].id %>"
                 id="<%= i == 0 ? 'defaultOpenCat' : '' %>"
                 onclick="hanndleOpenTabCat(event, '<%= categories[i].id %>','<%=lang %>');"
@@ -587,16 +589,16 @@
               >
                 <button class="nav-link nav-link-horizal">
                   <div class="btn-inner">
-     
-                    <div class="icon-box <% if (i == 1 || i == 2) { %> align-items-center <% } %>">
+                    <div
+                      class="icon-box <% if (i == 1 || i == 2) { %> align-items-center <% } %>"
+                    >
                       <% if(i == 0) { %>
-                        <i class="fi fi-sr-webcam"></i>
+                      <i class="fi fi-sr-webcam"></i>
                       <% } else if(i == 1) { %>
-                        <i class="fi fi-sr-router"></i>
+                      <i class="fi fi-sr-router"></i>
                       <% } else { %>
-                        <i class="fa-solid fa-toolbox"></i>
-                        <% } %>
-                       
+                      <i class="fa-solid fa-toolbox"></i>
+                      <% } %>
                     </div>
                     <h4><%= categories[i].name %></h4>
                   </div>
@@ -637,7 +639,7 @@
                               <i class="fa-regular fa-circle-check"></i>
                             </span>
                             <span class="cursor-pointer"
-                              ><%= products[j].productname %></span
+                              ><%=products[j].productname %></span
                             >
                           </p>
                         </div>
@@ -653,7 +655,7 @@
                         class="desc p-3 border border-primary cat_<%= categories[i].id %>"
                       >
                         <article class="article_product">
-                          <%=products[j].productdesc %>
+                          <%-products[j].productdesc %>
                         </article>
                         <div class="thumb_product">
                           <% for(let k = 0; k < products[j].images.length; k++)
@@ -699,7 +701,6 @@
             <div class="row">
               <% for (let i = 0; i < news.length; i++) { %>
               <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-          
                 <a
                   style="border-radius: 15px"
                   href="/tintuc/chitiet/<%= lang %>/<%= news[i].slug %>"
@@ -730,13 +731,12 @@
               </div>
               <% } %>
               <div class="viewmore text-center">
-                <a href="/tintuc/<%=lang %>" class="fs-5 text-decoration-underline">
-
+                <a
+                  href="/tintuc/<%=lang %>"
+                  class="fs-5 text-decoration-underline"
+                >
                   <% if (lang == 'vi') { %> Xem thêm <% } else { %> View more <%
                   } %>
-      
-                
-       
                 </a>
               </div>
             </div>

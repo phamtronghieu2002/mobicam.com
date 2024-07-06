@@ -1,7 +1,7 @@
 .modal_absolute_content{
   position: fixed !important;
   background: white;
-  top: -66px;
+  top: 40px;
   bottom: 107px;
   overflow-y: scroll;
   left: 50%;
@@ -113,3 +113,12 @@
         border-color: #45a049;
     }
   
+/* custome editor */
+
+/* .fr-box.fr-fullscreen .fr-toolbar.fr-top{
+
+  top: 63px !important;
+} */
+.cke_notification_warning {
+  display: none !important;
+}

@@ -90,6 +90,7 @@ const InitApiRoute = (app) => {
     veryfyUser,
     adminController.handleRenderDashboardQA
   );
+  router.get("/admin//api/dashboard/qaCatList", adminController.handleGetCatQA);
   router.get("/api/q&a/:id", adminController.GetQADetails);
 
   router.get(
@@ -239,6 +240,12 @@ const InitApiRoute = (app) => {
       return res.status(500).json({ message: "Internal server error" });
     }
   });
+  
+  router.get("/admin/api/dashboard/qaCatList",adminController.handleGetCatQA)
+  router.get("/admin/api/qa/catqa/:id",adminController.GetQADetails)
+  router.put("/admin/api/qa/:id",adminController.UpdateQADetails)
+  router.delete("/admin/api/qa/:id",adminController.DeleteQA)
+  router.post("/admin/api/qa",adminController.AddQA)
 
   app.use(router);
 };

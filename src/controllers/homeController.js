@@ -79,7 +79,7 @@ module.exports = {
     try {
        const { lang } = req.params;
        const page = parseInt(req.query.page) || 1;
-       const pageSize = 3; 
+       const pageSize = 6; 
       const newsData = await newService.getAllnewsPagination(lang,page, pageSize);
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);

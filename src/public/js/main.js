@@ -1,22 +1,24 @@
-const chatApp = new ChatApp__({
-  payload: {
-    ui: {
-      right: "10px",
-      bottom: "10px",
+try {
+  const chatApp = new ChatApp__({
+    payload: {
+      ui: {
+        right: "10px",
+        bottom: "10px",
+      },
     },
-  },
-});
-chatApp.create();
+  });
+  chatApp.create();
+} catch (error) {
+  console.log(error);
+}
 
+//
 
-$(document).ready(function () {
-  // 
-
-  const button = $('button')
-  button.attr("aria-label", "button")
-  //carousel certificert
+const button = $("button");
+button.attr("aria-label", "button");
+//carousel certificert
+try {
   $(".owl-carousel").owlCarousel({
-
     margin: 0,
     responsiveClass: true,
     dots: true,
@@ -38,20 +40,23 @@ $(document).ready(function () {
       },
     },
   });
+} catch (error) {
+    console.log(error);
+}
 
-  // handle open menu reponsive
-  $(".btn_bar").click(function () {
-    $(".btn_bar").toggleClass("fa-xmark");
-    $(".btn_bar").toggleClass("fa-bars");
-    $(".menu-responsive").slideToggle(200);
-  });
+// handle open menu reponsive
+$(".btn_bar").click(function () {
+  console.log("click");
+  $(".btn_bar").toggleClass("fa-xmark");
+  $(".btn_bar").toggleClass("fa-bars");
+  $(".menu-responsive").slideToggle(200);
 });
 
-$('#modalVideo').on('hidden.bs.modal', function () {
-  var video = document.getElementById('video_reasion');
+$("#modalVideo").on("hidden.bs.modal", function () {
+  var video = document.getElementById("video_reasion");
   if (video) {
-      video.pause();  // Tạm dừng video
-      video.currentTime = 0;  // Đặt lại thời gian phát video về 0
+    video.pause(); // Tạm dừng video
+    video.currentTime = 0; // Đặt lại thời gian phát video về 0
   }
 });
 
@@ -125,10 +130,9 @@ if (checkIsMobileAndTabletWidth()) {
   const tabCats = document.getElementsByClassName("nav-item");
   const content_tab_product = document.getElementById("content_tab_product");
 
-  if(content_tab_product)
-    {
-      content_tab_product.style.display = "none";
-    }
+  if (content_tab_product) {
+    content_tab_product.style.display = "none";
+  }
   for (let i = 0; i < tabCats.length; i++) {
     tabCats[i].setAttribute("data-bs-toggle", "modal");
     tabCats[i].setAttribute("data-bs-target", "#modalProductTab");
@@ -174,7 +178,6 @@ const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
 
     content_modal_product.innerHTML = htmlContent;
     $(".nested-carousel").owlCarousel({
-
       autoplay: false,
       margin: 10,
       nav: true,
@@ -186,7 +189,6 @@ const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
       responsive: {
         0: {
           items: 1,
-
         },
         600: {
           items: 1,
@@ -212,13 +214,13 @@ if (defaultTabProduct.length > 0) {
     defaultTabProduct[i].click();
   }
 
-  const articleProduct = document.getElementsByClassName("article_product");
-  for (let i = 0; i < articleProduct.length; i++) {
-    let contentMardown = articleProduct[i].innerText;
-    const parser = new DOMParser();
-    let articleHtml = parser.parseFromString(contentMardown, "text/html");
-    articleProduct[i].innerHTML = articleHtml.body.innerHTML;
-  }
+  // const articleProduct = document.getElementsByClassName("article_product");
+  // for (let i = 0; i < articleProduct.length; i++) {
+  //   let contentMardown = articleProduct[i].innerText;
+  //   const parser = new DOMParser();
+  //   let articleHtml = parser.parseFromString(contentMardown, "text/html");
+  //   articleProduct[i].innerHTML = articleHtml.body.innerHTML;
+  // }
 }
 
 function hanndleOpenTabProduct(evt, productid, catid) {
@@ -282,7 +284,6 @@ if (modalVideo) {
     videoElement.load();
   };
 }
-
 
 function counterUp(el, to) {
   let speed = 200;

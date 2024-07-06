@@ -110,14 +110,19 @@
   </body>
   <%- include('../partials/foot.ejs') %>
   <script>
-    const chatApp = new ChatApp__({
-      payload: {
-        ui: {
-          right: "10px",
-          bottom: "10px",
+    try {
+      const chatApp = new ChatApp__({
+        payload: {
+          ui: {
+            right: "10px",
+            bottom: "10px",
+          },
         },
-      },
-    });
-    chatApp.create();
+      });
+      chatApp.create();
+    } catch (error) {
+      console.log("ChatApp error: ", error);
+    }
   </script>
+  <script src="/js/main.js"></script>
 </html>

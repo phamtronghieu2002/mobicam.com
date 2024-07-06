@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <%- include('../partials/head.ejs') %>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css" />
         <script type="text/javascript" charset="utf8"
@@ -160,13 +160,16 @@
 </head>
 
 <body>
-    <div class="root">
+    <div class="root dashboard">
         <div class="sidebar">
             <%- include('../partials/sidebar.ejs') %>
         </div>
         <div class="main">
             <div class="main-header">
                 <div class="left-header">
+                    <div class="btn_bar mb-3 hide-on-pc show-on-mobile">
+                        <i class="fa-solid fa-bars fs-4"></i>
+                      </div>
                     <span>Trang / Chính sách</span>
                 </div>
                 <div class="right-header">
@@ -179,8 +182,8 @@
                         <span>Các chính sách hiện có</span>
                     </div>
                     <div class="main-content-top-right">
-                        <button class="add-policy-btn hover-btn btn-css">+ Thêm mới</button>
-                        <button class="delete-policy-btn hover-btn btn-css">Xóa</button>
+                        <!-- <button class="add-policy-btn hover-btn btn-css">+ Thêm mới</button>
+                        <button class="delete-policy-btn hover-btn btn-css">Xóa</button> -->
                         <button class="save-policy-btn hover-btn btn-css" onclick="updatePolicy()">Lưu</button>
                     </div>
                 </div>

@@ -1,5 +1,11 @@
 <aside class="side-bar-left">
-  <h6 class="fw-bold">Admin</h6>
+  <h6 class="fw-bold d-flex justify-content-center align-items-center">
+    <span>Admin</span>
+    <i
+      style="right: 50%; margin-right: -100px"
+      class="fa-solid fa-xmark position-absolute fs-5 btn_close_sidebar hide-on-pc show-on-mobile"
+    ></i>
+  </h6>
   <nav>
     <div class="menu-item position-relative" type="page">
       <div class="main-menu position-relative">
@@ -11,36 +17,46 @@
       <i class="fa-solid fa-chevron-left position-absolute icon_chevon"></i>
       <div style="display: none" class="sub-menu">
         <ul>
-          <li class="sub-menu-item" type="product">
+          <a
+            class="sub-menu-item"
+            type="product"
+            href="/admin/dashboard/page/product"
+          >
             <i class="fa-solid fa-caret-right"></i>
-            <a href="/admin/dashboard/page/product"> Sản phẩm</a>
-          </li>
-          <li class="sub-menu-item" type="news">
+            <span>Sản phẩm</span>
+          </a>
+          <a
+            class="sub-menu-item"
+            type="news"
+            href="/admin/dashboard/page/news"
+          >
             <i class="fa-solid fa-caret-right"></i>
-            <a href="/admin/dashboard/page/news">Tin tức</a>
-          </li>
-     
-
-          <li class="sub-menu-item">
+            <span>Tin tức</span>
+          </a>
+          <a class="sub-menu-item" href="/admin/dashboard/page/policy">
             <i class="fa-solid fa-caret-right"></i>
-            <a href="/admin/dashboard/page/policy">Chính sách</a>
-          </li>
-          <li class="sub-menu-item">
+            <span>Chính sách</span>
+          </a>
+          <a class="sub-menu-item" href="/admin/dashboard/page/q&a">
             <i class="fa-solid fa-caret-right"></i>
-            <a href="/admin/dashboard/page/q&a">Hỏi đáp</a>
-          </li>
-          <li class="sub-menu-item">
+            <span>Hỏi đáp</span>
+          </a>
+          <a class="sub-menu-item" href="/admin/dashboard/page/cooperate">
             <i class="fa-solid fa-caret-right"></i>
-            <a href="/admin/dashboard/page/cooperate">Hợp tác</a>
-          </li>
-          <li class="sub-menu-item">
+            <span>Hợp tác</span>
+          </a>
+          <a
+            class="sub-menu-item"
+            href="/admin/editLandingPage/vi"
+            target="_blank"
+            aria-describedby="edit ding"
+          >
             <i class="fa-solid fa-caret-right"></i>
-            <a href="/admin/editLandingPage/vi" target="_blank" aria-describedby="edit ding">Giao diện</a>
-          </li>
+            <span>Giao diện</span>
+          </a>
         </ul>
       </div>
     </div>
-
   </nav>
   <div class="logout_btn rounded-pill">
     <i class="fas fa-sign-out-alt"></i>
