@@ -113,8 +113,6 @@ $(async function () {
   inputChangeUrlLocation.on("input", async function () {
     const url = $(this).val();
     const parent = $(this).parent();
-    console.log("url", url);
-    console.log("parent", parent);
     parent.attr("href", url);
   });
   img_wp.append(`<div class="change_image_area">

@@ -35,7 +35,6 @@ module.exports = {
       const newsSection = await editLandingService.getNewsSection(lang);
       const certificertHeading = await editLandingService.getCertificertHeadingSection(lang);
       const footerIcon = await editLandingService.getFooterIconSection(lang);
-      console.log("footer icon  >>", footerIcon);
       const data= {
         roles,
         listPolicy: listPolicy,

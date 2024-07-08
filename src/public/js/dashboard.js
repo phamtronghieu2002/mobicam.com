@@ -49,8 +49,7 @@ const validateSizeImage = (size, height, type = "") => {
   return true;
 };
 const validateSizeImageProduct = (height, width) => {
-  console.log("height", height);
-  console.log("width", width);
+
   if (width >= 600 && height >= 600) {
     return true;
   }
@@ -235,7 +234,6 @@ const handleEditNews = async () => {
       formData.append("image", fileInputNews.files[0]);
       setLoading("đang cập nhật tin tức", "vui lòng chờ")
       const res = await axios.post("/admin/uploadimage", formData);
-      console.log("res", res);
       imageUrl = res.data.path;
     }
 
@@ -361,7 +359,6 @@ const handleAddProduct = async () => {
 
     const pond = FilePond.find(document.querySelector(".filepond"));
     const files = pond.getFiles();
-    console.log("files", files);
     const formData = new FormData();
 
     files.forEach((fileItem) => {

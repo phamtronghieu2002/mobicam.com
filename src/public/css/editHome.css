@@ -100,7 +100,7 @@ display: none;
   content: "";
   position: absolute;
   top: -50px; /* Điều chỉnh vị trí thích hợp dựa trên kích thước của ảnh */
-  left: 20px; /* Điều chỉnh để phù hợp */
+  left: 20px; /* Điều chỉnh để phù hợp */ 
   width: 40px; /* Kích thước của ảnh ngón tay của bạn */
   height: 40px; /* Kích thước của ảnh ngón tay của bạn */
   background-image: url('https://png.pngtree.com/png-clipart/20221228/ourmid/pngtree-3d-rendering-of-pointing-hand-gesture-png-image_6540596.png'); /* Đường dẫn đến ảnh của bạn */

@@ -162,7 +162,6 @@ const InitApiRoute = (app) => {
     "/admin/uploadFile",
     uploadFile.array("files", 10),
     (req, res) => {
-      console.log("req.file", req.files);
       const files = req.files;
 
       const filePaths = files.map((file) => `/files/${file.filename}`);
