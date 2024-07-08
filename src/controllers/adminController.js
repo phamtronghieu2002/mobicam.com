@@ -1,9 +1,22 @@
 const newService = require("../services/newService.js");
 const productService = require("../services/productService.js");
 const categoryService = require("../services/categoriesService.js");
-const {getPolicyDetails,getPolicyList,getQADetails,getQAList,updatePolicy, getCoopList,getCoopDetails,updateCoop,getCoopDetailsAdmin} = require("../services/footerService.js")
-const con = require("..//db/db.js");
-
+const {
+  getPolicyDetails,
+  getPolicyList,
+  getQADetails,
+  getQAList,
+  updatePolicy,
+  getCoopList,
+  getCoopDetails,
+  updateCoop,
+  getCoopDetailsAdmin,
+  updateQA,
+  deleteQA,
+  addQA,
+  addPolicy,
+  deletePolicy
+} = require("../services/footerService.js");
 
 module.exports = {
   handleRenderAdminLoginPage: (req, res) => {
@@ -12,12 +25,19 @@ module.exports = {
   },
 
   handleUploadImage: (req, res) => {
-
     return res.status(200).json({ path: req.file.path });
   },
 
   handleAddNew: async (req, res) => {
-    const { title_vi, title_en, content_vi, content_en, imageUrl ,importance,datePost} = req.body;
+    const {
+      title_vi,
+      title_en,
+      content_vi,
+      content_en,
+      imageUrl,
+      importance,
+      datePost,
+    } = req.body;
     try {
       const result = await newService.addNew(
         title_vi,
@@ -49,7 +69,15 @@ module.exports = {
   },
 
   handleUpdateNews: async (req, res) => {
-    const { title_vi, title_en, content_vi, content_en, imageUrl,importance,datePost } = req.body;
+    const {
+      title_vi,
+      title_en,
+      content_vi,
+      content_en,
+      imageUrl,
+      importance,
+      datePost,
+    } = req.body;
     const { id } = req.params;
     try {
       const result = await newService.updateNew(
@@ -146,60 +174,126 @@ module.exports = {
     return res.render("./Admin/dashboardNews.ejs", { cats, news, id });
   },
 
-//====================PolicyController============================
-  handleRenderDashboardPolicy: async(req,res) => {
-    const results = await getPolicyList()
-    
-    return res.render('./Admin/dashboardPolicy.ejs', { listPolicy: results })
+  //====================PolicyController============================
+  handleRenderDashboardPolicy: async (req, res) => {
+    const results = await getPolicyList();
+
+    return res.render("./Admin/dashboardPolicy.ejs", { listPolicy: results });
   },
-  GetPolicyDetails: async(req,res)=>{
-    const id = req.params.id
-    const results = await getPolicyDetails(id)
-    return res.json(results)
+  GetPolicyDetails: async (req, res) => {
+    const id = req.params.id;
+    const results = await getPolicyDetails(id);
+    return res.json(results);
   },
-  UpdatePolicy: async (req,res) =>{
-    const {name_en,name_vi,content_vi,content_en} = req.body
-    const {id} = req.params
-    const results = await updatePolicy(name_vi, name_en, content_vi, content_en, id);
-    return res.json(results)
+  UpdatePolicy: async (req, res) => {
+    const { name_en, name_vi, content_vi, content_en } = req.body;
+    const { id } = req.params;
+    const results = await updatePolicy(
+      name_vi,
+      name_en,
+      content_vi,
+      content_en,
+      id
+    );
+    return res.json(results);
   },
-  AddPolicy: async (req, res) =>{
-    const {name_en,name_vi,content_vi,content_en} = req.body
-    const results = await addPolicy(name_vi, name_en, content_vi, content_en);
-    return res.json(results)
+  AddPolicy: async (req, res) => {
+    try {
+      const { name_en, name_vi, content_vi, content_en } = req.body
+      const results = await addPolicy(name_vi, name_en, content_vi, content_en)
+      return res.json(results)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  DeletePolicy: async (req, res) => {
+    try {
+      const { id } = req.params
+      const results = await deletePolicy(id)
+      return res.json(results)
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({ message: "Internal server error" })
+    }
+
+  },
+
+  //====================Cooperate Controller============================
+  handleRenderDashboardCoop: async (req, res) => {
+    const results = await getCoopList();
+    return res.render("./Admin/dashboardCooperate.ejs", { listCoop: results });
+  },
+  GetCoopDetails: async (req, res) => {
+    const id = req.params.id;
+    const results = await getCoopDetails(id);
+    return res.json(results);
+  },
+  GetCoopDetailsAdmin: async (req, res) => {
+    const id = req.params.id;
+    const results = await getCoopDetailsAdmin(id);
+    return res.json(results);
+  },
+  UpdateCoop: async (req, res) => {
+    const { name_en, name_vi, content_vi, content_en } = req.body;
+    const { id } = req.params;
+    const results = await updateCoop(
+      name_vi,
+      name_en,
+      content_vi,
+      content_en,
+      id
+    );
+    return res.json(results);
   },
 
   //====================Q&AController============================
-  handleRenderDashboardQA: async(req,res) => {
-    const results = await getQAList()
-    return res.render('./Admin/dashboardQ&A.ejs', { listQA: results })
+  handleRenderDashboardQA: async (req, res) => {
+    const results = await getQAList();
+    return res.render("./Admin/dashboardQ&A.ejs", { listQA: results });
   },
-  GetQADetails: async(req,res)=>{
-    const id = req.params.id
-    const results = await getQADetails(id)
-    return res.json(results)
+  handleGetCatQA: async (req, res) => {
+    try {
+      const results = await getQAList();
+      return res.status(200).json(results);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   },
-
-
-  //====================Cooperate Controller============================
-  handleRenderDashboardCoop: async(req,res) => {
-    const results = await getCoopList()
-    return res.render('./Admin/dashboardCooperate.ejs', { listCoop: results })
+  GetQADetails: async (req, res) => {
+    const id = req.params.id;
+    const results = await getQADetails(id);
+    return res.status(200).json(results);
   },
-  GetCoopDetails: async(req,res)=>{
-    const id = req.params.id
-    const results = await getCoopDetails(id)
-    return res.json(results)
+  UpdateQADetails: async (req, res) => {
+    try {
+      const id = req.params;
+      const { content_vi, content_en } = req.body;
+      const results = await updateQA(content_vi, content_en, id);
+      return res.status(200).json(results);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   },
-  GetCoopDetailsAdmin: async(req,res)=>{
-    const id = req.params.id
-    const results = await getCoopDetailsAdmin(id)
-    return res.json(results)
+  AddQA: async (req, res) => {
+    try {
+      const { content_vi, content_en, name_vi, name_en, cateId } = req.body;
+      const results = await addQA(content_vi, content_en, name_vi, name_en, cateId);
+      return res.status(200).json(results);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   },
-  UpdateCoop: async (req,res) =>{
-    const {name_en,name_vi,content_vi,content_en} = req.body
-    const {id} = req.params
-    const results = await updateCoop(name_vi, name_en, content_vi, content_en, id);
-    return res.json(results)
+  DeleteQA: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const results = await deleteQA(id);
+      return res.status(200).json(results);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   },
 };

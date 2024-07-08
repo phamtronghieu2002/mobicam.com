@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <%- include('../partials/head.ejs') %>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css" />
         <script type="text/javascript" charset="utf8"
@@ -127,7 +127,8 @@
             .hover-btn:hover {
                 background-color: #0d6efd;
                 color: white;
-                transition: linear 0.3s;;
+                transition: linear 0.3s;
+                ;
             }
 
             .abc input,
@@ -160,13 +161,70 @@
 </head>
 
 <body>
-    <div class="root">
+    <!-- modal add policy -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm chính sách</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-add-policy">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">Việt Ngữ</button>
+                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">Anh Ngữ</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-home-tab">
+                                <div class="abc mb-3 mt-3">
+                                    <label for="policy-name-vi"> Tên </label>
+                                    <input type="text" name="policy-name-vi" id="modal-policy-name-vi" class="form-control">
+                                </div>
+                                <div class="abc content">
+                                    <label for="policy-content-vi"> Nội dung </label>
+                                    <textarea name="modal-policy-content-vi" id="modal-policy-content-vi"></textarea>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
+                                <div class="abc mb-3 mt-3">
+                                    <label for="policy-name-en"> Tên </label>
+                                    <input type="text" name="policy-name-en" id="modal-policy-name-en" class="form-control">
+                                </div>
+                                <div class="abc content">
+                                    <label for="policy-content-en"> Nội dung </label>
+                                    <textarea name="modal-policy-content-en" id="modal-policy-content-en"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" onclick="addPolicy()">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="root dashboard">
         <div class="sidebar">
             <%- include('../partials/sidebar.ejs') %>
         </div>
         <div class="main">
             <div class="main-header">
                 <div class="left-header">
+                    <div class="btn_bar mb-3 hide-on-pc show-on-mobile">
+                        <i class="fa-solid fa-bars fs-4"></i>
+                    </div>
                     <span>Trang / Chính sách</span>
                 </div>
                 <div class="right-header">
@@ -179,8 +237,9 @@
                         <span>Các chính sách hiện có</span>
                     </div>
                     <div class="main-content-top-right">
-                        <button class="add-policy-btn hover-btn btn-css">+ Thêm mới</button>
-                        <button class="delete-policy-btn hover-btn btn-css">Xóa</button>
+                        <button class="add-policy-btn hover-btn btn-css" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">+ Thêm mới</button>
+                        <button class="delete-policy-btn hover-btn btn-css" onclick="deletePolicy()">Xóa</button>
                         <button class="save-policy-btn hover-btn btn-css" onclick="updatePolicy()">Lưu</button>
                     </div>
                 </div>
@@ -232,6 +291,7 @@
                         </div>
                     </div>
 
+
                 </div>
             </div>
         </div>
@@ -239,9 +299,9 @@
 
 </body>
 <%- include('../partials/foot.ejs') %>
-<%- include('../partials/scriptDashboard.ejs') %>
-    <script src="/js/dashboard.js"></script>
-    <script src="/js/ejsPolicy.js"></script>
-    <script src="/js/sidebar.js"></script>
+    <%- include('../partials/scriptDashboard.ejs') %>
+        <script src="/js/dashboard.js"></script>
+        <script src="/js/ejsPolicy.js"></script>
+        <script src="/js/sidebar.js"></script>
 
 </html>

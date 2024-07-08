@@ -101,11 +101,15 @@
         background: var(--white-color);
         display: none;
       }
+      .selected{
+        background-color: #d3d3d3;
+      }
     </style>
   </head>
 
   <body>
     <div class="app">
+
       <span id="qa-id" class="d-none"> <%=id%> </span>
       <span id="qa-lang"> <%=lang%> </span>
       <%- include('../partials/header.ejs') ,{headerSection} %>

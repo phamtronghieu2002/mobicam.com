@@ -39,7 +39,7 @@ const getRoleByUserId = async (userId) => {
         const user = result[0];
         const roles= await getRoleByUserId(user.id);
         user.roles = roles;
-        let access_token = create_access_token(result[0], "1h");
+        let access_token = create_access_token(result[0], "24h");
         saveTokenOnBrowser(res, access_token);
         resolve(true);
       } else {

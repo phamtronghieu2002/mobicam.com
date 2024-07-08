@@ -12,6 +12,8 @@
   color: var(--white);
   position: fixed;
   bottom: 0;
+  z-index: 99;
+  transition: all 0.3s ease;
 }
 .side-bar-left h6 {
   height: var(--header-height);
@@ -118,4 +120,7 @@ aside {
 }
 #main-content{
     flex: 1;
+}
+.side-bar-left.active{
+  transform: translateX(0px);
 }

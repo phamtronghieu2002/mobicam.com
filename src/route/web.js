@@ -84,12 +84,15 @@ const InitApiRoute = (app) => {
   );
   router.get("/api/policy/:id", adminController.GetPolicyDetails);
   router.put("/api/update/:id", adminController.UpdatePolicy);
+  router.post("/api/addPolicy", adminController.AddPolicy);
+  router.delete("/api/deletePolicy/:id", adminController.DeletePolicy);
 
   router.get(
     "/admin/dashboard/page/q&a",
     veryfyUser,
     adminController.handleRenderDashboardQA
   );
+  router.get("/admin//api/dashboard/qaCatList", adminController.handleGetCatQA);
   router.get("/api/q&a/:id", adminController.GetQADetails);
 
   router.get(
@@ -101,7 +104,7 @@ const InitApiRoute = (app) => {
   router.put("/api/updateCoop/:id", adminController.UpdateCoop);
   router.get("/api/cooperation/:id", adminController.GetCoopDetails);
 
-  //footer
+  //footer landing
   router.get("/policy/:id/:lang", homeController.handleRenderPolicy);
   router.get("/q&a/:id/:lang", homeController.handleRenderQA);
   router.get("/cooperate/:id/:lang", homeController.handleRenderCooperate);
@@ -238,6 +241,12 @@ const InitApiRoute = (app) => {
       return res.status(500).json({ message: "Internal server error" });
     }
   });
+  
+  router.get("/admin/api/dashboard/qaCatList",adminController.handleGetCatQA)
+  router.get("/admin/api/qa/catqa/:id",adminController.GetQADetails)
+  router.put("/admin/api/qa/:id",adminController.UpdateQADetails)
+  router.delete("/admin/api/qa/:id",adminController.DeleteQA)
+  router.post("/admin/api/qa",adminController.AddQA)
 
   app.use(router);
 };

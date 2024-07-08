@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Dashboard</title>
     <%- include('../partials/head.ejs') %>
     <link
       rel="stylesheet"
@@ -161,11 +161,14 @@
   </head>
 
   <body>
-    <div class="root">
+    <div class="root dashboard">
       <div class="sidebar"><%- include('../partials/sidebar.ejs') %></div>
       <div class="main">
         <div class="main-header">
           <div class="left-header">
+            <div class="btn_bar mb-3 hide-on-pc show-on-mobile">
+              <i class="fa-solid fa-bars fs-4"></i>
+            </div>
             <span>Trang / Hợp tác</span>
           </div>
           <div class="right-header">

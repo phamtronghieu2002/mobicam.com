@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Page</title>
+  <title>chi tiết tin tức</title>
   <%- include('../partials/head.ejs') %>
 </head>
    <style>
@@ -17,7 +17,7 @@
         <div class="container">
           <div class="box">
             <div class="box-head">
-              <h1 class="text-center mb-4 fw-bold fs-2">
+              <h1 class="text-center mb-4 fw-bold fs-2 title">
                 <%= newDetail.title %>
               </h1>
 
@@ -46,6 +46,10 @@
 
       article.innerHTML = articleHtml.body.innerHTML;
     });
+
+  const title_name = document.querySelector('.title').innerText;
+  document.title = title_name;
+
   </script>
 </body>
 

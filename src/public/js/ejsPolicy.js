@@ -51,6 +51,58 @@ function selectCoop(coopId) {
     })
 }
 
+//add policy Admin
+function  addPolicy(){
+  const name_vi = document.getElementById('modal-policy-name-vi').value
+  const name_en = document.getElementById('modal-policy-name-en').value
+  const content_vi = CKEDITOR.instances['modal-policy-content-vi'].getData()
+  const content_en = CKEDITOR.instances['modal-policy-content-en'].getData()
+  if (!name_vi ||!name_en ||!content_vi ||!content_en) {
+    return toastr.error('Vui lòng nhập đầy đủ thông tin');
+  }
+  axios.post('/api/addPolicy', {
+    name_en,
+    name_vi,
+    content_vi,
+    content_en
+  })
+   .then(response =>{
+    if (response.data) {
+      toastr.success('Thêm mới thành công');
+      setTimeout(() => {
+        window.location.reload();
+      }, 700);
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    toastr.error('Thêm mới thất bại, vui lòng thử lại');
+  })
+}
+
+ async function deletePolicy(){
+  const isConfirmed = await poupConfirm(
+    `Bạn chắc chắc muốn xóa ?`
+  );  
+  if(isConfirmed) {
+    const policyId = document.querySelector('.selected').getAttribute('id').trim()
+    console.log('aaa',policyId)
+    axios.delete(`/api/deletePolicy/${policyId}`) 
+     .then(response => {
+        if (response.data) {
+          toastr.success('Xóa thành công');
+          setTimeout(() => {
+            window.location.reload();
+          }, 700);
+        }
+      })
+     .catch(err => {
+        console.log(err)
+        toastr.error('Xóa thất bại, vui lòng thử lại');
+      })
+  }
+}
+
 //update policy Admin
 function updatePolicy() {
   const policyId = document.querySelector('.selected').getAttribute('id')

@@ -77,7 +77,9 @@ module.exports = {
   handleGetAllNews: async (req, res) => {
     try {
        const { lang } = req.params;
-      const news = await newService.getAllnews(lang);
+       const page = parseInt(req.query.page) || 1;
+       const pageSize = 6; 
+      const newsData = await newService.getAllnewsPagination(lang,page, pageSize);
       const headerSection = await editLandingService.getHeaderSection(lang);
       const footerSection = await editLandingService.getFooterSection(lang);
       const listPolicy = await getPolicyList();  
@@ -89,7 +91,8 @@ module.exports = {
         listCoop,
         listQA,
         lang:lang ? lang : "vi",
-        news,
+        news: newsData.news, 
+        pagination: newsData.pagination,
         headerSection: convertStringToHTML(headerSection),
         footerSection: convertStringToHTML(footerSection),
         footerIcon: convertStringToHTML(footerIcon),

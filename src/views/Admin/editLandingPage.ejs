@@ -128,7 +128,7 @@
                 class="modal-title fs-5 text-center d-block"
                 id="heading_product_modal"
               >
-                Sản phẩm
+                <%= lang === 'vi' ? 'Sản phẩm' : 'Product' %>
               </h2>
               <button
                 type="button"
@@ -268,7 +268,7 @@
       </section>
 
       <section class="method_section pt-5 pb-5">
-        <% if (typeof methodSection == 'undefined' && methodSection) { %> <%-
+        <% if (typeof methodSection !== 'undefined' && methodSection) { %> <%-
         methodSection %> <% } else { %>
         <div class="container d-flex gap-5">
           <div class="row">
@@ -758,7 +758,7 @@
                         class="desc p-3 border border-primary cat_<%= categories[i].id %>"
                       >
                         <article class="article_product">
-                          <%=products[j].productdesc %>
+                          <%-products[j].productdesc %>
                         </article>
                         <div class="thumb_product">
                           <div class="wp_thumb_product_<%=products[j].id %>">
