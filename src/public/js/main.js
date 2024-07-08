@@ -51,7 +51,7 @@ $(".btn_bar").click(function () {
   $(".btn_bar").toggleClass("fa-bars");
   $(".menu-responsive").slideToggle(200);
 });
-
+//handle stop video when close modal
 $("#modalVideo").on("hidden.bs.modal", function () {
   var video = document.getElementById("video_reasion");
   if (video) {
@@ -68,7 +68,7 @@ const checkIsMobileAndTabletWidth = () => {
   }
   return false;
 };
-
+//handle click navigation menu
 const handleClickMenu = (event) => {
   const menus = document.querySelectorAll(
     ".wrapper header .header_navigation ul a"
@@ -138,6 +138,7 @@ if (checkIsMobileAndTabletWidth()) {
     tabCats[i].setAttribute("data-bs-target", "#modalProductTab");
   }
 }
+
 const handleClickCategoriesTabResponsive = async (event, catid, lang) => {
   if (checkIsMobileAndTabletWidth()) {
     const res = await axios.get(`/category/${catid}/${lang}`);

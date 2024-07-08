@@ -6,6 +6,7 @@ const path = require("path");
 const { fileURLToPath } = require('url');
 const app = express();
 const port = process.env.PORT || 3000;
+const filesDirectory = path.join(__dirname, 'files');
 
 appMiddleware(express, app);
 InitApiRoute(app);
@@ -16,7 +17,6 @@ app.set("views", "./src/views");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
-const filesDirectory = path.join(__dirname, 'files');
 app.use('/files', express.static(filesDirectory));
 
 app.listen(port, () => {
